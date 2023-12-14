@@ -63,7 +63,7 @@ void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 2 */
 
-void MOTOR_CONTROL(uint8_t direction)
+void MOTOR_CONTROL(uint8_t direction,uint8_t speed)
 {
 	static uint8_t step=0;
 	if(direction == 1)//反转
@@ -78,6 +78,7 @@ void MOTOR_CONTROL(uint8_t direction)
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, RESET);//0
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, RESET);//0
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, RESET);//0
+		HAL_Delay(speed);
 	}
 	if(step == 1)//步序2
 	{
@@ -85,6 +86,7 @@ void MOTOR_CONTROL(uint8_t direction)
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, SET);//1
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, RESET);//0
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, RESET);//0
+		HAL_Delay(speed);
 	}
 	if(step == 2)//步序3
 	{
@@ -92,6 +94,7 @@ void MOTOR_CONTROL(uint8_t direction)
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, SET);//1
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, RESET);//0
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, RESET);//0
+		HAL_Delay(speed);
 	}
 	if(step == 3)//步序4
 	{
@@ -99,6 +102,7 @@ void MOTOR_CONTROL(uint8_t direction)
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, SET);//1
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, SET);//1
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, RESET);//0
+		HAL_Delay(speed);
 
 	}
 	if(step == 4)//步序5
@@ -107,6 +111,7 @@ void MOTOR_CONTROL(uint8_t direction)
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, RESET);//0
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, SET);//1
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, RESET);//0
+		HAL_Delay(speed);
 	}
 	if(step == 5)//步序6
 	{
@@ -114,6 +119,7 @@ void MOTOR_CONTROL(uint8_t direction)
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, RESET);//0
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, SET);//1
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, SET);//1
+		HAL_Delay(speed);
 	}
 	if(step == 6)//步序7
 	{
@@ -121,6 +127,7 @@ void MOTOR_CONTROL(uint8_t direction)
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, RESET);//0
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, RESET);//0
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, SET);//1
+		HAL_Delay(speed);
 	}
 	if(step == 7)//步序8
 	{
@@ -128,6 +135,7 @@ void MOTOR_CONTROL(uint8_t direction)
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_7, RESET);//0
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, RESET);//0
 		HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, SET);//1
+		HAL_Delay(speed);
 	}
 	if(direction == 0)//正转
 	{
@@ -135,13 +143,13 @@ void MOTOR_CONTROL(uint8_t direction)
 	}
 }
 
-void Step_Motor_Start(uint16_t angle, uint8_t direction)
+void Step_Motor_Start(uint16_t angle, uint8_t direction,uint8_t speed)
 {
 	int i = 0;
 	int pulse = (int)((double)(angle/5.625)*64);
 	for(i=0; i<pulse; i++){
-		MOTOR_CONTROL(direction);
-		HAL_Delay(2);//延时2ms,修改延时可改变电机转动速度。即修改了脉冲频率
+		MOTOR_CONTROL(direction,speed);
+		HAL_Delay(speed);//延时2ms,修改延时可改变电机转动速度。即修改了脉冲频率
 	}
 }
 
