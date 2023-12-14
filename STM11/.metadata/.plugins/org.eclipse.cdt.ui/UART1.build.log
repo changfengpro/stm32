@@ -1,0 +1,18 @@
+20:13:06 **** Incremental Build of configuration Release for project UART1 ****
+make -j20 all 
+arm-none-eabi-gcc -o "UART1.elf" @"objects.list"   -mcpu=cortex-m3 -T"D:\STM\UART1\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="UART1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+D:/ST/STM32CubeIDE_1.13.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.o: in function `UART_EndRxTransfer':
+stm32f1xx_hal_uart.c:(.text.UART_EndRxTransfer+0xc): undefined reference to `ATOMIC_CLEAR_BIT'
+D:/ST/STM32CubeIDE_1.13.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/bin/ld.exe: stm32f1xx_hal_uart.c:(.text.UART_EndRxTransfer+0x16): undefined reference to `ATOMIC_CLEAR_BIT'
+D:/ST/STM32CubeIDE_1.13.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/bin/ld.exe: stm32f1xx_hal_uart.c:(.text.UART_EndRxTransfer+0x26): undefined reference to `ATOMIC_CLEAR_BIT'
+D:/ST/STM32CubeIDE_1.13.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.o: in function `UART_Receive_IT.isra.0':
+stm32f1xx_hal_uart.c:(.text.UART_Receive_IT.isra.0+0x62): undefined reference to `ATOMIC_CLEAR_BIT'
+D:/ST/STM32CubeIDE_1.13.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.o: in function `HAL_UART_IRQHandler':
+stm32f1xx_hal_uart.c:(.text.HAL_UART_IRQHandler+0xa6): undefined reference to `ATOMIC_CLEAR_BIT'
+D:/ST/STM32CubeIDE_1.13.2/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.11.3.rel1.win32_1.1.1.202309131626/tools/bin/../lib/gcc/arm-none-eabi/11.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_uart.o:stm32f1xx_hal_uart.c:(.text.HAL_UART_IRQHandler+0x11a): more undefined references to `ATOMIC_CLEAR_BIT' follow
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:64: UART1.elf] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+
+20:13:06 Build Failed. 10 errors, 0 warnings. (took 355ms)
+

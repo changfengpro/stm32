@@ -1,0 +1,16 @@
+14:36:19 **** Incremental Build of configuration Debug for project stm32_hal_ch1116 ****
+make -j20 all 
+arm-none-eabi-gcc -o "stm32_hal_ch1116.elf" @"objects.list"   -mcpu=cortex-m3 -T"D:\STM\stm32_hal_ch1116\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="stm32_hal_ch1116.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: stm32_hal_ch1116.elf
+ 
+arm-none-eabi-size   stm32_hal_ch1116.elf 
+arm-none-eabi-objdump -h -S  stm32_hal_ch1116.elf  > "stm32_hal_ch1116.list"
+   text	   data	    bss	    dec	    hex	filename
+  11004	     20	   2812	  13836	   360c	stm32_hal_ch1116.elf
+Finished building: default.size.stdout
+ 
+Finished building: stm32_hal_ch1116.list
+ 
+
+14:36:21 Build Finished. 0 errors, 0 warnings. (took 2s.356ms)
+

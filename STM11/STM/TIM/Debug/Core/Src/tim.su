@@ -1,0 +1,5 @@
+../Core/Src/tim.c:31:6:MX_TIM2_Init	56	static
+../Core/Src/tim.c:75:6:MX_TIM3_Init	56	static
+../Core/Src/tim.c:119:6:HAL_TIM_Encoder_MspInit	48	static
+../Core/Src/tim.c:175:6:HAL_TIM_Encoder_MspDeInit	16	static
+../Core/Src/tim.c:221:10:Timer_GetCounter	4	static

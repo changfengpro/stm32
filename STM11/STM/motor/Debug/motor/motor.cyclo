@@ -1,0 +1,4 @@
+../motor/motor.c:15:6:Set_Pwmb	2
+../motor/motor.c:23:6:Set_Pwma	2
+../motor/motor.c:33:6:Motor_Left	1
+../motor/motor.c:43:5:myabs	2
