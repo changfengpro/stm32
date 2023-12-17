@@ -1,4 +1,0 @@
-../Core/Src/gpio.c:42:6:MX_GPIO_Init	1
-../Core/Src/gpio.c:77:6:MOTOR_CONTROL	13
-../Core/Src/gpio.c:157:6:Step_Motor_Start	2
-../Core/Src/gpio.c:167:6:Step_Motor_Stop	1
