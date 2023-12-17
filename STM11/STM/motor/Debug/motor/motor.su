@@ -1,4 +1,0 @@
-../motor/motor.c:15:6:Set_Pwmb	24	static
-../motor/motor.c:23:6:Set_Pwma	24	static
-../motor/motor.c:33:6:Motor_Left	8	static
-../motor/motor.c:43:5:myabs	24	static

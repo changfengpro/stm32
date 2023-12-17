@@ -1,3 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;SG90/motor/motor.h&apos; to &apos;pwm.h&apos;" description="Rename resource &apos;motor.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="motor/motor.h" name="pwm.h" stamp="1701959132396" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;SG90/motor/motor.c&apos; to &apos;pwm.c&apos;" description="Rename resource &apos;motor.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="motor/motor.c" name="pwm.c" stamp="1701959140447" updateReferences="true"/>
-</session>

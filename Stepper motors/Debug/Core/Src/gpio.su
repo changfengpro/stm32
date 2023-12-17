@@ -1,0 +1,4 @@
+../Core/Src/gpio.c:42:6:MX_GPIO_Init	40	static
+../Core/Src/gpio.c:77:6:MOTOR_CONTROL	16	static
+../Core/Src/gpio.c:157:6:Step_Motor_Start	24	static
+../Core/Src/gpio.c:167:6:Step_Motor_Stop	8	static
