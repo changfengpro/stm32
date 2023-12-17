@@ -1,0 +1,9 @@
+../Core/Src/main.c:71:5:main	3
+../Core/Src/main.c:128:6:SystemClock_Config	3
+../Core/Src/main.c:164:6:ms_Delay	2
+../Core/Src/main.c:170:6:HAL_UARTEx_RxEventCallback	2
+../Core/Src/main.c:181:6:MOTOR_CONTROL	13
+../Core/Src/main.c:261:6:Step_Motor_Start	2
+../Core/Src/main.c:270:6:Step_Motor_Stop	1
+../Core/Src/main.c:278:6:Read_angle	1
+../Core/Src/main.c:288:6:Error_Handler	1
