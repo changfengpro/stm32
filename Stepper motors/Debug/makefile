@@ -61,7 +61,7 @@ main-build: Stepper\ motors.elf secondary-outputs
 
 # Tool invocations
 Stepper\ motors.elf Stepper\ motors.map: $(OBJS) $(USER_OBJS) D:\STM\Stepper\ motors\STM32F103C8TX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Stepper motors.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\STM\Stepper motors\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Stepper motors.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "Stepper motors.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\STM\Stepper motors\STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Stepper motors.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

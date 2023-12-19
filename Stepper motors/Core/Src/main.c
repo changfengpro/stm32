@@ -46,11 +46,12 @@
 
 /* USER CODE BEGIN PV */
 uint8_t TxData[10]="hongying";
-uint8_t RxData[10];
-uint32_t angle; uint8_t direction; uint8_t speed;
+uint8_t RxData[15];
+uint32_t angle; uint8_t direction; float speed;
 uint32_t global_i = 1;
 uint32_t pulse;
 uint32_t read_angle;
+float angular_velocity;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -71,6 +72,7 @@ void SystemClock_Config(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
+
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -94,16 +96,16 @@ int main(void)
   MX_DMA_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-  HAL_UARTEx_ReceiveToIdle_IT(&huart1, RxData, 8);
+  HAL_UARTEx_ReceiveToIdle_IT(&huart1, RxData, 15);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
 while(1)
-{					read_angle= (global_i/64)*5.625;
-			    HAL_UART_Transmit_IT(&huart1, TxData, 8);
-			    HAL_Delay(500);
+{
+	read_angle= (global_i/64)*5.625;
+			    HAL_Delay(2000);
 			    if(read_angle != angle)
 			    {Step_Motor_Start(angle, direction, speed);
 			    HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);}
@@ -111,7 +113,6 @@ while(1)
 			    		{
 			    	Step_Motor_Stop();
 			    		}
-
 
 
 }
@@ -171,14 +172,15 @@ void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
 {
 	  		if(huart == &huart1)
 	  		{
-	  			HAL_UARTEx_ReceiveToIdle_IT(&huart1, RxData, 8);
-	  			sscanf(RxData,"%d%d%d%d",&angle,&direction,&speed);
+	  			HAL_UARTEx_ReceiveToIdle_IT(&huart1, RxData, 15);
+	  			sscanf(RxData,"%d %d %f",&angle,&direction,&angular_velocity);
+	  			speed = 125/(1152*angular_velocity);
 
 	  		}
 }
 
 
-void MOTOR_CONTROL(uint8_t direction,uint8_t speed)
+void MOTOR_CONTROL(uint8_t direction,float speed)
 {
 	static uint8_t step=0;
 	if(direction == 1)//反转
@@ -258,7 +260,7 @@ void MOTOR_CONTROL(uint8_t direction,uint8_t speed)
 	}
 }
 
-void Step_Motor_Start(uint16_t angle, uint8_t direction,uint8_t speed)
+void Step_Motor_Start(uint16_t angle, uint8_t direction,float speed)
 {
 	 pulse = (uint32_t)((double)((uint32_t)angle/5.625)*64);
 	for(global_i=0; global_i<pulse; global_i++){
