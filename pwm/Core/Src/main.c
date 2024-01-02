@@ -64,6 +64,7 @@ void SystemClock_Config(void);
   */
 int main(void)
 {
+
   /* USER CODE BEGIN 1 */
 
   /* USER CODE END 1 */
@@ -87,15 +88,23 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_TIM1_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-
+HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
+HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_4);
+HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
+HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
+HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_3);
+HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_4);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	  Set_Pwma(7200);
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -144,6 +153,103 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 
+void set_pwm_direction_speed_4(int dir,uint32_t speed)
+{
+	if(dir == 0)
+	{
+		__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_1,speed);
+
+
+		__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_2,0);
+
+	}
+	if(dir == 1)
+	{
+		__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_2,speed);
+		__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_1,0);
+
+	}
+}
+void set_pwm_direction_speed_2(int dir,uint32_t speed)
+{
+	if(dir == 0)
+	{
+		__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_3,speed);
+		__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_4,0);
+
+	}
+	if(dir == 1)
+	{
+		__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_4,speed);
+		__HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_3,0);
+
+	}
+}
+void set_pwm_direction_speed_1(int dir,uint32_t speed)
+{
+	if(dir == 0)
+	{
+		__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_1,speed);
+		__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_2,0);
+
+	}
+	if(dir == 1)
+	{
+		__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_2,speed);
+		__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_1,0);
+
+	}
+}
+void set_pwm_direction_speed_3(int dir,uint32_t speed)
+{
+	if(dir == 0)
+	{
+			__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_3,speed);
+			__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_4,0);
+
+	}
+	if(dir == 1)
+	{
+			__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_4,speed);
+			__HAL_TIM_SET_COMPARE(&htim2,TIM_CHANNEL_3,0);
+
+		}
+	}
+void set_left()
+{
+	 set_pwm_direction_speed_1(1, 10000);
+		  set_pwm_direction_speed_2(0, 10000);
+		  set_pwm_direction_speed_3(0, 10000);
+		  set_pwm_direction_speed_4(1, 10000);
+}
+void set_right()
+{
+	set_pwm_direction_speed_1(0, 10000);
+		  set_pwm_direction_speed_2(1, 10000);
+		  set_pwm_direction_speed_3(1, 10000);
+		  set_pwm_direction_speed_4(0, 10000);
+}
+void set_circle()
+{
+	 set_pwm_direction_speed_1(1, 10000);
+		  set_pwm_direction_speed_2(0, 10000);
+		  set_pwm_direction_speed_3(1, 10000);
+		  set_pwm_direction_speed_4(0, 10000);
+}
+void set_forward()
+{
+	 set_pwm_direction_speed_1(0, 10000);
+		  set_pwm_direction_speed_2(0, 10000);
+		  set_pwm_direction_speed_3(0, 10000);
+		  set_pwm_direction_speed_4(0, 10000);
+}
+void set_backward()
+{
+	 set_pwm_direction_speed_1(1, 10000);
+		  set_pwm_direction_speed_2(1, 10000);
+		  set_pwm_direction_speed_3(1, 10000);
+		  set_pwm_direction_speed_4(1, 10000);
+}
 /* USER CODE END 4 */
 
 /**

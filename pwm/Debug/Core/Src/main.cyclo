@@ -1,3 +1,12 @@
 ../Core/Src/main.c:65:5:main	1
-../Core/Src/main.c:110:6:SystemClock_Config	3
-../Core/Src/main.c:153:6:Error_Handler	1
+../Core/Src/main.c:119:6:SystemClock_Config	3
+../Core/Src/main.c:156:6:set_pwm_direction_speed_4	3
+../Core/Src/main.c:173:6:set_pwm_direction_speed_2	3
+../Core/Src/main.c:188:6:set_pwm_direction_speed_1	3
+../Core/Src/main.c:203:6:set_pwm_direction_speed_3	3
+../Core/Src/main.c:218:6:set_left	1
+../Core/Src/main.c:225:6:set_right	1
+../Core/Src/main.c:232:6:set_circle	1
+../Core/Src/main.c:239:6:set_forward	1
+../Core/Src/main.c:246:6:set_backward	1
+../Core/Src/main.c:259:6:Error_Handler	1
