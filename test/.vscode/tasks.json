@@ -1,0 +1,48 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build task",
+            "type": "shell",
+            "command": "D:\\msys64\\mingw64\\bin\\mingw32-make",
+            "args": [
+                "-j",
+                "24"
+            ],
+            "group": "build"
+        },
+        {
+            "label": "download jlink", // 要使用此任务,需添加jlink的环境变量
+            "type": "shell",
+            "command":"mingw32-make download_jlink", // "mingw32-make -j24 ; mingw32-make download_dap"
+            "group": {
+                "kind": "build",
+                "isDefault": false,
+            },
+            "dependsOn":"build task"
+        },
+        {
+            "type": "cppbuild",
+            "label": "C/C++: gcc.exe 生成活动文件",
+            "command": "D:\\msys64\\mingw64\\bin\\gcc.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "调试器生成的任务。"
+        }
+    ]
+}
