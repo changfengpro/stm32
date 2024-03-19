@@ -1,9 +1,0 @@
-../Core/Src/main.c:72:5:main	16	static
-../Core/Src/main.c:129:6:SystemClock_Config	72	static
-../Core/Src/main.c:165:6:ms_Delay	24	static
-../Core/Src/main.c:171:6:HAL_UARTEx_RxEventCallback	24	static
-../Core/Src/main.c:183:6:MOTOR_CONTROL	16	static
-../Core/Src/main.c:263:6:Step_Motor_Start	16	static
-../Core/Src/main.c:272:6:Step_Motor_Stop	8	static
-../Core/Src/main.c:280:6:Read_angle	16	static
-../Core/Src/main.c:290:6:Error_Handler	4	static,ignoring_inline_asm

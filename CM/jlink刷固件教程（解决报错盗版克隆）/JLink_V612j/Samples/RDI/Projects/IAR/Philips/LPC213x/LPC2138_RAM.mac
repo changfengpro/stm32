@@ -1,4 +1,0 @@
-execUserPreload()
-{
-    __writeMemory32(0x00000002, 0xE01FC040, "Memory"); // MEMMAP = 2;
-}
