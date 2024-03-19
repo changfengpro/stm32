@@ -1,0 +1,5 @@
+../motor/stepper_motor.c:8:6:stepperMotor_Init	8	static
+../motor/stepper_motor.c:14:6:delay_us	16	static
+../motor/stepper_motor.c:21:6:set_RPM_4096	16	static
+../motor/stepper_motor.c:26:6:stepperMotor_halfDrive	16	static
+../motor/stepper_motor.c:82:6:halfDrive_angle_diretion_RPM	40	static
