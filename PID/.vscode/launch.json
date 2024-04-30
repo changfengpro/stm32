@@ -1,0 +1,23 @@
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Cortex Debug",
+            "cwd": "${workspaceFolder}",
+            "executable": "/home/rmer/STM32CubeMX/project/test/build/test.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "runToEntryPoint": "main",
+            "servertype": "openocd",
+            "device": "STM32F103C8T6",
+            "configFiles": [
+                "/usr/local/share/openocd/scripts/interface/jlink.cfg",
+                "/usr/local/share/openocd/scripts/target/stm32f1x.cfg",
+            ],
+            "svdFile": "/usr/ST/en.stm32f1_svd/STM32F1_svd_V1.2/STM32F103.svd",
+        }
+    ]
+}

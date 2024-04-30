@@ -1,0 +1,454 @@
+ARM GAS  /tmp/ccbPM42V.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 1
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"PID.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.global	__aeabi_fsub
+  16              		.global	__aeabi_fadd
+  17              		.global	__aeabi_fmul
+  18              		.global	__aeabi_f2iz
+  19              		.section	.text.vertical_PID_value,"ax",%progbits
+  20              		.align	1
+  21              		.global	vertical_PID_value
+  22              		.arch armv7-m
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  26              		.fpu softvfp
+  28              	vertical_PID_value:
+  29              	.LVL0:
+  30              	.LFB65:
+  31              		.file 1 "Encoder/PID.c"
+   1:Encoder/PID.c **** #include "PID.h"
+   2:Encoder/PID.c **** #include "encoder.h"
+   3:Encoder/PID.c **** /// @brief 
+   4:Encoder/PID.c **** 
+   5:Encoder/PID.c **** extern float kp, ki, kd;  // 直立环参数
+   6:Encoder/PID.c **** float err;                // 此次误差
+   7:Encoder/PID.c **** float last_err = 0;       // 上次误差，初始值设为0
+   8:Encoder/PID.c **** float err_sum = 0;        // 误差累积值，初始值设为0
+   9:Encoder/PID.c **** float err_difference;     // 误差变化量
+  10:Encoder/PID.c **** 
+  11:Encoder/PID.c **** extern float vkp,vki;    
+  12:Encoder/PID.c **** float filt_velocity;     
+  13:Encoder/PID.c **** float last_filt_velocity;
+  14:Encoder/PID.c **** float velocity_sum=0;    
+  15:Encoder/PID.c **** 
+  16:Encoder/PID.c **** int vertical_PID_value(float measure, float calcu)
+  17:Encoder/PID.c **** {
+  32              		.loc 1 17 1 view -0
+  33              		.cfi_startproc
+  34              		@ args = 0, pretend = 0, frame = 0
+  35              		@ frame_needed = 0, uses_anonymous_args = 0
+  36              		.loc 1 17 1 is_stmt 0 view .LVU1
+  37 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+  38              	.LCFI0:
+  39              		.cfi_def_cfa_offset 24
+  40              		.cfi_offset 3, -24
+  41              		.cfi_offset 4, -20
+ARM GAS  /tmp/ccbPM42V.s 			page 2
+
+
+  42              		.cfi_offset 5, -16
+  43              		.cfi_offset 6, -12
+  44              		.cfi_offset 7, -8
+  45              		.cfi_offset 14, -4
+  18:Encoder/PID.c ****     err = measure - calcu; // 计算当前误差
+  46              		.loc 1 18 5 is_stmt 1 view .LVU2
+  47              		.loc 1 18 19 is_stmt 0 view .LVU3
+  48 0002 FFF7FEFF 		bl	__aeabi_fsub
+  49              	.LVL1:
+  50              		.loc 1 18 19 view .LVU4
+  51 0006 0446     		mov	r4, r0
+  52              		.loc 1 18 9 view .LVU5
+  53 0008 164B     		ldr	r3, .L3
+  54 000a 1860     		str	r0, [r3]	@ float
+  19:Encoder/PID.c ****     err_sum += err;
+  55              		.loc 1 19 5 is_stmt 1 view .LVU6
+  56              		.loc 1 19 13 is_stmt 0 view .LVU7
+  57 000c 164D     		ldr	r5, .L3+4
+  58 000e 2968     		ldr	r1, [r5]	@ float
+  59 0010 FFF7FEFF 		bl	__aeabi_fadd
+  60              	.LVL2:
+  61 0014 0646     		mov	r6, r0
+  62 0016 2860     		str	r0, [r5]	@ float
+  20:Encoder/PID.c ****     err_difference =err - last_err;
+  63              		.loc 1 20 5 is_stmt 1 view .LVU8
+  64              		.loc 1 20 25 is_stmt 0 view .LVU9
+  65 0018 144F     		ldr	r7, .L3+8
+  66 001a 3968     		ldr	r1, [r7]	@ float
+  67 001c 2046     		mov	r0, r4
+  68 001e FFF7FEFF 		bl	__aeabi_fsub
+  69              	.LVL3:
+  70 0022 0546     		mov	r5, r0
+  71              		.loc 1 20 20 view .LVU10
+  72 0024 124B     		ldr	r3, .L3+12
+  73 0026 1860     		str	r0, [r3]	@ float
+  21:Encoder/PID.c ****     last_err = err;
+  74              		.loc 1 21 5 is_stmt 1 view .LVU11
+  75              		.loc 1 21 14 is_stmt 0 view .LVU12
+  76 0028 3C60     		str	r4, [r7]	@ float
+  22:Encoder/PID.c ****     return kp*err + ki*err_sum + kd*err_difference;
+  77              		.loc 1 22 5 is_stmt 1 view .LVU13
+  78              		.loc 1 22 14 is_stmt 0 view .LVU14
+  79 002a 124B     		ldr	r3, .L3+16
+  80 002c 1968     		ldr	r1, [r3]	@ float
+  81 002e 2046     		mov	r0, r4
+  82 0030 FFF7FEFF 		bl	__aeabi_fmul
+  83              	.LVL4:
+  84 0034 0446     		mov	r4, r0
+  85              		.loc 1 22 23 view .LVU15
+  86 0036 104B     		ldr	r3, .L3+20
+  87 0038 1968     		ldr	r1, [r3]	@ float
+  88 003a 3046     		mov	r0, r6
+  89 003c FFF7FEFF 		bl	__aeabi_fmul
+  90              	.LVL5:
+  91 0040 0146     		mov	r1, r0
+  92              		.loc 1 22 19 view .LVU16
+  93 0042 2046     		mov	r0, r4
+ARM GAS  /tmp/ccbPM42V.s 			page 3
+
+
+  94 0044 FFF7FEFF 		bl	__aeabi_fadd
+  95              	.LVL6:
+  96 0048 0446     		mov	r4, r0
+  97              		.loc 1 22 36 view .LVU17
+  98 004a 0C4B     		ldr	r3, .L3+24
+  99 004c 1968     		ldr	r1, [r3]	@ float
+ 100 004e 2846     		mov	r0, r5
+ 101 0050 FFF7FEFF 		bl	__aeabi_fmul
+ 102              	.LVL7:
+ 103 0054 0146     		mov	r1, r0
+ 104              		.loc 1 22 32 view .LVU18
+ 105 0056 2046     		mov	r0, r4
+ 106 0058 FFF7FEFF 		bl	__aeabi_fadd
+ 107              	.LVL8:
+ 108 005c FFF7FEFF 		bl	__aeabi_f2iz
+ 109              	.LVL9:
+  23:Encoder/PID.c ****    
+  24:Encoder/PID.c **** }
+ 110              		.loc 1 24 1 view .LVU19
+ 111 0060 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 112              	.L4:
+ 113 0062 00BF     		.align	2
+ 114              	.L3:
+ 115 0064 00000000 		.word	.LANCHOR0
+ 116 0068 00000000 		.word	.LANCHOR1
+ 117 006c 00000000 		.word	.LANCHOR2
+ 118 0070 00000000 		.word	.LANCHOR3
+ 119 0074 00000000 		.word	kp
+ 120 0078 00000000 		.word	ki
+ 121 007c 00000000 		.word	kd
+ 122              		.cfi_endproc
+ 123              	.LFE65:
+ 125              		.global	__aeabi_i2f
+ 126              		.global	__aeabi_fcmplt
+ 127              		.global	__aeabi_fcmpgt
+ 128              		.section	.text.I_xianfu,"ax",%progbits
+ 129              		.align	1
+ 130              		.global	I_xianfu
+ 131              		.syntax unified
+ 132              		.thumb
+ 133              		.thumb_func
+ 134              		.fpu softvfp
+ 136              	I_xianfu:
+ 137              	.LVL10:
+ 138              	.LFB67:
+  25:Encoder/PID.c **** int velocity_PID_vaule(int velocity)
+  26:Encoder/PID.c **** {
+  27:Encoder/PID.c ****     float a=0.3;
+  28:Encoder/PID.c ****     filt_velocity = a*velocity+(1-a)*last_filt_velocity;
+  29:Encoder/PID.c ****     velocity_sum += filt_velocity;
+  30:Encoder/PID.c ****     I_xianfu(3000);
+  31:Encoder/PID.c ****     last_filt_velocity = filt_velocity;
+  32:Encoder/PID.c **** 
+  33:Encoder/PID.c ****     return  vkp*filt_velocity + vki*velocity_sum;
+  34:Encoder/PID.c **** }
+  35:Encoder/PID.c **** 
+  36:Encoder/PID.c **** void I_xianfu(int max)
+ARM GAS  /tmp/ccbPM42V.s 			page 4
+
+
+  37:Encoder/PID.c **** {
+ 139              		.loc 1 37 1 is_stmt 1 view -0
+ 140              		.cfi_startproc
+ 141              		@ args = 0, pretend = 0, frame = 0
+ 142              		@ frame_needed = 0, uses_anonymous_args = 0
+ 143              		.loc 1 37 1 is_stmt 0 view .LVU21
+ 144 0000 38B5     		push	{r3, r4, r5, lr}
+ 145              	.LCFI1:
+ 146              		.cfi_def_cfa_offset 16
+ 147              		.cfi_offset 3, -16
+ 148              		.cfi_offset 4, -12
+ 149              		.cfi_offset 5, -8
+ 150              		.cfi_offset 14, -4
+ 151 0002 0446     		mov	r4, r0
+  38:Encoder/PID.c **** 	if(velocity_sum>max)  velocity_sum=max;
+ 152              		.loc 1 38 2 is_stmt 1 view .LVU22
+ 153              		.loc 1 38 17 is_stmt 0 view .LVU23
+ 154 0004 FFF7FEFF 		bl	__aeabi_i2f
+ 155              	.LVL11:
+ 156              		.loc 1 38 17 view .LVU24
+ 157 0008 0546     		mov	r5, r0
+ 158              		.loc 1 38 4 view .LVU25
+ 159 000a 094B     		ldr	r3, .L13
+ 160 000c 1968     		ldr	r1, [r3]	@ float
+ 161 000e FFF7FEFF 		bl	__aeabi_fcmplt
+ 162              	.LVL12:
+ 163 0012 08B1     		cbz	r0, .L6
+ 164              		.loc 1 38 24 is_stmt 1 discriminator 1 view .LVU26
+ 165              		.loc 1 38 36 is_stmt 0 discriminator 1 view .LVU27
+ 166 0014 064B     		ldr	r3, .L13
+ 167 0016 1D60     		str	r5, [r3]	@ float
+ 168              	.L6:
+  39:Encoder/PID.c **** 	if(velocity_sum<-max) velocity_sum=-max;
+ 169              		.loc 1 39 2 is_stmt 1 view .LVU28
+ 170              		.loc 1 39 17 is_stmt 0 view .LVU29
+ 171 0018 6042     		rsbs	r0, r4, #0
+ 172 001a FFF7FEFF 		bl	__aeabi_i2f
+ 173              	.LVL13:
+ 174 001e 0446     		mov	r4, r0
+ 175              	.LVL14:
+ 176              		.loc 1 39 4 view .LVU30
+ 177 0020 034B     		ldr	r3, .L13
+ 178 0022 1968     		ldr	r1, [r3]	@ float
+ 179 0024 FFF7FEFF 		bl	__aeabi_fcmpgt
+ 180              	.LVL15:
+ 181 0028 08B1     		cbz	r0, .L5
+ 182              		.loc 1 39 24 is_stmt 1 discriminator 1 view .LVU31
+ 183              		.loc 1 39 36 is_stmt 0 discriminator 1 view .LVU32
+ 184 002a 014B     		ldr	r3, .L13
+ 185 002c 1C60     		str	r4, [r3]	@ float
+ 186              	.L5:
+  40:Encoder/PID.c **** }...
+ 187              		.loc 1 40 1 view .LVU33
+ 188 002e 38BD     		pop	{r3, r4, r5, pc}
+ 189              	.L14:
+ 190              		.align	2
+ 191              	.L13:
+ARM GAS  /tmp/ccbPM42V.s 			page 5
+
+
+ 192 0030 00000000 		.word	.LANCHOR4
+ 193              		.cfi_endproc
+ 194              	.LFE67:
+ 196              		.section	.text.velocity_PID_vaule,"ax",%progbits
+ 197              		.align	1
+ 198              		.global	velocity_PID_vaule
+ 199              		.syntax unified
+ 200              		.thumb
+ 201              		.thumb_func
+ 202              		.fpu softvfp
+ 204              	velocity_PID_vaule:
+ 205              	.LVL16:
+ 206              	.LFB66:
+  26:Encoder/PID.c **** {
+ 207              		.loc 1 26 1 is_stmt 1 view -0
+ 208              		.cfi_startproc
+ 209              		@ args = 0, pretend = 0, frame = 0
+ 210              		@ frame_needed = 0, uses_anonymous_args = 0
+  26:Encoder/PID.c **** {
+ 211              		.loc 1 26 1 is_stmt 0 view .LVU35
+ 212 0000 70B5     		push	{r4, r5, r6, lr}
+ 213              	.LCFI2:
+ 214              		.cfi_def_cfa_offset 16
+ 215              		.cfi_offset 4, -16
+ 216              		.cfi_offset 5, -12
+ 217              		.cfi_offset 6, -8
+ 218              		.cfi_offset 14, -4
+  27:Encoder/PID.c ****     float a=0.3;
+ 219              		.loc 1 27 5 is_stmt 1 view .LVU36
+ 220              	.LVL17:
+  28:Encoder/PID.c ****     filt_velocity = a*velocity+(1-a)*last_filt_velocity;
+ 221              		.loc 1 28 5 view .LVU37
+  28:Encoder/PID.c ****     filt_velocity = a*velocity+(1-a)*last_filt_velocity;
+ 222              		.loc 1 28 22 is_stmt 0 view .LVU38
+ 223 0002 FFF7FEFF 		bl	__aeabi_i2f
+ 224              	.LVL18:
+  28:Encoder/PID.c ****     filt_velocity = a*velocity+(1-a)*last_filt_velocity;
+ 225              		.loc 1 28 22 view .LVU39
+ 226 0006 1649     		ldr	r1, .L17
+ 227 0008 FFF7FEFF 		bl	__aeabi_fmul
+ 228              	.LVL19:
+ 229 000c 0446     		mov	r4, r0
+  28:Encoder/PID.c ****     filt_velocity = a*velocity+(1-a)*last_filt_velocity;
+ 230              		.loc 1 28 37 view .LVU40
+ 231 000e 154E     		ldr	r6, .L17+4
+ 232 0010 1549     		ldr	r1, .L17+8
+ 233 0012 3068     		ldr	r0, [r6]	@ float
+ 234 0014 FFF7FEFF 		bl	__aeabi_fmul
+ 235              	.LVL20:
+ 236 0018 0146     		mov	r1, r0
+  28:Encoder/PID.c ****     filt_velocity = a*velocity+(1-a)*last_filt_velocity;
+ 237              		.loc 1 28 31 view .LVU41
+ 238 001a 2046     		mov	r0, r4
+ 239 001c FFF7FEFF 		bl	__aeabi_fadd
+ 240              	.LVL21:
+ 241 0020 0146     		mov	r1, r0
+  28:Encoder/PID.c ****     filt_velocity = a*velocity+(1-a)*last_filt_velocity;
+ARM GAS  /tmp/ccbPM42V.s 			page 6
+
+
+ 242              		.loc 1 28 19 view .LVU42
+ 243 0022 124C     		ldr	r4, .L17+12
+ 244 0024 2060     		str	r0, [r4]	@ float
+  29:Encoder/PID.c ****     velocity_sum += filt_velocity;
+ 245              		.loc 1 29 5 is_stmt 1 view .LVU43
+  29:Encoder/PID.c ****     velocity_sum += filt_velocity;
+ 246              		.loc 1 29 18 is_stmt 0 view .LVU44
+ 247 0026 124D     		ldr	r5, .L17+16
+ 248 0028 2868     		ldr	r0, [r5]	@ float
+ 249 002a FFF7FEFF 		bl	__aeabi_fadd
+ 250              	.LVL22:
+ 251 002e 2860     		str	r0, [r5]	@ float
+  30:Encoder/PID.c ****     I_xianfu(3000);
+ 252              		.loc 1 30 5 is_stmt 1 view .LVU45
+ 253 0030 40F6B830 		movw	r0, #3000
+ 254 0034 FFF7FEFF 		bl	I_xianfu
+ 255              	.LVL23:
+  31:Encoder/PID.c ****     last_filt_velocity = filt_velocity;
+ 256              		.loc 1 31 5 view .LVU46
+  31:Encoder/PID.c ****     last_filt_velocity = filt_velocity;
+ 257              		.loc 1 31 24 is_stmt 0 view .LVU47
+ 258 0038 2068     		ldr	r0, [r4]	@ float
+ 259 003a 3060     		str	r0, [r6]	@ float
+  33:Encoder/PID.c ****     return  vkp*filt_velocity + vki*velocity_sum;
+ 260              		.loc 1 33 5 is_stmt 1 view .LVU48
+  33:Encoder/PID.c ****     return  vkp*filt_velocity + vki*velocity_sum;
+ 261              		.loc 1 33 16 is_stmt 0 view .LVU49
+ 262 003c 0D4B     		ldr	r3, .L17+20
+ 263 003e 1968     		ldr	r1, [r3]	@ float
+ 264 0040 FFF7FEFF 		bl	__aeabi_fmul
+ 265              	.LVL24:
+ 266 0044 0446     		mov	r4, r0
+  33:Encoder/PID.c ****     return  vkp*filt_velocity + vki*velocity_sum;
+ 267              		.loc 1 33 36 view .LVU50
+ 268 0046 2968     		ldr	r1, [r5]	@ float
+ 269 0048 0B4B     		ldr	r3, .L17+24
+ 270 004a 1868     		ldr	r0, [r3]	@ float
+ 271 004c FFF7FEFF 		bl	__aeabi_fmul
+ 272              	.LVL25:
+ 273 0050 0146     		mov	r1, r0
+  33:Encoder/PID.c ****     return  vkp*filt_velocity + vki*velocity_sum;
+ 274              		.loc 1 33 31 view .LVU51
+ 275 0052 2046     		mov	r0, r4
+ 276 0054 FFF7FEFF 		bl	__aeabi_fadd
+ 277              	.LVL26:
+ 278 0058 FFF7FEFF 		bl	__aeabi_f2iz
+ 279              	.LVL27:
+  34:Encoder/PID.c **** }
+ 280              		.loc 1 34 1 view .LVU52
+ 281 005c 70BD     		pop	{r4, r5, r6, pc}
+ 282              	.L18:
+ 283 005e 00BF     		.align	2
+ 284              	.L17:
+ 285 0060 9A99993E 		.word	1050253722
+ 286 0064 00000000 		.word	.LANCHOR5
+ 287 0068 3333333F 		.word	1060320051
+ 288 006c 00000000 		.word	.LANCHOR6
+ARM GAS  /tmp/ccbPM42V.s 			page 7
+
+
+ 289 0070 00000000 		.word	.LANCHOR4
+ 290 0074 00000000 		.word	vkp
+ 291 0078 00000000 		.word	vki
+ 292              		.cfi_endproc
+ 293              	.LFE66:
+ 295              		.global	velocity_sum
+ 296              		.global	last_filt_velocity
+ 297              		.global	filt_velocity
+ 298              		.global	err_difference
+ 299              		.global	err_sum
+ 300              		.global	last_err
+ 301              		.global	err
+ 302              		.section	.bss.err,"aw",%nobits
+ 303              		.align	2
+ 304              		.set	.LANCHOR0,. + 0
+ 307              	err:
+ 308 0000 00000000 		.space	4
+ 309              		.section	.bss.err_difference,"aw",%nobits
+ 310              		.align	2
+ 311              		.set	.LANCHOR3,. + 0
+ 314              	err_difference:
+ 315 0000 00000000 		.space	4
+ 316              		.section	.bss.err_sum,"aw",%nobits
+ 317              		.align	2
+ 318              		.set	.LANCHOR1,. + 0
+ 321              	err_sum:
+ 322 0000 00000000 		.space	4
+ 323              		.section	.bss.filt_velocity,"aw",%nobits
+ 324              		.align	2
+ 325              		.set	.LANCHOR6,. + 0
+ 328              	filt_velocity:
+ 329 0000 00000000 		.space	4
+ 330              		.section	.bss.last_err,"aw",%nobits
+ 331              		.align	2
+ 332              		.set	.LANCHOR2,. + 0
+ 335              	last_err:
+ 336 0000 00000000 		.space	4
+ 337              		.section	.bss.last_filt_velocity,"aw",%nobits
+ 338              		.align	2
+ 339              		.set	.LANCHOR5,. + 0
+ 342              	last_filt_velocity:
+ 343 0000 00000000 		.space	4
+ 344              		.section	.bss.velocity_sum,"aw",%nobits
+ 345              		.align	2
+ 346              		.set	.LANCHOR4,. + 0
+ 349              	velocity_sum:
+ 350 0000 00000000 		.space	4
+ 351              		.text
+ 352              	.Letext0:
+ARM GAS  /tmp/ccbPM42V.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 PID.c
+     /tmp/ccbPM42V.s:20     .text.vertical_PID_value:0000000000000000 $t
+     /tmp/ccbPM42V.s:28     .text.vertical_PID_value:0000000000000000 vertical_PID_value
+     /tmp/ccbPM42V.s:115    .text.vertical_PID_value:0000000000000064 $d
+     /tmp/ccbPM42V.s:129    .text.I_xianfu:0000000000000000 $t
+     /tmp/ccbPM42V.s:136    .text.I_xianfu:0000000000000000 I_xianfu
+     /tmp/ccbPM42V.s:192    .text.I_xianfu:0000000000000030 $d
+     /tmp/ccbPM42V.s:197    .text.velocity_PID_vaule:0000000000000000 $t
+     /tmp/ccbPM42V.s:204    .text.velocity_PID_vaule:0000000000000000 velocity_PID_vaule
+     /tmp/ccbPM42V.s:285    .text.velocity_PID_vaule:0000000000000060 $d
+     /tmp/ccbPM42V.s:349    .bss.velocity_sum:0000000000000000 velocity_sum
+     /tmp/ccbPM42V.s:342    .bss.last_filt_velocity:0000000000000000 last_filt_velocity
+     /tmp/ccbPM42V.s:328    .bss.filt_velocity:0000000000000000 filt_velocity
+     /tmp/ccbPM42V.s:314    .bss.err_difference:0000000000000000 err_difference
+     /tmp/ccbPM42V.s:321    .bss.err_sum:0000000000000000 err_sum
+     /tmp/ccbPM42V.s:335    .bss.last_err:0000000000000000 last_err
+     /tmp/ccbPM42V.s:307    .bss.err:0000000000000000 err
+     /tmp/ccbPM42V.s:303    .bss.err:0000000000000000 $d
+     /tmp/ccbPM42V.s:310    .bss.err_difference:0000000000000000 $d
+     /tmp/ccbPM42V.s:317    .bss.err_sum:0000000000000000 $d
+     /tmp/ccbPM42V.s:324    .bss.filt_velocity:0000000000000000 $d
+     /tmp/ccbPM42V.s:331    .bss.last_err:0000000000000000 $d
+     /tmp/ccbPM42V.s:338    .bss.last_filt_velocity:0000000000000000 $d
+     /tmp/ccbPM42V.s:345    .bss.velocity_sum:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+__aeabi_fsub
+__aeabi_fadd
+__aeabi_fmul
+__aeabi_f2iz
+kp
+ki
+kd
+__aeabi_i2f
+__aeabi_fcmplt
+__aeabi_fcmpgt
+vkp
+vki

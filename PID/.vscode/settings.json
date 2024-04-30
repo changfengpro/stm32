@@ -1,0 +1,9 @@
+{
+    "cortex-debug.armToolchainPath": "/usr/bin",
+    "cortex-debug.openocdPath": "/usr/local/bin/openocd",
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "pid.h": "c",
+        "stdlib.h": "c"
+    }
+}
