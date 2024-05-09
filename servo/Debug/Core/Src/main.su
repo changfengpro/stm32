@@ -1,0 +1,8 @@
+../Core/Src/main.c:71:5:main	16	static
+../Core/Src/main.c:234:6:SystemClock_Config	72	static
+../Core/Src/main.c:277:6:HCsr04_1	8	static
+../Core/Src/main.c:296:6:HCsr04_2	8	static
+../Core/Src/main.c:322:6:Angle_Control	16	static
+../Core/Src/main.c:335:6:Angle_Control_2	16	static
+../Core/Src/main.c:381:6:HAL_GPIO_EXTI_Callback	16	static
+../Core/Src/main.c:491:6:Error_Handler	4	static,ignoring_inline_asm
