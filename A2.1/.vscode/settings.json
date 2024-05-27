@@ -1,0 +1,8 @@
+{
+    "cortex-debug.armToolchainPath": "D:\\MSYS64\\MINGW64\\BIN",
+    "cortex-debug.openocdPath": "D:\\MSYS64\\MINGW64\\BIN\\OPENOCD.EXE",
+    "files.associations": {
+        "main.h": "c",
+        "limits": "c"
+    }
+}

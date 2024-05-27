@@ -1,0 +1,3 @@
+../Bsp/bsp_can.c:32:6:can_user_init	1
+../Bsp/bsp_can.c:58:6:HAL_CAN_RxFifo0MsgPendingCallback	5
+../Bsp/bsp_can.c:89:6:set_motor_voltage	2
