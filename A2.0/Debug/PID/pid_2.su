@@ -1,0 +1,8 @@
+../PID/pid_2.c:17:6:ver_PID_Init	4	static
+../PID/pid_2.c:23:6:pos_PID_Init	4	static
+../PID/pid_2.c:30:5:Double_Loop_Control	40	static
+../PID/pid_2.c:77:5:Position_PID	24	static
+../PID/pid_2.c:118:5:Incremental_PID	24	static
+../PID/pid_2.c:148:5:Xianfu_voltage	24	static
+../PID/pid_2.c:155:7:I_xianfu	16	static
+../PID/pid_2.c:162:7:motor_angle_sum_calc	16	static
