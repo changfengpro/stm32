@@ -1,0 +1,34 @@
+
+
+GraphedExpression="(motor_info[4]).rotor_speed", Color=#e56a6f, Show=0
+GraphedExpression="(motor_info[4]).set_current", Color=#35792b, Show=0
+GraphedExpression="target_position[3]", DisplayFormat=DISPLAY_FORMAT_DEC, Color=#769dda
+GraphedExpression="angle_sum[3]", DisplayFormat=DISPLAY_FORMAT_DEC, Color=#b14f0d
+OpenDocument="Bsp_can.c", FilePath="D:/STM/M20062/Bsp/Src/Bsp_can.c", Line=53
+OpenDocument="pid.c", FilePath="D:/STM/M20062/Bsp/Src/pid.c", Line=0
+OpenDocument="main.c", FilePath="D:/STM/M20062/Core/Src/main.c", Line=53
+OpenToolbar="Debug", Floating=0, x=0, y=0
+OpenWindow="Registers 1", DockArea=RIGHT, x=0, y=1, w=739, h=187, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0, FilteredItems=[], RefreshRate=1
+OpenWindow="Memory 1", DockArea=BOTTOM, x=2, y=0, w=818, h=226, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0, EditorAddress=0x0
+OpenWindow="Watched Data 1", DockArea=LEFT, x=0, y=1, w=346, h=594, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="Functions", DockArea=LEFT, x=0, y=0, w=346, h=125, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+OpenWindow="Data Sampling", DockArea=BOTTOM, x=0, y=0, w=875, h=226, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0, VisibleTab=0, UniformSampleSpacing=0
+OpenWindow="Timeline", DockArea=RIGHT, x=0, y=0, w=739, h=532, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=1, DataPaneShown=1, PowerPaneShown=0, CodePaneShown=0, PinCursor="Cursor Movable", TimePerDiv="1 s / Div", TimeStampFormat="Time", DataGraphDrawAsPoints=0, DataGraphLegendShown=1, DataGraphUniformSampleSpacing=0, DataGraphLegendPosition="456;0", DataGraphShowNamesAtCursor=0, PowerGraphDrawAsPoints=0, PowerGraphLegendShown=0, PowerGraphAvgFilterTime=Off, PowerGraphAvgFilterLen=Off, PowerGraphUniformSampleSpacing=0, PowerGraphLegendPosition="569;0", CodeGraphLegendShown=0, CodeGraphLegendPosition="575;0"
+OpenWindow="Console", DockArea=BOTTOM, x=1, y=0, w=225, h=226, FilterBarShown=0, TotalValueBarShown=0, ToolBarShown=0
+SmartViewPlugin="", Page="", Toolbar="Hidden", Window="SmartView 1"
+TableHeader="Functions", SortCol="Name", SortOrder="ASCENDING", VisibleCols=["Name";"Address";"Size";"#Insts";"Source"], ColWidths=[1034;104;100;100;194]
+TableHeader="Data Sampling Table", SortCol="None", SortOrder="ASCENDING", VisibleCols=["Index";"Time";" (motor_info[4]).rotor_speed";" (motor_info[4]).set_current";" target_position[3]";" angle_sum[3]"], ColWidths=[100;100;100;100;100;100]
+TableHeader="Data Sampling Setup", SortCol="Expression", SortOrder="ASCENDING", VisibleCols=["Expression";"Type";"Value";"Min";"Max";"Average";"# Changes";"Min. Change";"Max. Change"], ColWidths=[230;100;100;100;100;100;100;100;100]
+TableHeader="Power Sampling", SortCol="None", SortOrder="ASCENDING", VisibleCols=["Index";"Time";"Ch 0"], ColWidths=[100;100;100]
+TableHeader="Registers 1", SortCol="Name", SortOrder="ASCENDING", VisibleCols=["Name";"Value";"Description"], ColWidths=[100;144;478]
+TableHeader="Watched Data 1", SortCol="Expression", SortOrder="ASCENDING", VisibleCols=["Expression";"Value";"Location";"Refresh"], ColWidths=[100;100;104;100]
+TableHeader="RegisterSelectionDialog", SortCol="None", SortOrder="ASCENDING", VisibleCols=[], ColWidths=[]
+TableHeader="TargetExceptionDialog", SortCol="Name", SortOrder="ASCENDING", VisibleCols=["Name";"Value";"Address";"Description"], ColWidths=[26;26;26;26]
+WatchedExpression="motor_info", RefreshRate=5, Window=Watched Data 1
+WatchedExpression="target_position", RefreshRate=5, Window=Watched Data 1
+WatchedExpression="desired_speed", RefreshRate=5, DisplayFormat=DISPLAY_FORMAT_DEC, Window=Watched Data 1
+WatchedExpression="angle_sum", RefreshRate=5, Window=Watched Data 1
+WatchedExpression="ver_PID", RefreshRate=5, Window=Watched Data 1
+WatchedExpression="pos_PID", RefreshRate=5, Window=Watched Data 1
+WatchedExpression="target_speed", RefreshRate=5, Window=Watched Data 1
+WatchedExpression="overflowNum", RefreshRate=5, Window=Watched Data 1

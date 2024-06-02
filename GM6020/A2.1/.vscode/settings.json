@@ -3,6 +3,8 @@
     "cortex-debug.openocdPath": "D:\\MSYS64\\MINGW64\\BIN\\OPENOCD.EXE",
     "files.associations": {
         "main.h": "c",
-        "limits": "c"
+        "limits": "c",
+        "can.h": "c",
+        "compare": "c"
     }
 }

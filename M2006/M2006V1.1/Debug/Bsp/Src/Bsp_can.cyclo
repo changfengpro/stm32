@@ -1,0 +1,3 @@
+../Bsp/Src/Bsp_can.c:21:6:can_dual_init	1
+../Bsp/Src/Bsp_can.c:67:6:HAL_CAN_RxFifo0MsgPendingCallback	4
+../Bsp/Src/Bsp_can.c:96:6:set_motor_current	1
