@@ -1,0 +1,3 @@
+../Bsp/Src/Bsp_can.c:21:6:can_dual_init	56	static
+../Bsp/Src/Bsp_can.c:67:6:HAL_CAN_RxFifo0MsgPendingCallback	56	static
+../Bsp/Src/Bsp_can.c:105:6:set_motor_vaule	56	static

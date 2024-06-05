@@ -1,0 +1,4 @@
+../Bsp/Src/pid.c:30:7:Double_Loop_Control	40	static
+../Bsp/Src/pid.c:67:6:pid_init	32	static
+../Bsp/Src/pid.c:89:7:pos_pid_calc	24	static
+../Bsp/Src/pid.c:114:7:ver_pid_calc	24	static
