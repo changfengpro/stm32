@@ -1,0 +1,6 @@
+../Core/Src/main.c:93:5:main	1
+../Core/Src/main.c:145:6:SystemClock_Config	3
+../Core/Src/main.c:187:6:HAL_UARTEx_RxEventCallback	2
+../Core/Src/main.c:216:6:RC_Chassis_DataUpdate	3
+../Core/Src/main.c:237:6:HAL_TIM_PeriodElapsedCallback	3
+../Core/Src/main.c:352:6:Error_Handler	1

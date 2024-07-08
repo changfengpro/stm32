@@ -1,0 +1,6 @@
+../Core/Src/main.c:93:5:main	8	static
+../Core/Src/main.c:145:6:SystemClock_Config	88	static
+../Core/Src/main.c:187:6:HAL_UARTEx_RxEventCallback	16	static
+../Core/Src/main.c:216:6:RC_Chassis_DataUpdate	32	static
+../Core/Src/main.c:237:6:HAL_TIM_PeriodElapsedCallback	24	static
+../Core/Src/main.c:352:6:Error_Handler	4	static,ignoring_inline_asm
