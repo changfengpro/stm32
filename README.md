@@ -1,17 +1,14 @@
 ## jlink刷固件及解决报错克隆问题
 
 1.首先将刷入的jlink与被刷入的jlink连接
-如图(https://github.com/changfengpro/stm32/blob/master/jlink刷固件教程（解决报错盗版克隆）/图片/jlink(1).jpg?raw=true)
-# jlink刷固件及解决报错克隆问题
-来1.首先将刷入的ilink与被剧入的link连按
-如图Ljlink](https:/Lgithub.com/changfengpro/stm32/b1ob/masterLjlink刷固件教程（解决报错盗版克隆）1图片Ljlink(1)_jpg?raw=true)
-儿INK 被刷的jlink
+如图![jlink](https://github.com/changfengpro/stm32/blob/master/jlink刷固件教程（解决报错盗版克隆）/图片/jlink(1).jpg?raw=true)
+
 3.3 -> 3.3
 GND -> GND
 SWCLK ->C
 SWDIO ->D
 
-* 2,然后打开SEGGER . J-Link v7.22b文件夹中的]-Flash Lite v7.22b
+* 2.然后打开SEGGER . J-Link v7.22b文件夹中的J-Flash Lite v7.22b
   
 ！[jlink](https:/Igithub.com/changfengpro/stm32/blob/masterLjlink刷固件教程（解达报供盗版克隆）/图片Ljlink(5),pngzraw=true)
 
