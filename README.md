@@ -10,7 +10,7 @@ SWDIO ->D
 
 * 2.然后打开SEGGER . J-Link v7.22b文件夹中的J-Flash Lite v7.22b
   
-！[jlink](https:/Igithub.com/changfengpro/stm32/blob/masterLjlink刷固件教程（解达报供盗版克隆）/图片Ljlink(5),pngzraw=true)
+ ![jlink](https:/Igithub.com/changfengpro/stm32/blob/masterLjlink刷固件教程（解达报供盗版克隆）/图片Ljlink(5),pngzraw=true)
 
 device是你的jlink中间的芯片的型号，我的是stm32f103。其他的与图片上一致即可，按OK进入烧写。
 
