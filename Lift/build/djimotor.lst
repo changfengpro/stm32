@@ -1,0 +1,363 @@
+ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\ccBUlhS2.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"djimotor.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Modules/DJImotor/djimotor.c"
+  20              		.section	.text.HAL_TIM_PeriodElapsedCallback,"ax",%progbits
+  21              		.align	1
+  22              		.global	HAL_TIM_PeriodElapsedCallback
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	HAL_TIM_PeriodElapsedCallback:
+  28              	.LVL0:
+  29              	.LFB134:
+   1:Modules/DJImotor/djimotor.c **** /*
+   2:Modules/DJImotor/djimotor.c ****  * djimotor.c
+   3:Modules/DJImotor/djimotor.c ****  *
+   4:Modules/DJImotor/djimotor.c ****  *  Created on: Jul 14, 2024
+   5:Modules/DJImotor/djimotor.c ****  *      Author: auroranebulas
+   6:Modules/DJImotor/djimotor.c ****  */
+   7:Modules/DJImotor/djimotor.c **** 
+   8:Modules/DJImotor/djimotor.c **** #include "chassis_control.h"
+   9:Modules/DJImotor/djimotor.c **** #include "pid.h"
+  10:Modules/DJImotor/djimotor.c **** #include "Bsp_can.h"
+  11:Modules/DJImotor/djimotor.c **** #include "robot_cmd.h"
+  12:Modules/DJImotor/djimotor.c **** #include "chassis_control.h"
+  13:Modules/DJImotor/djimotor.c **** 
+  14:Modules/DJImotor/djimotor.c **** 
+  15:Modules/DJImotor/djimotor.c **** extern Motor_6025_Typedef motor_array[6]; //前四位为底盘，后两位为云台
+  16:Modules/DJImotor/djimotor.c **** extern rc RC_ctrl;
+  17:Modules/DJImotor/djimotor.c **** static float position[5];
+  18:Modules/DJImotor/djimotor.c **** static float last_position[5];
+  19:Modules/DJImotor/djimotor.c **** float Velocity[5];
+  20:Modules/DJImotor/djimotor.c **** extern float vt_lf, vt_rf, vt_lb, vt_rb;
+  21:Modules/DJImotor/djimotor.c **** 
+  22:Modules/DJImotor/djimotor.c **** void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+  23:Modules/DJImotor/djimotor.c **** {
+  30              		.loc 1 23 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 23 1 is_stmt 0 view .LVU1
+  35 0000 08B5     		push	{r3, lr}
+ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\ccBUlhS2.s 			page 2
+
+
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 3, -8
+  39              		.cfi_offset 14, -4
+  24:Modules/DJImotor/djimotor.c **** 	if(htim ->Instance == TIM2)
+  40              		.loc 1 24 2 is_stmt 1 view .LVU2
+  41              		.loc 1 24 10 is_stmt 0 view .LVU3
+  42 0002 0368     		ldr	r3, [r0]
+  43              		.loc 1 24 4 view .LVU4
+  44 0004 B3F1804F 		cmp	r3, #1073741824
+  45 0008 00D0     		beq	.L4
+  46              	.LVL1:
+  47              	.L1:
+  25:Modules/DJImotor/djimotor.c **** 	{
+  26:Modules/DJImotor/djimotor.c **** 
+  27:Modules/DJImotor/djimotor.c **** 		ChassisTask();
+  28:Modules/DJImotor/djimotor.c **** 
+  29:Modules/DJImotor/djimotor.c **** 	}
+  30:Modules/DJImotor/djimotor.c **** }
+  48              		.loc 1 30 1 view .LVU5
+  49 000a 08BD     		pop	{r3, pc}
+  50              	.LVL2:
+  51              	.L4:
+  27:Modules/DJImotor/djimotor.c **** 
+  52              		.loc 1 27 3 is_stmt 1 view .LVU6
+  53 000c FFF7FEFF 		bl	ChassisTask
+  54              	.LVL3:
+  55              		.loc 1 30 1 is_stmt 0 view .LVU7
+  56 0010 FBE7     		b	.L1
+  57              		.cfi_endproc
+  58              	.LFE134:
+  60              		.section	.text.AngleSumCalc,"ax",%progbits
+  61              		.align	1
+  62              		.global	AngleSumCalc
+  63              		.syntax unified
+  64              		.thumb
+  65              		.thumb_func
+  67              	AngleSumCalc:
+  68              	.LVL4:
+  69              	.LFB135:
+  31:Modules/DJImotor/djimotor.c **** 
+  32:Modules/DJImotor/djimotor.c **** 
+  33:Modules/DJImotor/djimotor.c **** void AngleSumCalc(int ID)
+  34:Modules/DJImotor/djimotor.c **** {
+  70              		.loc 1 34 1 is_stmt 1 view -0
+  71              		.cfi_startproc
+  72              		@ args = 0, pretend = 0, frame = 0
+  73              		@ frame_needed = 0, uses_anonymous_args = 0
+  74              		@ link register save eliminated.
+  35:Modules/DJImotor/djimotor.c **** //	position[ID] = motor_array[ID].angle;
+  36:Modules/DJImotor/djimotor.c **** 	float temp =   motor_array[ID].angle - last_position[ID];
+  75              		.loc 1 36 2 view .LVU9
+  76              		.loc 1 36 32 is_stmt 0 view .LVU10
+  77 0000 00EB4002 		add	r2, r0, r0, lsl #1
+  78 0004 0B4B     		ldr	r3, .L6
+  79 0006 33F92230 		ldrsh	r3, [r3, r2, lsl #2]
+  80 000a 07EE903A 		vmov	s15, r3	@ int
+ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\ccBUlhS2.s 			page 3
+
+
+  81              		.loc 1 36 39 view .LVU11
+  82 000e F8EEE77A 		vcvt.f32.s32	s15, s15
+  83              		.loc 1 36 54 view .LVU12
+  84 0012 094B     		ldr	r3, .L6+4
+  85 0014 03EB8003 		add	r3, r3, r0, lsl #2
+  86 0018 93ED007A 		vldr.32	s14, [r3]
+  87              		.loc 1 36 8 view .LVU13
+  88 001c 77EEC77A 		vsub.f32	s15, s15, s14
+  89              	.LVL5:
+  37:Modules/DJImotor/djimotor.c **** 	position[ID] +=  temp;
+  90              		.loc 1 37 2 is_stmt 1 view .LVU14
+  91              		.loc 1 37 10 is_stmt 0 view .LVU15
+  92 0020 064B     		ldr	r3, .L6+8
+  93 0022 03EB8003 		add	r3, r3, r0, lsl #2
+  94 0026 93ED007A 		vldr.32	s14, [r3]
+  95              		.loc 1 37 15 view .LVU16
+  96 002a 77EE277A 		vadd.f32	s15, s14, s15
+  97              	.LVL6:
+  98              		.loc 1 37 15 view .LVU17
+  99 002e C3ED007A 		vstr.32	s15, [r3]
+  38:Modules/DJImotor/djimotor.c **** 
+  39:Modules/DJImotor/djimotor.c **** 
+  40:Modules/DJImotor/djimotor.c **** }
+ 100              		.loc 1 40 1 view .LVU18
+ 101 0032 7047     		bx	lr
+ 102              	.L7:
+ 103              		.align	2
+ 104              	.L6:
+ 105 0034 00000000 		.word	motor_array
+ 106 0038 00000000 		.word	last_position
+ 107 003c 00000000 		.word	position
+ 108              		.cfi_endproc
+ 109              	.LFE135:
+ 111              		.global	__aeabi_f2d
+ 112              		.global	__aeabi_dmul
+ 113              		.global	__aeabi_d2f
+ 114              		.section	.text.Velocity_Calclate,"ax",%progbits
+ 115              		.align	1
+ 116              		.global	Velocity_Calclate
+ 117              		.syntax unified
+ 118              		.thumb
+ 119              		.thumb_func
+ 121              	Velocity_Calclate:
+ 122              	.LVL7:
+ 123              	.LFB136:
+  41:Modules/DJImotor/djimotor.c **** 
+  42:Modules/DJImotor/djimotor.c **** void Velocity_Calclate(int ID)
+  43:Modules/DJImotor/djimotor.c **** {
+ 124              		.loc 1 43 1 is_stmt 1 view -0
+ 125              		.cfi_startproc
+ 126              		@ args = 0, pretend = 0, frame = 0
+ 127              		@ frame_needed = 0, uses_anonymous_args = 0
+ 128              		.loc 1 43 1 is_stmt 0 view .LVU20
+ 129 0000 70B5     		push	{r4, r5, r6, lr}
+ 130              	.LCFI1:
+ 131              		.cfi_def_cfa_offset 16
+ 132              		.cfi_offset 4, -16
+ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\ccBUlhS2.s 			page 4
+
+
+ 133              		.cfi_offset 5, -12
+ 134              		.cfi_offset 6, -8
+ 135              		.cfi_offset 14, -4
+ 136 0002 0446     		mov	r4, r0
+  44:Modules/DJImotor/djimotor.c **** 	AngleSumCalc(ID);
+ 137              		.loc 1 44 2 is_stmt 1 view .LVU21
+ 138 0004 FFF7FEFF 		bl	AngleSumCalc
+ 139              	.LVL8:
+  45:Modules/DJImotor/djimotor.c **** 
+  46:Modules/DJImotor/djimotor.c **** 	Velocity[ID] = ((position[ID] - last_position[ID]) * (360.0 / 8192.0) ) * 166.66666667;
+ 140              		.loc 1 46 2 view .LVU22
+ 141              		.loc 1 46 27 is_stmt 0 view .LVU23
+ 142 0008 A600     		lsls	r6, r4, #2
+ 143 000a 174B     		ldr	r3, .L10+8
+ 144 000c 03EB8403 		add	r3, r3, r4, lsl #2
+ 145 0010 93ED007A 		vldr.32	s14, [r3]
+ 146              		.loc 1 46 47 view .LVU24
+ 147 0014 154D     		ldr	r5, .L10+12
+ 148 0016 05EB8405 		add	r5, r5, r4, lsl #2
+ 149 001a D5ED007A 		vldr.32	s15, [r5]
+ 150              		.loc 1 46 32 view .LVU25
+ 151 001e 77EE677A 		vsub.f32	s15, s14, s15
+ 152 0022 17EE900A 		vmov	r0, s15
+ 153 0026 FFF7FEFF 		bl	__aeabi_f2d
+ 154              	.LVL9:
+ 155              		.loc 1 46 53 view .LVU26
+ 156 002a 0022     		movs	r2, #0
+ 157 002c 104B     		ldr	r3, .L10+16
+ 158 002e FFF7FEFF 		bl	__aeabi_dmul
+ 159              	.LVL10:
+ 160              		.loc 1 46 74 view .LVU27
+ 161 0032 0BA3     		adr	r3, .L10
+ 162 0034 D3E90023 		ldrd	r2, [r3]
+ 163 0038 FFF7FEFF 		bl	__aeabi_dmul
+ 164              	.LVL11:
+ 165 003c FFF7FEFF 		bl	__aeabi_d2f
+ 166              	.LVL12:
+ 167              		.loc 1 46 15 view .LVU28
+ 168 0040 0C4B     		ldr	r3, .L10+20
+ 169 0042 3344     		add	r3, r3, r6
+ 170 0044 1860     		str	r0, [r3]	@ float
+  47:Modules/DJImotor/djimotor.c **** 
+  48:Modules/DJImotor/djimotor.c **** 	last_position[ID] = motor_array[ID].angle;
+ 171              		.loc 1 48 2 is_stmt 1 view .LVU29
+ 172              		.loc 1 48 37 is_stmt 0 view .LVU30
+ 173 0046 04EB4404 		add	r4, r4, r4, lsl #1
+ 174              	.LVL13:
+ 175              		.loc 1 48 37 view .LVU31
+ 176 004a 0B4B     		ldr	r3, .L10+24
+ 177 004c 33F92430 		ldrsh	r3, [r3, r4, lsl #2]
+ 178 0050 07EE903A 		vmov	s15, r3	@ int
+ 179              		.loc 1 48 20 view .LVU32
+ 180 0054 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 181 0058 C5ED007A 		vstr.32	s15, [r5]
+  49:Modules/DJImotor/djimotor.c **** }
+ 182              		.loc 1 49 1 view .LVU33
+ 183 005c 70BD     		pop	{r4, r5, r6, pc}
+ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\ccBUlhS2.s 			page 5
+
+
+ 184              	.L11:
+ 185 005e 00BF     		.align	3
+ 186              	.L10:
+ 187 0060 771F5755 		.word	1431773047
+ 188 0064 55D56440 		.word	1080350037
+ 189 0068 00000000 		.word	position
+ 190 006c 00000000 		.word	last_position
+ 191 0070 0080A63F 		.word	1067876352
+ 192 0074 00000000 		.word	Velocity
+ 193 0078 00000000 		.word	motor_array
+ 194              		.cfi_endproc
+ 195              	.LFE136:
+ 197              		.section	.text.DJIMotorStop,"ax",%progbits
+ 198              		.align	1
+ 199              		.global	DJIMotorStop
+ 200              		.syntax unified
+ 201              		.thumb
+ 202              		.thumb_func
+ 204              	DJIMotorStop:
+ 205              	.LFB137:
+  50:Modules/DJImotor/djimotor.c **** 
+  51:Modules/DJImotor/djimotor.c **** 
+  52:Modules/DJImotor/djimotor.c **** void DJIMotorStop()
+  53:Modules/DJImotor/djimotor.c **** {
+ 206              		.loc 1 53 1 is_stmt 1 view -0
+ 207              		.cfi_startproc
+ 208              		@ args = 0, pretend = 0, frame = 0
+ 209              		@ frame_needed = 0, uses_anonymous_args = 0
+ 210 0000 00B5     		push	{lr}
+ 211              	.LCFI2:
+ 212              		.cfi_def_cfa_offset 4
+ 213              		.cfi_offset 14, -4
+ 214 0002 83B0     		sub	sp, sp, #12
+ 215              	.LCFI3:
+ 216              		.cfi_def_cfa_offset 16
+  54:Modules/DJImotor/djimotor.c **** 	set_motor_value(0x200, 0, 0, 0, 0);
+ 217              		.loc 1 54 2 view .LVU35
+ 218 0004 0021     		movs	r1, #0
+ 219 0006 0091     		str	r1, [sp]
+ 220 0008 0B46     		mov	r3, r1
+ 221 000a 0A46     		mov	r2, r1
+ 222 000c 4FF40070 		mov	r0, #512
+ 223 0010 FFF7FEFF 		bl	set_motor_value
+ 224              	.LVL14:
+  55:Modules/DJImotor/djimotor.c **** }
+ 225              		.loc 1 55 1 is_stmt 0 view .LVU36
+ 226 0014 03B0     		add	sp, sp, #12
+ 227              	.LCFI4:
+ 228              		.cfi_def_cfa_offset 4
+ 229              		@ sp needed
+ 230 0016 5DF804FB 		ldr	pc, [sp], #4
+ 231              		.cfi_endproc
+ 232              	.LFE137:
+ 234              		.global	Velocity
+ 235              		.section	.bss.Velocity,"aw",%nobits
+ 236              		.align	2
+ 239              	Velocity:
+ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\ccBUlhS2.s 			page 6
+
+
+ 240 0000 00000000 		.space	20
+ 240      00000000 
+ 240      00000000 
+ 240      00000000 
+ 240      00000000 
+ 241              		.section	.bss.last_position,"aw",%nobits
+ 242              		.align	2
+ 245              	last_position:
+ 246 0000 00000000 		.space	20
+ 246      00000000 
+ 246      00000000 
+ 246      00000000 
+ 246      00000000 
+ 247              		.section	.bss.position,"aw",%nobits
+ 248              		.align	2
+ 251              	position:
+ 252 0000 00000000 		.space	20
+ 252      00000000 
+ 252      00000000 
+ 252      00000000 
+ 252      00000000 
+ 253              		.text
+ 254              	.Letext0:
+ 255              		.file 2 "d:\\msys64\\mingw64\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 256              		.file 3 "d:\\msys64\\mingw64\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 257              		.file 4 "Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h"
+ 258              		.file 5 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h"
+ 259              		.file 6 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_dma.h"
+ 260              		.file 7 "Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h"
+ 261              		.file 8 "Bsp/Bsp_can.h"
+ 262              		.file 9 "Application/chassis/chassis_control.h"
+ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\ccBUlhS2.s 			page 7
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 djimotor.c
+C:\Users\AURORA~1\AppData\Local\Temp\ccBUlhS2.s:21     .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
+C:\Users\AURORA~1\AppData\Local\Temp\ccBUlhS2.s:27     .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
+C:\Users\AURORA~1\AppData\Local\Temp\ccBUlhS2.s:61     .text.AngleSumCalc:00000000 $t
+C:\Users\AURORA~1\AppData\Local\Temp\ccBUlhS2.s:67     .text.AngleSumCalc:00000000 AngleSumCalc
+C:\Users\AURORA~1\AppData\Local\Temp\ccBUlhS2.s:105    .text.AngleSumCalc:00000034 $d
+C:\Users\AURORA~1\AppData\Local\Temp\ccBUlhS2.s:245    .bss.last_position:00000000 last_position
+C:\Users\AURORA~1\AppData\Local\Temp\ccBUlhS2.s:251    .bss.position:00000000 position
+C:\Users\AURORA~1\AppData\Local\Temp\ccBUlhS2.s:115    .text.Velocity_Calclate:00000000 $t
+C:\Users\AURORA~1\AppData\Local\Temp\ccBUlhS2.s:121    .text.Velocity_Calclate:00000000 Velocity_Calclate
+C:\Users\AURORA~1\AppData\Local\Temp\ccBUlhS2.s:187    .text.Velocity_Calclate:00000060 $d
+C:\Users\AURORA~1\AppData\Local\Temp\ccBUlhS2.s:239    .bss.Velocity:00000000 Velocity
+C:\Users\AURORA~1\AppData\Local\Temp\ccBUlhS2.s:198    .text.DJIMotorStop:00000000 $t
+C:\Users\AURORA~1\AppData\Local\Temp\ccBUlhS2.s:204    .text.DJIMotorStop:00000000 DJIMotorStop
+C:\Users\AURORA~1\AppData\Local\Temp\ccBUlhS2.s:236    .bss.Velocity:00000000 $d
+C:\Users\AURORA~1\AppData\Local\Temp\ccBUlhS2.s:242    .bss.last_position:00000000 $d
+C:\Users\AURORA~1\AppData\Local\Temp\ccBUlhS2.s:248    .bss.position:00000000 $d
+
+UNDEFINED SYMBOLS
+ChassisTask
+motor_array
+__aeabi_f2d
+__aeabi_dmul
+__aeabi_d2f
+set_motor_value

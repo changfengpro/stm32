@@ -1,0 +1,265 @@
+ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\cckfjzSj.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"pid.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Application/pid/pid.c"
+  20              		.section	.text.pid_init,"ax",%progbits
+  21              		.align	1
+  22              		.global	pid_init
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	pid_init:
+  28              	.LVL0:
+  29              	.LFB0:
+   1:Application/pid/pid.c **** /*
+   2:Application/pid/pid.c ****  * pid.c
+   3:Application/pid/pid.c ****  *
+   4:Application/pid/pid.c ****  *  Created on: Jul 14, 2024
+   5:Application/pid/pid.c ****  *      Author: auroranebulas
+   6:Application/pid/pid.c ****  */
+   7:Application/pid/pid.c **** 
+   8:Application/pid/pid.c **** #include "pid.h"
+   9:Application/pid/pid.c **** 
+  10:Application/pid/pid.c **** 
+  11:Application/pid/pid.c **** pid_struct_t pid[5];
+  12:Application/pid/pid.c **** 
+  13:Application/pid/pid.c **** 
+  14:Application/pid/pid.c **** /**
+  15:Application/pid/pid.c ****   * @brief  初始化pid参数
+  16:Application/pid/pid.c ****   * @param  pid struct
+  17:Application/pid/pid.c ****   * @param  kp 比例系数
+  18:Application/pid/pid.c ****   * @param  ki 积分系数
+  19:Application/pid/pid.c ****   * @param  kd 微分系数
+  20:Application/pid/pid.c ****   * @param  i_max 积分项限幅
+  21:Application/pid/pid.c ****   * @param  out_max 输出限幅
+  22:Application/pid/pid.c ****   * @retval None
+  23:Application/pid/pid.c ****   */
+  24:Application/pid/pid.c **** void pid_init(pid_struct_t *pid,
+  25:Application/pid/pid.c ****               float kp,
+  26:Application/pid/pid.c ****               float ki,
+  27:Application/pid/pid.c ****               float kd,
+  28:Application/pid/pid.c ****               float i_max,
+  29:Application/pid/pid.c ****               float out_max)
+ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\cckfjzSj.s 			page 2
+
+
+  30:Application/pid/pid.c **** {
+  30              		.loc 1 30 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+  31:Application/pid/pid.c ****   pid->kp      = kp;
+  35              		.loc 1 31 3 view .LVU1
+  36              		.loc 1 31 16 is_stmt 0 view .LVU2
+  37 0000 80ED000A 		vstr.32	s0, [r0]
+  32:Application/pid/pid.c ****   pid->ki      = ki;
+  38              		.loc 1 32 3 is_stmt 1 view .LVU3
+  39              		.loc 1 32 16 is_stmt 0 view .LVU4
+  40 0004 C0ED010A 		vstr.32	s1, [r0, #4]
+  33:Application/pid/pid.c ****   pid->kd      = kd;
+  41              		.loc 1 33 3 is_stmt 1 view .LVU5
+  42              		.loc 1 33 16 is_stmt 0 view .LVU6
+  43 0008 80ED021A 		vstr.32	s2, [r0, #8]
+  34:Application/pid/pid.c ****   pid->i_max   = i_max;
+  44              		.loc 1 34 3 is_stmt 1 view .LVU7
+  45              		.loc 1 34 16 is_stmt 0 view .LVU8
+  46 000c C0ED031A 		vstr.32	s3, [r0, #12]
+  35:Application/pid/pid.c ****   pid->out_max = out_max;
+  47              		.loc 1 35 3 is_stmt 1 view .LVU9
+  48              		.loc 1 35 16 is_stmt 0 view .LVU10
+  49 0010 80ED042A 		vstr.32	s4, [r0, #16]
+  36:Application/pid/pid.c **** }
+  50              		.loc 1 36 1 view .LVU11
+  51 0014 7047     		bx	lr
+  52              		.cfi_endproc
+  53              	.LFE0:
+  55              		.section	.text.ver_pid_calc,"ax",%progbits
+  56              		.align	1
+  57              		.global	ver_pid_calc
+  58              		.syntax unified
+  59              		.thumb
+  60              		.thumb_func
+  62              	ver_pid_calc:
+  63              	.LVL1:
+  64              	.LFB1:
+  37:Application/pid/pid.c **** 
+  38:Application/pid/pid.c **** float ver_pid_calc(pid_struct_t *pid, float ref, float fdb)
+  39:Application/pid/pid.c **** {
+  65              		.loc 1 39 1 is_stmt 1 view -0
+  66              		.cfi_startproc
+  67              		@ args = 0, pretend = 0, frame = 0
+  68              		@ frame_needed = 0, uses_anonymous_args = 0
+  69              		@ link register save eliminated.
+  40:Application/pid/pid.c ****   pid->ref = ref;
+  70              		.loc 1 40 3 view .LVU13
+  71              		.loc 1 40 12 is_stmt 0 view .LVU14
+  72 0000 FDEEC07A 		vcvt.s32.f32	s15, s0
+  73 0004 17EE903A 		vmov	r3, s15	@ int
+  74 0008 C0ED057A 		vstr.32	s15, [r0, #20]	@ int
+  41:Application/pid/pid.c ****   pid->fdb = fdb;
+  75              		.loc 1 41 3 is_stmt 1 view .LVU15
+  76              		.loc 1 41 12 is_stmt 0 view .LVU16
+ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\cckfjzSj.s 			page 3
+
+
+  77 000c FDEEE07A 		vcvt.s32.f32	s15, s1
+  78 0010 17EE902A 		vmov	r2, s15	@ int
+  79 0014 C0ED067A 		vstr.32	s15, [r0, #24]	@ int
+  42:Application/pid/pid.c ****   pid->err[1] = pid->err[0];
+  80              		.loc 1 42 3 is_stmt 1 view .LVU17
+  81              		.loc 1 42 25 is_stmt 0 view .LVU18
+  82 0018 C169     		ldr	r1, [r0, #28]
+  83              		.loc 1 42 15 view .LVU19
+  84 001a 0162     		str	r1, [r0, #32]
+  43:Application/pid/pid.c ****   pid->err[0] = pid->ref - pid->fdb;
+  85              		.loc 1 43 3 is_stmt 1 view .LVU20
+  86              		.loc 1 43 26 is_stmt 0 view .LVU21
+  87 001c 9B1A     		subs	r3, r3, r2
+  88              		.loc 1 43 15 view .LVU22
+  89 001e C361     		str	r3, [r0, #28]
+  44:Application/pid/pid.c **** 
+  45:Application/pid/pid.c ****   pid->p_out  = pid->kp * pid->err[0];
+  90              		.loc 1 45 3 is_stmt 1 view .LVU23
+  91              		.loc 1 45 20 is_stmt 0 view .LVU24
+  92 0020 90ED007A 		vldr.32	s14, [r0]
+  93              		.loc 1 45 25 view .LVU25
+  94 0024 07EE903A 		vmov	s15, r3	@ int
+  95 0028 F8EEE77A 		vcvt.f32.s32	s15, s15
+  96 002c 27EE277A 		vmul.f32	s14, s14, s15
+  97              		.loc 1 45 15 view .LVU26
+  98 0030 80ED097A 		vstr.32	s14, [r0, #36]
+  46:Application/pid/pid.c ****   pid->i_out += pid->ki * pid->err[0];
+  99              		.loc 1 46 3 is_stmt 1 view .LVU27
+ 100              		.loc 1 46 6 is_stmt 0 view .LVU28
+ 101 0034 D0ED0A6A 		vldr.32	s13, [r0, #40]
+ 102              		.loc 1 46 20 view .LVU29
+ 103 0038 90ED016A 		vldr.32	s12, [r0, #4]
+ 104              		.loc 1 46 25 view .LVU30
+ 105 003c 67EE867A 		vmul.f32	s15, s15, s12
+ 106              		.loc 1 46 14 view .LVU31
+ 107 0040 76EEA76A 		vadd.f32	s13, s13, s15
+ 108 0044 C0ED0A6A 		vstr.32	s13, [r0, #40]
+  47:Application/pid/pid.c ****   pid->d_out  = pid->kd * (pid->err[0] - pid->err[1]);
+ 109              		.loc 1 47 3 is_stmt 1 view .LVU32
+ 110              		.loc 1 47 20 is_stmt 0 view .LVU33
+ 111 0048 90ED026A 		vldr.32	s12, [r0, #8]
+ 112              		.loc 1 47 40 view .LVU34
+ 113 004c 5B1A     		subs	r3, r3, r1
+ 114 004e 07EE903A 		vmov	s15, r3	@ int
+ 115              		.loc 1 47 25 view .LVU35
+ 116 0052 F8EEE77A 		vcvt.f32.s32	s15, s15
+ 117 0056 67EE867A 		vmul.f32	s15, s15, s12
+ 118              		.loc 1 47 15 view .LVU36
+ 119 005a C0ED0B7A 		vstr.32	s15, [r0, #44]
+  48:Application/pid/pid.c ****   LIMIT_MIN_MAX(pid->i_out, -pid->i_max, pid->i_max);
+ 120              		.loc 1 48 3 is_stmt 1 view .LVU37
+ 121 005e D0ED035A 		vldr.32	s11, [r0, #12]
+ 122 0062 B1EE656A 		vneg.f32	s12, s11
+ 123 0066 F4EEC66A 		vcmpe.f32	s13, s12
+ 124 006a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 125 006e 06D9     		bls	.L3
+ 126              		.loc 1 48 3 is_stmt 0 discriminator 2 view .LVU38
+ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\cckfjzSj.s 			page 4
+
+
+ 127 0070 F4EEE56A 		vcmpe.f32	s13, s11
+ 128 0074 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 129 0078 1CDB     		blt	.L11
+ 130              		.loc 1 48 3 view .LVU39
+ 131 007a B0EE656A 		vmov.f32	s12, s11
+ 132              	.L3:
+ 133              		.loc 1 48 3 discriminator 8 view .LVU40
+ 134 007e 80ED0A6A 		vstr.32	s12, [r0, #40]
+  49:Application/pid/pid.c **** 
+  50:Application/pid/pid.c ****   pid->output = pid->p_out + pid->i_out + pid->d_out;
+ 135              		.loc 1 50 3 is_stmt 1 discriminator 8 view .LVU41
+ 136              		.loc 1 50 28 is_stmt 0 discriminator 8 view .LVU42
+ 137 0082 37EE067A 		vadd.f32	s14, s14, s12
+ 138              		.loc 1 50 41 discriminator 8 view .LVU43
+ 139 0086 77EE877A 		vadd.f32	s15, s15, s14
+ 140              		.loc 1 50 15 discriminator 8 view .LVU44
+ 141 008a C0ED0C7A 		vstr.32	s15, [r0, #48]
+  51:Application/pid/pid.c ****   LIMIT_MIN_MAX(pid->output, -pid->out_max, pid->out_max);
+ 142              		.loc 1 51 3 is_stmt 1 discriminator 8 view .LVU45
+ 143 008e 90ED047A 		vldr.32	s14, [r0, #16]
+ 144 0092 B1EE470A 		vneg.f32	s0, s14
+ 145              	.LVL2:
+ 146              		.loc 1 51 3 is_stmt 0 discriminator 8 view .LVU46
+ 147 0096 F4EEC07A 		vcmpe.f32	s15, s0
+ 148 009a F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 149 009e 06D9     		bls	.L5
+ 150              		.loc 1 51 3 discriminator 2 view .LVU47
+ 151 00a0 F4EEC77A 		vcmpe.f32	s15, s14
+ 152 00a4 F1EE10FA 		vmrs	APSR_nzcv, FPSCR
+ 153 00a8 07DB     		blt	.L12
+ 154              		.loc 1 51 3 view .LVU48
+ 155 00aa B0EE470A 		vmov.f32	s0, s14
+ 156              	.L5:
+ 157              		.loc 1 51 3 discriminator 8 view .LVU49
+ 158 00ae 80ED0C0A 		vstr.32	s0, [r0, #48]
+  52:Application/pid/pid.c ****   return pid->output;
+ 159              		.loc 1 52 3 is_stmt 1 discriminator 8 view .LVU50
+  53:Application/pid/pid.c **** }
+ 160              		.loc 1 53 1 is_stmt 0 discriminator 8 view .LVU51
+ 161 00b2 7047     		bx	lr
+ 162              	.LVL3:
+ 163              	.L11:
+  48:Application/pid/pid.c **** 
+ 164              		.loc 1 48 3 view .LVU52
+ 165 00b4 B0EE666A 		vmov.f32	s12, s13
+ 166 00b8 E1E7     		b	.L3
+ 167              	.LVL4:
+ 168              	.L12:
+  51:Application/pid/pid.c ****   return pid->output;
+ 169              		.loc 1 51 3 view .LVU53
+ 170 00ba B0EE670A 		vmov.f32	s0, s15
+ 171 00be F6E7     		b	.L5
+ 172              		.cfi_endproc
+ 173              	.LFE1:
+ 175              		.global	pid
+ 176              		.section	.bss.pid,"aw",%nobits
+ 177              		.align	2
+ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\cckfjzSj.s 			page 5
+
+
+ 180              	pid:
+ 181 0000 00000000 		.space	260
+ 181      00000000 
+ 181      00000000 
+ 181      00000000 
+ 181      00000000 
+ 182              		.text
+ 183              	.Letext0:
+ 184              		.file 2 "Application/pid/pid.h"
+ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\cckfjzSj.s 			page 6
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 pid.c
+C:\Users\AURORA~1\AppData\Local\Temp\cckfjzSj.s:21     .text.pid_init:00000000 $t
+C:\Users\AURORA~1\AppData\Local\Temp\cckfjzSj.s:27     .text.pid_init:00000000 pid_init
+C:\Users\AURORA~1\AppData\Local\Temp\cckfjzSj.s:56     .text.ver_pid_calc:00000000 $t
+C:\Users\AURORA~1\AppData\Local\Temp\cckfjzSj.s:62     .text.ver_pid_calc:00000000 ver_pid_calc
+C:\Users\AURORA~1\AppData\Local\Temp\cckfjzSj.s:180    .bss.pid:00000000 pid
+C:\Users\AURORA~1\AppData\Local\Temp\cckfjzSj.s:177    .bss.pid:00000000 $d
+
+NO UNDEFINED SYMBOLS
