@@ -49,5 +49,14 @@ void ChassisTask()
 {
     MecanumCalculate();
 
+    pid_ref[1] = ver_pid_calc(&pid[1], vt_rf, Velocity[1]);
+    pid_ref[2] = ver_pid_calc(&pid[2], vt_lf, Velocity[2]);
+    pid_ref[3] = ver_pid_calc(&pid[3], vt_lb, Velocity[3]);
+    pid_ref[4] = ver_pid_calc(&pid[4], vt_rb, Velocity[4]);
+
+    set_motor_value_CAN1(0x200, pid_ref[1], pid_ref[2], pid_ref[3], pid_ref[4]);
+    set_motor_value_CAN2(0x200, pid_ref[1], pid_ref[2], pid_ref[3], pid_ref[4]);
+
+
     
 }

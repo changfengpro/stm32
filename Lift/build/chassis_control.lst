@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\ccL7SJv0.s 			page 1
+ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\cclrQold.s 			page 1
 
 
    1              		.cpu cortex-m4
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\ccL7SJv0.s 			page 1
   28:Application/chassis/chassis_control.c **** extern rc RC_ctrl;
   29:Application/chassis/chassis_control.c **** extern pid_struct_t pid[5];
   30:Application/chassis/chassis_control.c **** float pid_ref[5];
-ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\ccL7SJv0.s 			page 2
+ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\cclrQold.s 			page 2
 
 
   31:Application/chassis/chassis_control.c **** extern float Velocity[5];
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\ccL7SJv0.s 			page 1
   71              		.loc 1 42 13 is_stmt 0 view .LVU17
   72 0044 B1EE676A 		vneg.f32	s12, s15
   73              		.loc 1 42 34 view .LVU18
-ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\ccL7SJv0.s 			page 3
+ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\cclrQold.s 			page 3
 
 
   74 0048 36EE666A 		vsub.f32	s12, s12, s13
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\ccL7SJv0.s 			page 1
  125              		.global	ChassisTask
  126              		.syntax unified
  127              		.thumb
-ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\ccL7SJv0.s 			page 4
+ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\cclrQold.s 			page 4
 
 
  128              		.thumb_func
@@ -191,91 +191,226 @@ ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\ccL7SJv0.s 			page 1
  133              		.cfi_startproc
  134              		@ args = 0, pretend = 0, frame = 0
  135              		@ frame_needed = 0, uses_anonymous_args = 0
- 136 0000 08B5     		push	{r3, lr}
+ 136 0000 70B5     		push	{r4, r5, r6, lr}
  137              	.LCFI0:
- 138              		.cfi_def_cfa_offset 8
- 139              		.cfi_offset 3, -8
- 140              		.cfi_offset 14, -4
+ 138              		.cfi_def_cfa_offset 16
+ 139              		.cfi_offset 4, -16
+ 140              		.cfi_offset 5, -12
+ 141              		.cfi_offset 6, -8
+ 142              		.cfi_offset 14, -4
+ 143 0002 82B0     		sub	sp, sp, #8
+ 144              	.LCFI1:
+ 145              		.cfi_def_cfa_offset 24
   50:Application/chassis/chassis_control.c ****     MecanumCalculate();
- 141              		.loc 1 50 5 view .LVU36
- 142 0002 FFF7FEFF 		bl	MecanumCalculate
- 143              	.LVL0:
+ 146              		.loc 1 50 5 view .LVU36
+ 147 0004 FFF7FEFF 		bl	MecanumCalculate
+ 148              	.LVL0:
   51:Application/chassis/chassis_control.c **** 
-  52:Application/chassis/chassis_control.c ****     
-  53:Application/chassis/chassis_control.c **** }...
- 144              		.loc 1 53 1 is_stmt 0 view .LVU37
- 145 0006 08BD     		pop	{r3, pc}
- 146              		.cfi_endproc
- 147              	.LFE179:
- 149              		.global	pid_ref
- 150              		.section	.bss.pid_ref,"aw",%nobits
- 151              		.align	2
- 154              	pid_ref:
- 155 0000 00000000 		.space	20
- 155      00000000 
- 155      00000000 
- 155      00000000 
- 155      00000000 
- 156              		.global	vt_rb
- 157              		.section	.bss.vt_rb,"aw",%nobits
- 158              		.align	2
- 161              	vt_rb:
- 162 0000 00000000 		.space	4
- 163              		.global	vt_lb
- 164              		.section	.bss.vt_lb,"aw",%nobits
- 165              		.align	2
- 168              	vt_lb:
- 169 0000 00000000 		.space	4
- 170              		.global	vt_rf
- 171              		.section	.bss.vt_rf,"aw",%nobits
- 172              		.align	2
- 175              	vt_rf:
- 176 0000 00000000 		.space	4
- 177              		.global	vt_lf
- 178              		.section	.bss.vt_lf,"aw",%nobits
- 179              		.align	2
- 182              	vt_lf:
- 183 0000 00000000 		.space	4
- 184              		.global	chassis_cmd_recv
- 185              		.section	.bss.chassis_cmd_recv,"aw",%nobits
-ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\ccL7SJv0.s 			page 5
+  52:Application/chassis/chassis_control.c ****     pid_ref[1] = ver_pid_calc(&pid[1], vt_rf, Velocity[1]);
+ 149              		.loc 1 52 5 view .LVU37
+ 150              		.loc 1 52 18 is_stmt 0 view .LVU38
+ 151 0008 374E     		ldr	r6, .L6
+ 152 000a 384D     		ldr	r5, .L6+4
+ 153 000c D6ED010A 		vldr.32	s1, [r6, #4]
+ 154 0010 374B     		ldr	r3, .L6+8
+ 155 0012 93ED000A 		vldr.32	s0, [r3]
+ 156 0016 2846     		mov	r0, r5
+ 157 0018 FFF7FEFF 		bl	ver_pid_calc
+ 158              	.LVL1:
+ 159              		.loc 1 52 16 view .LVU39
+ 160 001c 354C     		ldr	r4, .L6+12
+ 161 001e 84ED010A 		vstr.32	s0, [r4, #4]
+  53:Application/chassis/chassis_control.c ****     pid_ref[2] = ver_pid_calc(&pid[2], vt_lf, Velocity[2]);
+ 162              		.loc 1 53 5 is_stmt 1 view .LVU40
+ 163              		.loc 1 53 18 is_stmt 0 view .LVU41
+ 164 0022 D6ED020A 		vldr.32	s1, [r6, #8]
+ 165 0026 344B     		ldr	r3, .L6+16
+ 166 0028 93ED000A 		vldr.32	s0, [r3]
+ 167 002c 05F13400 		add	r0, r5, #52
+ 168 0030 FFF7FEFF 		bl	ver_pid_calc
+ 169              	.LVL2:
+ 170              		.loc 1 53 16 view .LVU42
+ 171 0034 84ED020A 		vstr.32	s0, [r4, #8]
+  54:Application/chassis/chassis_control.c ****     pid_ref[3] = ver_pid_calc(&pid[3], vt_lb, Velocity[3]);
+ 172              		.loc 1 54 5 is_stmt 1 view .LVU43
+ 173              		.loc 1 54 18 is_stmt 0 view .LVU44
+ 174 0038 D6ED030A 		vldr.32	s1, [r6, #12]
+ 175 003c 2F4B     		ldr	r3, .L6+20
+ 176 003e 93ED000A 		vldr.32	s0, [r3]
+ 177 0042 05F16800 		add	r0, r5, #104
+ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\cclrQold.s 			page 5
 
 
- 186              		.align	2
- 189              	chassis_cmd_recv:
- 190 0000 00000000 		.space	24
- 190      00000000 
- 190      00000000 
- 190      00000000 
- 190      00000000 
- 191              		.text
- 192              	.Letext0:
- 193              		.file 2 "Application/robot_def.h"
- 194              		.file 3 "d:\\msys64\\mingw64\\arm-none-eabi\\include\\machine\\_default_types.h"
- 195              		.file 4 "d:\\msys64\\mingw64\\arm-none-eabi\\include\\sys\\_stdint.h"
- 196              		.file 5 "Application/cmd/robot_cmd.h"
-ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\ccL7SJv0.s 			page 6
+ 178 0046 FFF7FEFF 		bl	ver_pid_calc
+ 179              	.LVL3:
+ 180              		.loc 1 54 16 view .LVU45
+ 181 004a 84ED030A 		vstr.32	s0, [r4, #12]
+  55:Application/chassis/chassis_control.c ****     pid_ref[4] = ver_pid_calc(&pid[4], vt_rb, Velocity[4]);
+ 182              		.loc 1 55 5 is_stmt 1 view .LVU46
+ 183              		.loc 1 55 18 is_stmt 0 view .LVU47
+ 184 004e D6ED040A 		vldr.32	s1, [r6, #16]
+ 185 0052 2B4B     		ldr	r3, .L6+24
+ 186 0054 93ED000A 		vldr.32	s0, [r3]
+ 187 0058 05F19C00 		add	r0, r5, #156
+ 188 005c FFF7FEFF 		bl	ver_pid_calc
+ 189              	.LVL4:
+ 190              		.loc 1 55 16 view .LVU48
+ 191 0060 84ED040A 		vstr.32	s0, [r4, #16]
+  56:Application/chassis/chassis_control.c **** 
+  57:Application/chassis/chassis_control.c ****     set_motor_value_CAN1(0x200, pid_ref[1], pid_ref[2], pid_ref[3], pid_ref[4]);
+ 192              		.loc 1 57 5 is_stmt 1 view .LVU49
+ 193              		.loc 1 57 40 is_stmt 0 view .LVU50
+ 194 0064 D4ED017A 		vldr.32	s15, [r4, #4]
+ 195              		.loc 1 57 52 view .LVU51
+ 196 0068 94ED027A 		vldr.32	s14, [r4, #8]
+ 197              		.loc 1 57 64 view .LVU52
+ 198 006c D4ED036A 		vldr.32	s13, [r4, #12]
+ 199              		.loc 1 57 5 view .LVU53
+ 200 0070 FDEEE66A 		vcvt.s32.f32	s13, s13
+ 201 0074 BDEEC77A 		vcvt.s32.f32	s14, s14
+ 202 0078 FDEEE77A 		vcvt.s32.f32	s15, s15
+ 203 007c BDEEC00A 		vcvt.s32.f32	s0, s0
+ 204 0080 10EE103A 		vmov	r3, s0	@ int
+ 205 0084 1BB2     		sxth	r3, r3
+ 206 0086 0093     		str	r3, [sp]
+ 207 0088 16EE903A 		vmov	r3, s13	@ int
+ 208 008c 1BB2     		sxth	r3, r3
+ 209 008e 17EE102A 		vmov	r2, s14	@ int
+ 210 0092 12B2     		sxth	r2, r2
+ 211 0094 17EE901A 		vmov	r1, s15	@ int
+ 212 0098 09B2     		sxth	r1, r1
+ 213 009a 4FF40070 		mov	r0, #512
+ 214 009e FFF7FEFF 		bl	set_motor_value_CAN1
+ 215              	.LVL5:
+  58:Application/chassis/chassis_control.c ****     set_motor_value_CAN2(0x200, pid_ref[1], pid_ref[2], pid_ref[3], pid_ref[4]);
+ 216              		.loc 1 58 5 is_stmt 1 view .LVU54
+ 217              		.loc 1 58 40 is_stmt 0 view .LVU55
+ 218 00a2 94ED017A 		vldr.32	s14, [r4, #4]
+ 219              		.loc 1 58 52 view .LVU56
+ 220 00a6 D4ED026A 		vldr.32	s13, [r4, #8]
+ 221              		.loc 1 58 64 view .LVU57
+ 222 00aa 94ED036A 		vldr.32	s12, [r4, #12]
+ 223              		.loc 1 58 76 view .LVU58
+ 224 00ae D4ED047A 		vldr.32	s15, [r4, #16]
+ 225              		.loc 1 58 5 view .LVU59
+ 226 00b2 BDEEC66A 		vcvt.s32.f32	s12, s12
+ 227 00b6 FDEEE66A 		vcvt.s32.f32	s13, s13
+ 228 00ba BDEEC77A 		vcvt.s32.f32	s14, s14
+ 229 00be FDEEE77A 		vcvt.s32.f32	s15, s15
+ 230 00c2 17EE903A 		vmov	r3, s15	@ int
+ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\cclrQold.s 			page 6
+
+
+ 231 00c6 1BB2     		sxth	r3, r3
+ 232 00c8 0093     		str	r3, [sp]
+ 233 00ca 16EE103A 		vmov	r3, s12	@ int
+ 234 00ce 1BB2     		sxth	r3, r3
+ 235 00d0 16EE902A 		vmov	r2, s13	@ int
+ 236 00d4 12B2     		sxth	r2, r2
+ 237 00d6 17EE101A 		vmov	r1, s14	@ int
+ 238 00da 09B2     		sxth	r1, r1
+ 239 00dc 4FF40070 		mov	r0, #512
+ 240 00e0 FFF7FEFF 		bl	set_motor_value_CAN2
+ 241              	.LVL6:
+  59:Application/chassis/chassis_control.c **** 
+  60:Application/chassis/chassis_control.c **** 
+  61:Application/chassis/chassis_control.c ****     
+  62:Application/chassis/chassis_control.c **** }...
+ 242              		.loc 1 62 1 view .LVU60
+ 243 00e4 02B0     		add	sp, sp, #8
+ 244              	.LCFI2:
+ 245              		.cfi_def_cfa_offset 16
+ 246              		@ sp needed
+ 247 00e6 70BD     		pop	{r4, r5, r6, pc}
+ 248              	.L7:
+ 249              		.align	2
+ 250              	.L6:
+ 251 00e8 00000000 		.word	Velocity
+ 252 00ec 34000000 		.word	pid+52
+ 253 00f0 00000000 		.word	vt_rf
+ 254 00f4 00000000 		.word	pid_ref
+ 255 00f8 00000000 		.word	vt_lf
+ 256 00fc 00000000 		.word	vt_lb
+ 257 0100 00000000 		.word	vt_rb
+ 258              		.cfi_endproc
+ 259              	.LFE179:
+ 261              		.global	pid_ref
+ 262              		.section	.bss.pid_ref,"aw",%nobits
+ 263              		.align	2
+ 266              	pid_ref:
+ 267 0000 00000000 		.space	20
+ 267      00000000 
+ 267      00000000 
+ 267      00000000 
+ 267      00000000 
+ 268              		.global	vt_rb
+ 269              		.section	.bss.vt_rb,"aw",%nobits
+ 270              		.align	2
+ 273              	vt_rb:
+ 274 0000 00000000 		.space	4
+ 275              		.global	vt_lb
+ 276              		.section	.bss.vt_lb,"aw",%nobits
+ 277              		.align	2
+ 280              	vt_lb:
+ 281 0000 00000000 		.space	4
+ 282              		.global	vt_rf
+ 283              		.section	.bss.vt_rf,"aw",%nobits
+ 284              		.align	2
+ 287              	vt_rf:
+ 288 0000 00000000 		.space	4
+ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\cclrQold.s 			page 7
+
+
+ 289              		.global	vt_lf
+ 290              		.section	.bss.vt_lf,"aw",%nobits
+ 291              		.align	2
+ 294              	vt_lf:
+ 295 0000 00000000 		.space	4
+ 296              		.global	chassis_cmd_recv
+ 297              		.section	.bss.chassis_cmd_recv,"aw",%nobits
+ 298              		.align	2
+ 301              	chassis_cmd_recv:
+ 302 0000 00000000 		.space	24
+ 302      00000000 
+ 302      00000000 
+ 302      00000000 
+ 302      00000000 
+ 303              		.text
+ 304              	.Letext0:
+ 305              		.file 2 "Application/robot_def.h"
+ 306              		.file 3 "d:\\msys64\\mingw64\\arm-none-eabi\\include\\machine\\_default_types.h"
+ 307              		.file 4 "d:\\msys64\\mingw64\\arm-none-eabi\\include\\sys\\_stdint.h"
+ 308              		.file 5 "Application/cmd/robot_cmd.h"
+ 309              		.file 6 "Application/pid/pid.h"
+ 310              		.file 7 "Bsp/Bsp_can.h"
+ARM GAS  C:\Users\AURORA~1\AppData\Local\Temp\cclrQold.s 			page 8
 
 
 DEFINED SYMBOLS
                             *ABS*:00000000 chassis_control.c
-C:\Users\AURORA~1\AppData\Local\Temp\ccL7SJv0.s:21     .text.MecanumCalculate:00000000 $t
-C:\Users\AURORA~1\AppData\Local\Temp\ccL7SJv0.s:27     .text.MecanumCalculate:00000000 MecanumCalculate
-C:\Users\AURORA~1\AppData\Local\Temp\ccL7SJv0.s:112    .text.MecanumCalculate:0000008c $d
-C:\Users\AURORA~1\AppData\Local\Temp\ccL7SJv0.s:189    .bss.chassis_cmd_recv:00000000 chassis_cmd_recv
-C:\Users\AURORA~1\AppData\Local\Temp\ccL7SJv0.s:182    .bss.vt_lf:00000000 vt_lf
-C:\Users\AURORA~1\AppData\Local\Temp\ccL7SJv0.s:175    .bss.vt_rf:00000000 vt_rf
-C:\Users\AURORA~1\AppData\Local\Temp\ccL7SJv0.s:168    .bss.vt_lb:00000000 vt_lb
-C:\Users\AURORA~1\AppData\Local\Temp\ccL7SJv0.s:161    .bss.vt_rb:00000000 vt_rb
-C:\Users\AURORA~1\AppData\Local\Temp\ccL7SJv0.s:124    .text.ChassisTask:00000000 $t
-C:\Users\AURORA~1\AppData\Local\Temp\ccL7SJv0.s:130    .text.ChassisTask:00000000 ChassisTask
-C:\Users\AURORA~1\AppData\Local\Temp\ccL7SJv0.s:154    .bss.pid_ref:00000000 pid_ref
-C:\Users\AURORA~1\AppData\Local\Temp\ccL7SJv0.s:151    .bss.pid_ref:00000000 $d
-C:\Users\AURORA~1\AppData\Local\Temp\ccL7SJv0.s:158    .bss.vt_rb:00000000 $d
-C:\Users\AURORA~1\AppData\Local\Temp\ccL7SJv0.s:165    .bss.vt_lb:00000000 $d
-C:\Users\AURORA~1\AppData\Local\Temp\ccL7SJv0.s:172    .bss.vt_rf:00000000 $d
-C:\Users\AURORA~1\AppData\Local\Temp\ccL7SJv0.s:179    .bss.vt_lf:00000000 $d
-C:\Users\AURORA~1\AppData\Local\Temp\ccL7SJv0.s:186    .bss.chassis_cmd_recv:00000000 $d
+C:\Users\AURORA~1\AppData\Local\Temp\cclrQold.s:21     .text.MecanumCalculate:00000000 $t
+C:\Users\AURORA~1\AppData\Local\Temp\cclrQold.s:27     .text.MecanumCalculate:00000000 MecanumCalculate
+C:\Users\AURORA~1\AppData\Local\Temp\cclrQold.s:112    .text.MecanumCalculate:0000008c $d
+C:\Users\AURORA~1\AppData\Local\Temp\cclrQold.s:301    .bss.chassis_cmd_recv:00000000 chassis_cmd_recv
+C:\Users\AURORA~1\AppData\Local\Temp\cclrQold.s:294    .bss.vt_lf:00000000 vt_lf
+C:\Users\AURORA~1\AppData\Local\Temp\cclrQold.s:287    .bss.vt_rf:00000000 vt_rf
+C:\Users\AURORA~1\AppData\Local\Temp\cclrQold.s:280    .bss.vt_lb:00000000 vt_lb
+C:\Users\AURORA~1\AppData\Local\Temp\cclrQold.s:273    .bss.vt_rb:00000000 vt_rb
+C:\Users\AURORA~1\AppData\Local\Temp\cclrQold.s:124    .text.ChassisTask:00000000 $t
+C:\Users\AURORA~1\AppData\Local\Temp\cclrQold.s:130    .text.ChassisTask:00000000 ChassisTask
+C:\Users\AURORA~1\AppData\Local\Temp\cclrQold.s:251    .text.ChassisTask:000000e8 $d
+C:\Users\AURORA~1\AppData\Local\Temp\cclrQold.s:266    .bss.pid_ref:00000000 pid_ref
+C:\Users\AURORA~1\AppData\Local\Temp\cclrQold.s:263    .bss.pid_ref:00000000 $d
+C:\Users\AURORA~1\AppData\Local\Temp\cclrQold.s:270    .bss.vt_rb:00000000 $d
+C:\Users\AURORA~1\AppData\Local\Temp\cclrQold.s:277    .bss.vt_lb:00000000 $d
+C:\Users\AURORA~1\AppData\Local\Temp\cclrQold.s:284    .bss.vt_rf:00000000 $d
+C:\Users\AURORA~1\AppData\Local\Temp\cclrQold.s:291    .bss.vt_lf:00000000 $d
+C:\Users\AURORA~1\AppData\Local\Temp\cclrQold.s:298    .bss.chassis_cmd_recv:00000000 $d
 
 UNDEFINED SYMBOLS
 RC_ctrl
+ver_pid_calc
+set_motor_value_CAN1
+set_motor_value_CAN2
+Velocity
+pid

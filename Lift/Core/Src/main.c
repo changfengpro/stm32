@@ -104,7 +104,7 @@ int main(void)
   HAL_UARTEx_ReceiveToIdle_IT(&huart3 , buffer, sizeof(buffer));
   for(int i = 1; i < 5; i++)
   {
-	pid_init(&pid[i], 35, 2, 0.1, 2000, 6500);
+	pid_init(&pid[i], 25, 1, 0.1, 2000, 6500);
   }
   HAL_Delay(100);
 
