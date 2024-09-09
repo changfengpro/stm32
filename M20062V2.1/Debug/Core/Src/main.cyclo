@@ -1,0 +1,12 @@
+../Core/Src/main.c:77:5:main	1
+../Core/Src/main.c:132:6:SystemClock_Config	4
+../Core/Src/main.c:183:6:HAL_TIM_PeriodElapsedCallback	4
+../Core/Src/main.c:217:6:motor_calc_M2006	3
+../Core/Src/main.c:240:6:motor_calc_GM6020	3
+../Core/Src/main.c:263:5:angle_calc_M2006	1
+../Core/Src/main.c:272:5:angle_calc_GM6020	1
+../Core/Src/main.c:288:6:motor1_control_cw_90	1
+../Core/Src/main.c:299:6:motor_control_aw_90	1
+../Core/Src/main.c:304:6:motor_reset	1
+../Core/Src/main.c:325:6:delay_ms	3
+../Core/Src/main.c:346:6:Error_Handler	1
