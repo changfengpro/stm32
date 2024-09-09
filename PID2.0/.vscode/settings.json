@@ -1,0 +1,11 @@
+{
+    "cortex-debug.armToolchainPath": "D:\\MSYS64\\MINGW64\\BIN",
+    "cortex-debug.openocdPath": "D:\\MSYS64\\MINGW64\\BIN\\OPENOCD.EXE",
+    "C_Cpp.errorSquiggles": "disabled",
+    "files.associations": {
+        "pid.h": "c",
+        "stdlib.h": "c",
+        "tim.h": "c",
+        "stdio.h": "c"
+    }
+}

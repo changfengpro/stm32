@@ -1,0 +1,1166 @@
+ARM GAS  /tmp/cchWZBUS.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 1
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"encoder.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.Motor_Init,"ax",%progbits
+  16              		.align	1
+  17              		.global	Motor_Init
+  18              		.arch armv7-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu softvfp
+  24              	Motor_Init:
+  25              	.LFB65:
+  26              		.file 1 "Encoder/encoder.c"
+   1:Encoder/encoder.c **** #include "encoder.h"
+   2:Encoder/encoder.c **** #include "tim.h"
+   3:Encoder/encoder.c **** #include "gpio.h"
+   4:Encoder/encoder.c **** #include "stdlib.h"
+   5:Encoder/encoder.c **** #include "PID.h"
+   6:Encoder/encoder.c **** #define SPEED_THRESHOLD 3
+   7:Encoder/encoder.c **** 
+   8:Encoder/encoder.c **** Motor motor1;
+   9:Encoder/encoder.c **** float motor1_speed;
+  10:Encoder/encoder.c **** int motor1_dir;
+  11:Encoder/encoder.c **** int PWM;
+  12:Encoder/encoder.c **** extern float b;
+  13:Encoder/encoder.c **** float current_angle = 0;
+  14:Encoder/encoder.c **** int count = 0;
+  15:Encoder/encoder.c **** long int add_count = 0;
+  16:Encoder/encoder.c **** float tar_angle;
+  17:Encoder/encoder.c **** float diff_angle;
+  18:Encoder/encoder.c **** int diff_count;
+  19:Encoder/encoder.c **** int overflowNum = 1;
+  20:Encoder/encoder.c **** float test_angle = 720,test_speed = 2;
+  21:Encoder/encoder.c **** 
+  22:Encoder/encoder.c **** 
+  23:Encoder/encoder.c **** void Motor_Init(void)
+  24:Encoder/encoder.c **** {   
+  27              		.loc 1 24 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 10B5     		push	{r4, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+ARM GAS  /tmp/cchWZBUS.s 			page 2
+
+
+  35              		.cfi_offset 14, -4
+  25:Encoder/encoder.c ****     HAL_TIM_Encoder_Start(&htim2, TIM_CHANNEL_ALL);      //开启编码器定时器
+  36              		.loc 1 25 5 view .LVU1
+  37 0002 0E4C     		ldr	r4, .L3
+  38 0004 3C21     		movs	r1, #60
+  39 0006 2046     		mov	r0, r4
+  40 0008 FFF7FEFF 		bl	HAL_TIM_Encoder_Start
+  41              	.LVL0:
+  26:Encoder/encoder.c ****     __HAL_TIM_ENABLE_IT(&htim2,TIM_IT_UPDATE);           //开启编码器定时器更新中断,防
+  42              		.loc 1 26 5 view .LVU2
+  43 000c 2268     		ldr	r2, [r4]
+  44 000e D368     		ldr	r3, [r2, #12]
+  45 0010 43F00103 		orr	r3, r3, #1
+  46 0014 D360     		str	r3, [r2, #12]
+  27:Encoder/encoder.c ****     HAL_TIM_Base_Start_IT(&htim3);                       //开启100ms定时器中断
+  47              		.loc 1 27 5 view .LVU3
+  48 0016 0A48     		ldr	r0, .L3+4
+  49 0018 FFF7FEFF 		bl	HAL_TIM_Base_Start_IT
+  50              	.LVL1:
+  28:Encoder/encoder.c ****     HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);            //开启PWM
+  51              		.loc 1 28 5 view .LVU4
+  52 001c 0021     		movs	r1, #0
+  53 001e 0948     		ldr	r0, .L3+8
+  54 0020 FFF7FEFF 		bl	HAL_TIM_PWM_Start
+  55              	.LVL2:
+  29:Encoder/encoder.c ****     __HAL_TIM_SET_COUNTER(&htim2, 0);                //编码器定时器初始值设定为10000
+  56              		.loc 1 29 5 view .LVU5
+  57 0024 2368     		ldr	r3, [r4]
+  58 0026 0022     		movs	r2, #0
+  59 0028 5A62     		str	r2, [r3, #36]
+  30:Encoder/encoder.c ****     motor1.lastCount = 0;                                   //结构体内容初始化
+  60              		.loc 1 30 5 view .LVU6
+  61              		.loc 1 30 22 is_stmt 0 view .LVU7
+  62 002a 074B     		ldr	r3, .L3+12
+  63 002c 1A60     		str	r2, [r3]
+  31:Encoder/encoder.c ****     motor1.totalCount = 0;
+  64              		.loc 1 31 5 is_stmt 1 view .LVU8
+  65              		.loc 1 31 23 is_stmt 0 view .LVU9
+  66 002e 5A60     		str	r2, [r3, #4]
+  32:Encoder/encoder.c ****     motor1.overflowNum = 0;
+  67              		.loc 1 32 5 is_stmt 1 view .LVU10
+  68              		.loc 1 32 24 is_stmt 0 view .LVU11
+  69 0030 1A81     		strh	r2, [r3, #8]	@ movhi
+  33:Encoder/encoder.c ****     motor1.lastoverflowNum=0;                                  
+  70              		.loc 1 33 5 is_stmt 1 view .LVU12
+  71              		.loc 1 33 27 is_stmt 0 view .LVU13
+  72 0032 5A81     		strh	r2, [r3, #10]	@ movhi
+  34:Encoder/encoder.c ****     motor1.speed = 0;
+  73              		.loc 1 34 5 is_stmt 1 view .LVU14
+  74              		.loc 1 34 18 is_stmt 0 view .LVU15
+  75 0034 0021     		movs	r1, #0
+  76 0036 D960     		str	r1, [r3, #12]	@ float
+  35:Encoder/encoder.c ****     motor1.direct = 0;
+  77              		.loc 1 35 5 is_stmt 1 view .LVU16
+  78              		.loc 1 35 19 is_stmt 0 view .LVU17
+  79 0038 1A74     		strb	r2, [r3, #16]
+  36:Encoder/encoder.c **** }
+ARM GAS  /tmp/cchWZBUS.s 			page 3
+
+
+  80              		.loc 1 36 1 view .LVU18
+  81 003a 10BD     		pop	{r4, pc}
+  82              	.L4:
+  83              		.align	2
+  84              	.L3:
+  85 003c 00000000 		.word	htim2
+  86 0040 00000000 		.word	htim3
+  87 0044 00000000 		.word	htim1
+  88 0048 00000000 		.word	.LANCHOR0
+  89              		.cfi_endproc
+  90              	.LFE65:
+  92              		.section	.text.motor_dir,"ax",%progbits
+  93              		.align	1
+  94              		.global	motor_dir
+  95              		.syntax unified
+  96              		.thumb
+  97              		.thumb_func
+  98              		.fpu softvfp
+ 100              	motor_dir:
+ 101              	.LVL3:
+ 102              	.LFB68:
+  37:Encoder/encoder.c **** 
+  38:Encoder/encoder.c **** void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)//定时器回调函数，用于计算�
+  39:Encoder/encoder.c **** {   
+  40:Encoder/encoder.c ****     // if(HAL_GetTick > 0 && HAL_GetTick < 5000) overflowNum = 0;
+  41:Encoder/encoder.c ****     
+  42:Encoder/encoder.c ****     if(htim->Instance==htim2.Instance)//编码器输入定时器溢出中断，用于防溢出     
+  43:Encoder/encoder.c ****     {      
+  44:Encoder/encoder.c ****         // if(COUNTERNUM < 10000) motor1.overflowNum++;       //如果是向上溢出
+  45:Encoder/encoder.c ****         // else if(COUNTERNUM >= 10000) motor1.overflowNum--; //如果是向下溢出
+  46:Encoder/encoder.c ****         // __HAL_TIM_SetCounter(&htim2, 10000);             //重新设定初始值
+  47:Encoder/encoder.c ****         // if (motor1.overflowNum != motor1.lastoverflowNum) {
+  48:Encoder/encoder.c ****         //     motor1.totalCount = COUNTERNUM + motor1.overflowNum * RELOADVALUE; // Update total c
+  49:Encoder/encoder.c ****         //     motor1.lastoverflowNum = motor1.overflowNum; // Update last overflow count value
+  50:Encoder/encoder.c ****     // }
+  51:Encoder/encoder.c ****         if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_1) == GPIO_PIN_RESET && HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_
+  52:Encoder/encoder.c ****         {
+  53:Encoder/encoder.c ****             overflowNum--;
+  54:Encoder/encoder.c ****         }
+  55:Encoder/encoder.c ****         if(HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_1) == GPIO_PIN_SET && HAL_GPIO_ReadPin(GPIOA,GPIO_PIN_2)
+  56:Encoder/encoder.c ****         {
+  57:Encoder/encoder.c ****             overflowNum++;
+  58:Encoder/encoder.c ****         } 
+  59:Encoder/encoder.c ****        
+  60:Encoder/encoder.c **** 
+  61:Encoder/encoder.c ****     }
+  62:Encoder/encoder.c **** 
+  63:Encoder/encoder.c ****      if(htim->Instance==htim3.Instance)
+  64:Encoder/encoder.c ****     {   calcu_add_count();
+  65:Encoder/encoder.c ****         Read_angle();
+  66:Encoder/encoder.c ****         count = __HAL_TIM_GET_COUNTER(&htim2);
+  67:Encoder/encoder.c ****         motor1.direct = __HAL_TIM_IS_TIM_COUNTING_DOWN(&htim2);//如果向上计数（正转），�
+  68:Encoder/encoder.c ****         motor1.totalCount = COUNTERNUM + motor1.overflowNum * RELOADVALUE;//一个周期内的总�
+  69:Encoder/encoder.c ****         if((fabs(motor1.totalCount - motor1.lastCount))>2000)
+  70:Encoder/encoder.c ****         {   float speed_change = (float)(motor1.totalCount - motor1.lastCount+20000) / (4 * MOTOR_S
+  71:Encoder/encoder.c ****         // 检查速度变化率是否超过阈值
+  72:Encoder/encoder.c ****         if (fabs(speed_change) > SPEED_THRESHOLD) {
+ARM GAS  /tmp/cchWZBUS.s 			page 4
+
+
+  73:Encoder/encoder.c ****             speed_change = speed_change > 0 ? SPEED_THRESHOLD : -SPEED_THRESHOLD;
+  74:Encoder/encoder.c ****         }
+  75:Encoder/encoder.c ****         motor1.speed = speed_change;//算得每秒多少转
+  76:Encoder/encoder.c ****             //motor1.speed = (float)(motor1.totalCount - motor1.totalCount) / (4 * MOTOR_SPEED_RERA
+  77:Encoder/encoder.c ****         }
+  78:Encoder/encoder.c ****         else{
+  79:Encoder/encoder.c ****             float speed_change = (float)(motor1.totalCount - motor1.lastCount) / (4 * MOTOR_SPEED_R
+  80:Encoder/encoder.c ****         // 检查速度变化率是否超过阈值
+  81:Encoder/encoder.c ****         if (fabs(speed_change) > SPEED_THRESHOLD) {
+  82:Encoder/encoder.c ****             speed_change = speed_change > 0 ? SPEED_THRESHOLD : -SPEED_THRESHOLD;
+  83:Encoder/encoder.c ****         }
+  84:Encoder/encoder.c ****         motor1.speed = speed_change;//算得每秒多少转
+  85:Encoder/encoder.c ****             //motor1.speed = (float)(motor1.totalCount - motor1.totalCount) / (4 * MOTOR_SPEED_RERA
+  86:Encoder/encoder.c ****         }
+  87:Encoder/encoder.c ****         motor1.lastCount = motor1.totalCount; //记录这一次的计数值
+  88:Encoder/encoder.c ****             
+  89:Encoder/encoder.c ****         motor1_speed=fabs(motor1.speed);
+  90:Encoder/encoder.c ****         motor1_dir=abs(motor1.direct);
+  91:Encoder/encoder.c ****         PWM = Double_Loop_Control(current_angle,test_angle,motor1_speed,test_speed);
+  92:Encoder/encoder.c ****        
+  93:Encoder/encoder.c ****     }
+  94:Encoder/encoder.c **** }
+  95:Encoder/encoder.c **** void SET_PWM(int pwm)
+  96:Encoder/encoder.c **** {
+  97:Encoder/encoder.c ****     if(pwm > 0)
+  98:Encoder/encoder.c ****     {   motor_dir(0);
+  99:Encoder/encoder.c ****          __HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_1,pwm);
+ 100:Encoder/encoder.c ****     }
+ 101:Encoder/encoder.c ****     else 
+ 102:Encoder/encoder.c ****     {
+ 103:Encoder/encoder.c ****         motor_dir(1);
+ 104:Encoder/encoder.c ****         __HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_1,(-pwm));
+ 105:Encoder/encoder.c ****     }
+ 106:Encoder/encoder.c **** }
+ 107:Encoder/encoder.c **** 
+ 108:Encoder/encoder.c **** int motor_dir(int flag)
+ 109:Encoder/encoder.c **** {
+ 103              		.loc 1 109 1 is_stmt 1 view -0
+ 104              		.cfi_startproc
+ 105              		@ args = 0, pretend = 0, frame = 0
+ 106              		@ frame_needed = 0, uses_anonymous_args = 0
+ 107              		.loc 1 109 1 is_stmt 0 view .LVU20
+ 108 0000 38B5     		push	{r3, r4, r5, lr}
+ 109              	.LCFI1:
+ 110              		.cfi_def_cfa_offset 16
+ 111              		.cfi_offset 3, -16
+ 112              		.cfi_offset 4, -12
+ 113              		.cfi_offset 5, -8
+ 114              		.cfi_offset 14, -4
+ 110:Encoder/encoder.c ****     if(flag == 0)
+ 115              		.loc 1 110 5 is_stmt 1 view .LVU21
+ 116              		.loc 1 110 7 is_stmt 0 view .LVU22
+ 117 0002 0446     		mov	r4, r0
+ 118 0004 18B1     		cbz	r0, .L9
+ 119              	.LVL4:
+ 120              	.L6:
+ 111:Encoder/encoder.c ****     {
+ARM GAS  /tmp/cchWZBUS.s 			page 5
+
+
+ 112:Encoder/encoder.c ****         HAL_GPIO_WritePin(GPIOA,GPIO_PIN_1,1);
+ 113:Encoder/encoder.c ****         HAL_GPIO_WritePin(GPIOA,GPIO_PIN_2,0);
+ 114:Encoder/encoder.c ****     }
+ 115:Encoder/encoder.c ****     if(flag == 1)
+ 121              		.loc 1 115 5 is_stmt 1 view .LVU23
+ 122              		.loc 1 115 7 is_stmt 0 view .LVU24
+ 123 0006 012C     		cmp	r4, #1
+ 124 0008 0DD0     		beq	.L10
+ 125              	.L7:
+ 116:Encoder/encoder.c ****     {
+ 117:Encoder/encoder.c ****         HAL_GPIO_WritePin(GPIOA,GPIO_PIN_1,0);
+ 118:Encoder/encoder.c ****         HAL_GPIO_WritePin(GPIOA,GPIO_PIN_2,1);
+ 119:Encoder/encoder.c ****     }
+ 120:Encoder/encoder.c ****     return flag;
+ 126              		.loc 1 120 5 is_stmt 1 view .LVU25
+ 121:Encoder/encoder.c **** }
+ 127              		.loc 1 121 1 is_stmt 0 view .LVU26
+ 128 000a 2046     		mov	r0, r4
+ 129 000c 38BD     		pop	{r3, r4, r5, pc}
+ 130              	.LVL5:
+ 131              	.L9:
+ 112:Encoder/encoder.c ****         HAL_GPIO_WritePin(GPIOA,GPIO_PIN_2,0);
+ 132              		.loc 1 112 9 is_stmt 1 view .LVU27
+ 133 000e 0C4D     		ldr	r5, .L11
+ 134 0010 0122     		movs	r2, #1
+ 135 0012 0221     		movs	r1, #2
+ 136 0014 2846     		mov	r0, r5
+ 137              	.LVL6:
+ 112:Encoder/encoder.c ****         HAL_GPIO_WritePin(GPIOA,GPIO_PIN_2,0);
+ 138              		.loc 1 112 9 is_stmt 0 view .LVU28
+ 139 0016 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 140              	.LVL7:
+ 113:Encoder/encoder.c ****     }
+ 141              		.loc 1 113 9 is_stmt 1 view .LVU29
+ 142 001a 0022     		movs	r2, #0
+ 143 001c 0421     		movs	r1, #4
+ 144 001e 2846     		mov	r0, r5
+ 145 0020 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 146              	.LVL8:
+ 147 0024 EFE7     		b	.L6
+ 148              	.L10:
+ 117:Encoder/encoder.c ****         HAL_GPIO_WritePin(GPIOA,GPIO_PIN_2,1);
+ 149              		.loc 1 117 9 view .LVU30
+ 150 0026 064D     		ldr	r5, .L11
+ 151 0028 0022     		movs	r2, #0
+ 152 002a 0221     		movs	r1, #2
+ 153 002c 2846     		mov	r0, r5
+ 154 002e FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 155              	.LVL9:
+ 118:Encoder/encoder.c ****     }
+ 156              		.loc 1 118 9 view .LVU31
+ 157 0032 0122     		movs	r2, #1
+ 158 0034 0421     		movs	r1, #4
+ 159 0036 2846     		mov	r0, r5
+ 160 0038 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 161              	.LVL10:
+ 162 003c E5E7     		b	.L7
+ARM GAS  /tmp/cchWZBUS.s 			page 6
+
+
+ 163              	.L12:
+ 164 003e 00BF     		.align	2
+ 165              	.L11:
+ 166 0040 00080140 		.word	1073809408
+ 167              		.cfi_endproc
+ 168              	.LFE68:
+ 170              		.section	.text.SET_PWM,"ax",%progbits
+ 171              		.align	1
+ 172              		.global	SET_PWM
+ 173              		.syntax unified
+ 174              		.thumb
+ 175              		.thumb_func
+ 176              		.fpu softvfp
+ 178              	SET_PWM:
+ 179              	.LVL11:
+ 180              	.LFB67:
+  96:Encoder/encoder.c ****     if(pwm > 0)
+ 181              		.loc 1 96 1 view -0
+ 182              		.cfi_startproc
+ 183              		@ args = 0, pretend = 0, frame = 0
+ 184              		@ frame_needed = 0, uses_anonymous_args = 0
+  96:Encoder/encoder.c ****     if(pwm > 0)
+ 185              		.loc 1 96 1 is_stmt 0 view .LVU33
+ 186 0000 10B5     		push	{r4, lr}
+ 187              	.LCFI2:
+ 188              		.cfi_def_cfa_offset 8
+ 189              		.cfi_offset 4, -8
+ 190              		.cfi_offset 14, -4
+  97:Encoder/encoder.c ****     {   motor_dir(0);
+ 191              		.loc 1 97 5 is_stmt 1 view .LVU34
+  97:Encoder/encoder.c ****     {   motor_dir(0);
+ 192              		.loc 1 97 7 is_stmt 0 view .LVU35
+ 193 0002 041E     		subs	r4, r0, #0
+ 194 0004 06DD     		ble	.L14
+  98:Encoder/encoder.c ****          __HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_1,pwm);
+ 195              		.loc 1 98 9 is_stmt 1 view .LVU36
+ 196 0006 0020     		movs	r0, #0
+ 197              	.LVL12:
+  98:Encoder/encoder.c ****          __HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_1,pwm);
+ 198              		.loc 1 98 9 is_stmt 0 view .LVU37
+ 199 0008 FFF7FEFF 		bl	motor_dir
+ 200              	.LVL13:
+  99:Encoder/encoder.c ****     }
+ 201              		.loc 1 99 10 is_stmt 1 view .LVU38
+ 202 000c 054B     		ldr	r3, .L17
+ 203 000e 1B68     		ldr	r3, [r3]
+ 204 0010 5C63     		str	r4, [r3, #52]
+ 205              	.LVL14:
+ 206              	.L13:
+ 106:Encoder/encoder.c **** 
+ 207              		.loc 1 106 1 is_stmt 0 view .LVU39
+ 208 0012 10BD     		pop	{r4, pc}
+ 209              	.LVL15:
+ 210              	.L14:
+ 103:Encoder/encoder.c ****         __HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_1,(-pwm));
+ 211              		.loc 1 103 9 is_stmt 1 view .LVU40
+ 212 0014 0120     		movs	r0, #1
+ARM GAS  /tmp/cchWZBUS.s 			page 7
+
+
+ 213              	.LVL16:
+ 103:Encoder/encoder.c ****         __HAL_TIM_SET_COMPARE(&htim1,TIM_CHANNEL_1,(-pwm));
+ 214              		.loc 1 103 9 is_stmt 0 view .LVU41
+ 215 0016 FFF7FEFF 		bl	motor_dir
+ 216              	.LVL17:
+ 104:Encoder/encoder.c ****     }
+ 217              		.loc 1 104 9 is_stmt 1 view .LVU42
+ 218 001a 024B     		ldr	r3, .L17
+ 219 001c 1B68     		ldr	r3, [r3]
+ 220 001e 6442     		rsbs	r4, r4, #0
+ 221              	.LVL18:
+ 104:Encoder/encoder.c ****     }
+ 222              		.loc 1 104 9 is_stmt 0 view .LVU43
+ 223 0020 5C63     		str	r4, [r3, #52]
+ 106:Encoder/encoder.c **** 
+ 224              		.loc 1 106 1 view .LVU44
+ 225 0022 F6E7     		b	.L13
+ 226              	.L18:
+ 227              		.align	2
+ 228              	.L17:
+ 229 0024 00000000 		.word	htim1
+ 230              		.cfi_endproc
+ 231              	.LFE67:
+ 233              		.global	__aeabi_i2d
+ 234              		.global	__aeabi_dmul
+ 235              		.global	__aeabi_d2f
+ 236              		.section	.text.Read_angle,"ax",%progbits
+ 237              		.align	1
+ 238              		.global	Read_angle
+ 239              		.syntax unified
+ 240              		.thumb
+ 241              		.thumb_func
+ 242              		.fpu softvfp
+ 244              	Read_angle:
+ 245              	.LFB69:
+ 122:Encoder/encoder.c **** 
+ 123:Encoder/encoder.c **** void Read_angle()
+ 124:Encoder/encoder.c **** {  
+ 246              		.loc 1 124 1 is_stmt 1 view -0
+ 247              		.cfi_startproc
+ 248              		@ args = 0, pretend = 0, frame = 0
+ 249              		@ frame_needed = 0, uses_anonymous_args = 0
+ 250 0000 08B5     		push	{r3, lr}
+ 251              	.LCFI3:
+ 252              		.cfi_def_cfa_offset 8
+ 253              		.cfi_offset 3, -8
+ 254              		.cfi_offset 14, -4
+ 125:Encoder/encoder.c ****     current_angle = (add_count / 4) * 1.5 ;
+ 255              		.loc 1 125 5 view .LVU46
+ 256              		.loc 1 125 32 is_stmt 0 view .LVU47
+ 257 0002 094B     		ldr	r3, .L23
+ 258 0004 1868     		ldr	r0, [r3]
+ 259 0006 0028     		cmp	r0, #0
+ 260 0008 0BDB     		blt	.L22
+ 261              	.L20:
+ 262              		.loc 1 125 37 view .LVU48
+ 263 000a 8010     		asrs	r0, r0, #2
+ARM GAS  /tmp/cchWZBUS.s 			page 8
+
+
+ 264 000c FFF7FEFF 		bl	__aeabi_i2d
+ 265              	.LVL19:
+ 266 0010 0022     		movs	r2, #0
+ 267 0012 064B     		ldr	r3, .L23+4
+ 268 0014 FFF7FEFF 		bl	__aeabi_dmul
+ 269              	.LVL20:
+ 270 0018 FFF7FEFF 		bl	__aeabi_d2f
+ 271              	.LVL21:
+ 272              		.loc 1 125 19 view .LVU49
+ 273 001c 044B     		ldr	r3, .L23+8
+ 274 001e 1860     		str	r0, [r3]	@ float
+ 126:Encoder/encoder.c **** 
+ 127:Encoder/encoder.c **** }
+ 275              		.loc 1 127 1 view .LVU50
+ 276 0020 08BD     		pop	{r3, pc}
+ 277              	.L22:
+ 125:Encoder/encoder.c ****     current_angle = (add_count / 4) * 1.5 ;
+ 278              		.loc 1 125 32 view .LVU51
+ 279 0022 0330     		adds	r0, r0, #3
+ 280 0024 F1E7     		b	.L20
+ 281              	.L24:
+ 282 0026 00BF     		.align	2
+ 283              	.L23:
+ 284 0028 00000000 		.word	.LANCHOR1
+ 285 002c 0000F83F 		.word	1073217536
+ 286 0030 00000000 		.word	.LANCHOR2
+ 287              		.cfi_endproc
+ 288              	.LFE69:
+ 290              		.global	__aeabi_fsub
+ 291              		.global	__aeabi_fmul
+ 292              		.global	__aeabi_f2iz
+ 293              		.section	.text.calcu_angle,"ax",%progbits
+ 294              		.align	1
+ 295              		.global	calcu_angle
+ 296              		.syntax unified
+ 297              		.thumb
+ 298              		.thumb_func
+ 299              		.fpu softvfp
+ 301              	calcu_angle:
+ 302              	.LFB70:
+ 128:Encoder/encoder.c **** 
+ 129:Encoder/encoder.c **** void calcu_angle()
+ 130:Encoder/encoder.c **** {
+ 303              		.loc 1 130 1 is_stmt 1 view -0
+ 304              		.cfi_startproc
+ 305              		@ args = 0, pretend = 0, frame = 0
+ 306              		@ frame_needed = 0, uses_anonymous_args = 0
+ 307 0000 08B5     		push	{r3, lr}
+ 308              	.LCFI4:
+ 309              		.cfi_def_cfa_offset 8
+ 310              		.cfi_offset 3, -8
+ 311              		.cfi_offset 14, -4
+ 131:Encoder/encoder.c ****     diff_angle = current_angle - tar_angle;
+ 312              		.loc 1 131 5 view .LVU53
+ 313              		.loc 1 131 32 is_stmt 0 view .LVU54
+ 314 0002 084B     		ldr	r3, .L27
+ 315 0004 1968     		ldr	r1, [r3]	@ float
+ARM GAS  /tmp/cchWZBUS.s 			page 9
+
+
+ 316 0006 084B     		ldr	r3, .L27+4
+ 317 0008 1868     		ldr	r0, [r3]	@ float
+ 318 000a FFF7FEFF 		bl	__aeabi_fsub
+ 319              	.LVL22:
+ 320              		.loc 1 131 16 view .LVU55
+ 321 000e 074B     		ldr	r3, .L27+8
+ 322 0010 1860     		str	r0, [r3]	@ float
+ 132:Encoder/encoder.c ****     diff_count = (diff_angle / (360 / (MOTOR_SPEED_RERATIO * PULSE_PRE_ROUND))) *4;
+ 323              		.loc 1 132 5 is_stmt 1 view .LVU56
+ 324              		.loc 1 132 81 is_stmt 0 view .LVU57
+ 325 0012 4FF08141 		mov	r1, #1082130432
+ 326 0016 FFF7FEFF 		bl	__aeabi_fmul
+ 327              	.LVL23:
+ 328              		.loc 1 132 16 view .LVU58
+ 329 001a FFF7FEFF 		bl	__aeabi_f2iz
+ 330              	.LVL24:
+ 331 001e 044B     		ldr	r3, .L27+12
+ 332 0020 1860     		str	r0, [r3]
+ 133:Encoder/encoder.c **** }
+ 333              		.loc 1 133 1 view .LVU59
+ 334 0022 08BD     		pop	{r3, pc}
+ 335              	.L28:
+ 336              		.align	2
+ 337              	.L27:
+ 338 0024 00000000 		.word	.LANCHOR3
+ 339 0028 00000000 		.word	.LANCHOR2
+ 340 002c 00000000 		.word	.LANCHOR4
+ 341 0030 00000000 		.word	.LANCHOR5
+ 342              		.cfi_endproc
+ 343              	.LFE70:
+ 345              		.section	.text.calcu_add_count,"ax",%progbits
+ 346              		.align	1
+ 347              		.global	calcu_add_count
+ 348              		.syntax unified
+ 349              		.thumb
+ 350              		.thumb_func
+ 351              		.fpu softvfp
+ 353              	calcu_add_count:
+ 354              	.LFB71:
+ 134:Encoder/encoder.c **** 
+ 135:Encoder/encoder.c **** void calcu_add_count()
+ 136:Encoder/encoder.c **** {
+ 355              		.loc 1 136 1 is_stmt 1 view -0
+ 356              		.cfi_startproc
+ 357              		@ args = 0, pretend = 0, frame = 0
+ 358              		@ frame_needed = 0, uses_anonymous_args = 0
+ 359              		@ link register save eliminated.
+ 137:Encoder/encoder.c ****     
+ 138:Encoder/encoder.c ****     add_count = COUNTERNUM + overflowNum * RELOADVALUE;
+ 360              		.loc 1 138 5 view .LVU61
+ 361              		.loc 1 138 17 is_stmt 0 view .LVU62
+ 362 0000 054B     		ldr	r3, .L30
+ 363 0002 1A68     		ldr	r2, [r3]
+ 364 0004 536A     		ldr	r3, [r2, #36]
+ 365              		.loc 1 138 44 view .LVU63
+ 366 0006 D26A     		ldr	r2, [r2, #44]
+ 367              		.loc 1 138 42 view .LVU64
+ARM GAS  /tmp/cchWZBUS.s 			page 10
+
+
+ 368 0008 0449     		ldr	r1, .L30+4
+ 369 000a 0968     		ldr	r1, [r1]
+ 370              		.loc 1 138 28 view .LVU65
+ 371 000c 01FB0233 		mla	r3, r1, r2, r3
+ 372              		.loc 1 138 15 view .LVU66
+ 373 0010 034A     		ldr	r2, .L30+8
+ 374 0012 1360     		str	r3, [r2]
+ 139:Encoder/encoder.c ****     
+ 140:Encoder/encoder.c **** }
+ 375              		.loc 1 140 1 view .LVU67
+ 376 0014 7047     		bx	lr
+ 377              	.L31:
+ 378 0016 00BF     		.align	2
+ 379              	.L30:
+ 380 0018 00000000 		.word	htim2
+ 381 001c 00000000 		.word	.LANCHOR6
+ 382 0020 00000000 		.word	.LANCHOR1
+ 383              		.cfi_endproc
+ 384              	.LFE71:
+ 386              		.global	__aeabi_dcmpgt
+ 387              		.global	__aeabi_i2f
+ 388              		.global	__aeabi_fdiv
+ 389              		.global	__aeabi_fcmpgt
+ 390              		.section	.text.HAL_TIM_PeriodElapsedCallback,"ax",%progbits
+ 391              		.align	1
+ 392              		.global	HAL_TIM_PeriodElapsedCallback
+ 393              		.syntax unified
+ 394              		.thumb
+ 395              		.thumb_func
+ 396              		.fpu softvfp
+ 398              	HAL_TIM_PeriodElapsedCallback:
+ 399              	.LVL25:
+ 400              	.LFB66:
+  39:Encoder/encoder.c ****     // if(HAL_GetTick > 0 && HAL_GetTick < 5000) overflowNum = 0;
+ 401              		.loc 1 39 1 is_stmt 1 view -0
+ 402              		.cfi_startproc
+ 403              		@ args = 0, pretend = 0, frame = 0
+ 404              		@ frame_needed = 0, uses_anonymous_args = 0
+  39:Encoder/encoder.c ****     // if(HAL_GetTick > 0 && HAL_GetTick < 5000) overflowNum = 0;
+ 405              		.loc 1 39 1 is_stmt 0 view .LVU69
+ 406 0000 2DE97043 		push	{r4, r5, r6, r8, r9, lr}
+ 407              	.LCFI5:
+ 408              		.cfi_def_cfa_offset 24
+ 409              		.cfi_offset 4, -24
+ 410              		.cfi_offset 5, -20
+ 411              		.cfi_offset 6, -16
+ 412              		.cfi_offset 8, -12
+ 413              		.cfi_offset 9, -8
+ 414              		.cfi_offset 14, -4
+ 415 0004 0446     		mov	r4, r0
+  42:Encoder/encoder.c ****     {      
+ 416              		.loc 1 42 5 is_stmt 1 view .LVU70
+  42:Encoder/encoder.c ****     {      
+ 417              		.loc 1 42 12 is_stmt 0 view .LVU71
+ 418 0006 0268     		ldr	r2, [r0]
+  42:Encoder/encoder.c ****     {      
+ 419              		.loc 1 42 29 view .LVU72
+ARM GAS  /tmp/cchWZBUS.s 			page 11
+
+
+ 420 0008 4E4B     		ldr	r3, .L59
+ 421 000a 1B68     		ldr	r3, [r3]
+  42:Encoder/encoder.c ****     {      
+ 422              		.loc 1 42 7 view .LVU73
+ 423 000c 9A42     		cmp	r2, r3
+ 424 000e 06D0     		beq	.L56
+ 425              	.LVL26:
+ 426              	.L33:
+  63:Encoder/encoder.c ****     {   calcu_add_count();
+ 427              		.loc 1 63 6 is_stmt 1 view .LVU74
+  63:Encoder/encoder.c ****     {   calcu_add_count();
+ 428              		.loc 1 63 13 is_stmt 0 view .LVU75
+ 429 0010 2268     		ldr	r2, [r4]
+  63:Encoder/encoder.c ****     {   calcu_add_count();
+ 430              		.loc 1 63 30 view .LVU76
+ 431 0012 4D4B     		ldr	r3, .L59+4
+ 432 0014 1B68     		ldr	r3, [r3]
+  63:Encoder/encoder.c ****     {   calcu_add_count();
+ 433              		.loc 1 63 8 view .LVU77
+ 434 0016 9A42     		cmp	r2, r3
+ 435 0018 25D0     		beq	.L57
+ 436              	.LVL27:
+ 437              	.L32:
+  94:Encoder/encoder.c **** void SET_PWM(int pwm)
+ 438              		.loc 1 94 1 view .LVU78
+ 439 001a BDE87083 		pop	{r4, r5, r6, r8, r9, pc}
+ 440              	.LVL28:
+ 441              	.L56:
+  51:Encoder/encoder.c ****         {
+ 442              		.loc 1 51 9 is_stmt 1 view .LVU79
+  51:Encoder/encoder.c ****         {
+ 443              		.loc 1 51 12 is_stmt 0 view .LVU80
+ 444 001e 0221     		movs	r1, #2
+ 445 0020 4A48     		ldr	r0, .L59+8
+ 446              	.LVL29:
+  51:Encoder/encoder.c ****         {
+ 447              		.loc 1 51 12 view .LVU81
+ 448 0022 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 449              	.LVL30:
+  51:Encoder/encoder.c ****         {
+ 450              		.loc 1 51 11 view .LVU82
+ 451 0026 80B1     		cbz	r0, .L58
+ 452              	.L34:
+  55:Encoder/encoder.c ****         {
+ 453              		.loc 1 55 9 is_stmt 1 view .LVU83
+  55:Encoder/encoder.c ****         {
+ 454              		.loc 1 55 12 is_stmt 0 view .LVU84
+ 455 0028 0221     		movs	r1, #2
+ 456 002a 4848     		ldr	r0, .L59+8
+ 457 002c FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 458              	.LVL31:
+  55:Encoder/encoder.c ****         {
+ 459              		.loc 1 55 11 view .LVU85
+ 460 0030 0128     		cmp	r0, #1
+ 461 0032 EDD1     		bne	.L33
+  55:Encoder/encoder.c ****         {
+ 462              		.loc 1 55 66 discriminator 1 view .LVU86
+ARM GAS  /tmp/cchWZBUS.s 			page 12
+
+
+ 463 0034 0421     		movs	r1, #4
+ 464 0036 4548     		ldr	r0, .L59+8
+ 465 0038 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 466              	.LVL32:
+  55:Encoder/encoder.c ****         {
+ 467              		.loc 1 55 63 discriminator 1 view .LVU87
+ 468 003c 0028     		cmp	r0, #0
+ 469 003e E7D1     		bne	.L33
+  57:Encoder/encoder.c ****         } 
+ 470              		.loc 1 57 13 is_stmt 1 view .LVU88
+  57:Encoder/encoder.c ****         } 
+ 471              		.loc 1 57 24 is_stmt 0 view .LVU89
+ 472 0040 434A     		ldr	r2, .L59+12
+ 473 0042 1368     		ldr	r3, [r2]
+ 474 0044 0133     		adds	r3, r3, #1
+ 475 0046 1360     		str	r3, [r2]
+ 476 0048 E2E7     		b	.L33
+ 477              	.L58:
+  51:Encoder/encoder.c ****         {
+ 478              		.loc 1 51 68 discriminator 1 view .LVU90
+ 479 004a 0421     		movs	r1, #4
+ 480 004c 00F18040 		add	r0, r0, #1073741824
+ 481 0050 00F58430 		add	r0, r0, #67584
+ 482 0054 FFF7FEFF 		bl	HAL_GPIO_ReadPin
+ 483              	.LVL33:
+  51:Encoder/encoder.c ****         {
+ 484              		.loc 1 51 65 discriminator 1 view .LVU91
+ 485 0058 0128     		cmp	r0, #1
+ 486 005a E5D1     		bne	.L34
+  53:Encoder/encoder.c ****         }
+ 487              		.loc 1 53 13 is_stmt 1 view .LVU92
+  53:Encoder/encoder.c ****         }
+ 488              		.loc 1 53 24 is_stmt 0 view .LVU93
+ 489 005c 3C4A     		ldr	r2, .L59+12
+ 490 005e 1368     		ldr	r3, [r2]
+ 491 0060 013B     		subs	r3, r3, #1
+ 492 0062 1360     		str	r3, [r2]
+ 493 0064 E0E7     		b	.L34
+ 494              	.L57:
+ 495              	.LBB2:
+  64:Encoder/encoder.c ****         Read_angle();
+ 496              		.loc 1 64 9 is_stmt 1 view .LVU94
+ 497 0066 FFF7FEFF 		bl	calcu_add_count
+ 498              	.LVL34:
+  65:Encoder/encoder.c ****         count = __HAL_TIM_GET_COUNTER(&htim2);
+ 499              		.loc 1 65 9 view .LVU95
+ 500 006a FFF7FEFF 		bl	Read_angle
+ 501              	.LVL35:
+  66:Encoder/encoder.c ****         motor1.direct = __HAL_TIM_IS_TIM_COUNTING_DOWN(&htim2);//如果向上计数（正转），�
+ 502              		.loc 1 66 9 view .LVU96
+  66:Encoder/encoder.c ****         motor1.direct = __HAL_TIM_IS_TIM_COUNTING_DOWN(&htim2);//如果向上计数（正转），�
+ 503              		.loc 1 66 17 is_stmt 0 view .LVU97
+ 504 006e 354B     		ldr	r3, .L59
+ 505 0070 1A68     		ldr	r2, [r3]
+ 506 0072 516A     		ldr	r1, [r2, #36]
+  66:Encoder/encoder.c ****         motor1.direct = __HAL_TIM_IS_TIM_COUNTING_DOWN(&htim2);//如果向上计数（正转），�
+ 507              		.loc 1 66 15 view .LVU98
+ARM GAS  /tmp/cchWZBUS.s 			page 13
+
+
+ 508 0074 374B     		ldr	r3, .L59+16
+ 509 0076 1960     		str	r1, [r3]
+  67:Encoder/encoder.c ****         motor1.totalCount = COUNTERNUM + motor1.overflowNum * RELOADVALUE;//一个周期内的总�
+ 510              		.loc 1 67 9 is_stmt 1 view .LVU99
+  67:Encoder/encoder.c ****         motor1.totalCount = COUNTERNUM + motor1.overflowNum * RELOADVALUE;//一个周期内的总�
+ 511              		.loc 1 67 25 is_stmt 0 view .LVU100
+ 512 0078 1568     		ldr	r5, [r2]
+ 513 007a C5F30015 		ubfx	r5, r5, #4, #1
+  67:Encoder/encoder.c ****         motor1.totalCount = COUNTERNUM + motor1.overflowNum * RELOADVALUE;//一个周期内的总�
+ 514              		.loc 1 67 23 view .LVU101
+ 515 007e 364B     		ldr	r3, .L59+20
+ 516 0080 1D74     		strb	r5, [r3, #16]
+  68:Encoder/encoder.c ****         if((fabs(motor1.totalCount - motor1.lastCount))>2000)
+ 517              		.loc 1 68 9 is_stmt 1 view .LVU102
+  68:Encoder/encoder.c ****         if((fabs(motor1.totalCount - motor1.lastCount))>2000)
+ 518              		.loc 1 68 29 is_stmt 0 view .LVU103
+ 519 0082 546A     		ldr	r4, [r2, #36]
+ 520              	.LVL36:
+  68:Encoder/encoder.c ****         if((fabs(motor1.totalCount - motor1.lastCount))>2000)
+ 521              		.loc 1 68 48 view .LVU104
+ 522 0084 B3F90810 		ldrsh	r1, [r3, #8]
+  68:Encoder/encoder.c ****         if((fabs(motor1.totalCount - motor1.lastCount))>2000)
+ 523              		.loc 1 68 63 view .LVU105
+ 524 0088 D26A     		ldr	r2, [r2, #44]
+  68:Encoder/encoder.c ****         if((fabs(motor1.totalCount - motor1.lastCount))>2000)
+ 525              		.loc 1 68 40 view .LVU106
+ 526 008a 02FB0144 		mla	r4, r2, r1, r4
+  68:Encoder/encoder.c ****         if((fabs(motor1.totalCount - motor1.lastCount))>2000)
+ 527              		.loc 1 68 27 view .LVU107
+ 528 008e 5C60     		str	r4, [r3, #4]
+  69:Encoder/encoder.c ****         {   float speed_change = (float)(motor1.totalCount - motor1.lastCount+20000) / (4 * MOTOR_S
+ 529              		.loc 1 69 9 is_stmt 1 view .LVU108
+ 530              	.LBB3:
+  69:Encoder/encoder.c ****         {   float speed_change = (float)(motor1.totalCount - motor1.lastCount+20000) / (4 * MOTOR_S
+ 531              		.loc 1 69 44 is_stmt 0 view .LVU109
+ 532 0090 1E68     		ldr	r6, [r3]
+  69:Encoder/encoder.c ****         {   float speed_change = (float)(motor1.totalCount - motor1.lastCount+20000) / (4 * MOTOR_S
+ 533              		.loc 1 69 36 view .LVU110
+ 534 0092 A61B     		subs	r6, r4, r6
+  69:Encoder/encoder.c ****         {   float speed_change = (float)(motor1.totalCount - motor1.lastCount+20000) / (4 * MOTOR_S
+ 535              		.loc 1 69 13 view .LVU111
+ 536 0094 3046     		mov	r0, r6
+ 537 0096 FFF7FEFF 		bl	__aeabi_i2d
+ 538              	.LVL37:
+  69:Encoder/encoder.c ****         {   float speed_change = (float)(motor1.totalCount - motor1.lastCount+20000) / (4 * MOTOR_S
+ 539              		.loc 1 69 11 view .LVU112
+ 540 009a 0022     		movs	r2, #0
+ 541 009c 2F4B     		ldr	r3, .L59+24
+ 542 009e 21F00049 		bic	r9, r1, #-2147483648
+ 543 00a2 4946     		mov	r1, r9
+ 544 00a4 FFF7FEFF 		bl	__aeabi_dcmpgt
+ 545              	.LVL38:
+ 546 00a8 0028     		cmp	r0, #0
+ 547 00aa 2FD0     		beq	.L52
+ 548              	.LBB4:
+  70:Encoder/encoder.c ****         // 检查速度变化率是否超过阈值
+ 549              		.loc 1 70 13 is_stmt 1 view .LVU113
+ARM GAS  /tmp/cchWZBUS.s 			page 14
+
+
+  70:Encoder/encoder.c ****         // 检查速度变化率是否超过阈值
+ 550              		.loc 1 70 34 is_stmt 0 view .LVU114
+ 551 00ac 06F59C40 		add	r0, r6, #19968
+ 552 00b0 2030     		adds	r0, r0, #32
+ 553 00b2 FFF7FEFF 		bl	__aeabi_i2f
+ 554              	.LVL39:
+  70:Encoder/encoder.c ****         // 检查速度变化率是否超过阈值
+ 555              		.loc 1 70 86 view .LVU115
+ 556 00b6 2A49     		ldr	r1, .L59+28
+ 557 00b8 FFF7FEFF 		bl	__aeabi_fdiv
+ 558              	.LVL40:
+  70:Encoder/encoder.c ****         // 检查速度变化率是否超过阈值
+ 559              		.loc 1 70 19 view .LVU116
+ 560 00bc 2949     		ldr	r1, .L59+32
+ 561 00be FFF7FEFF 		bl	__aeabi_fmul
+ 562              	.LVL41:
+ 563 00c2 0646     		mov	r6, r0
+ 564              	.LVL42:
+  72:Encoder/encoder.c ****             speed_change = speed_change > 0 ? SPEED_THRESHOLD : -SPEED_THRESHOLD;
+ 565              		.loc 1 72 9 is_stmt 1 view .LVU117
+  72:Encoder/encoder.c ****             speed_change = speed_change > 0 ? SPEED_THRESHOLD : -SPEED_THRESHOLD;
+ 566              		.loc 1 72 13 is_stmt 0 view .LVU118
+ 567 00c4 20F00040 		bic	r0, r0, #-2147483648
+ 568              	.LVL43:
+  72:Encoder/encoder.c ****             speed_change = speed_change > 0 ? SPEED_THRESHOLD : -SPEED_THRESHOLD;
+ 569              		.loc 1 72 12 view .LVU119
+ 570 00c8 2749     		ldr	r1, .L59+36
+ 571 00ca FFF7FEFF 		bl	__aeabi_fcmpgt
+ 572              	.LVL44:
+ 573 00ce 28B1     		cbz	r0, .L38
+  73:Encoder/encoder.c ****         }
+ 574              		.loc 1 73 13 is_stmt 1 view .LVU120
+  73:Encoder/encoder.c ****         }
+ 575              		.loc 1 73 26 is_stmt 0 view .LVU121
+ 576 00d0 0021     		movs	r1, #0
+ 577 00d2 3046     		mov	r0, r6
+ 578 00d4 FFF7FEFF 		bl	__aeabi_fcmpgt
+ 579              	.LVL45:
+ 580 00d8 B0B1     		cbz	r0, .L53
+ 581 00da 234E     		ldr	r6, .L59+36
+ 582              	.LVL46:
+ 583              	.L38:
+  75:Encoder/encoder.c ****             //motor1.speed = (float)(motor1.totalCount - motor1.totalCount) / (4 * MOTOR_SPEED_RERA
+ 584              		.loc 1 75 9 is_stmt 1 view .LVU122
+  75:Encoder/encoder.c ****             //motor1.speed = (float)(motor1.totalCount - motor1.totalCount) / (4 * MOTOR_SPEED_RERA
+ 585              		.loc 1 75 22 is_stmt 0 view .LVU123
+ 586 00dc 1E4B     		ldr	r3, .L59+20
+ 587 00de DE60     		str	r6, [r3, #12]	@ float
+ 588              	.LVL47:
+ 589              	.L41:
+  75:Encoder/encoder.c ****             //motor1.speed = (float)(motor1.totalCount - motor1.totalCount) / (4 * MOTOR_SPEED_RERA
+ 590              		.loc 1 75 22 view .LVU124
+ 591              	.LBE4:
+ 592              	.LBE3:
+  87:Encoder/encoder.c ****             
+ 593              		.loc 1 87 9 is_stmt 1 view .LVU125
+  87:Encoder/encoder.c ****             
+ARM GAS  /tmp/cchWZBUS.s 			page 15
+
+
+ 594              		.loc 1 87 26 is_stmt 0 view .LVU126
+ 595 00e0 1D4B     		ldr	r3, .L59+20
+ 596 00e2 1C60     		str	r4, [r3]
+  89:Encoder/encoder.c ****         motor1_dir=abs(motor1.direct);
+ 597              		.loc 1 89 9 is_stmt 1 view .LVU127
+  89:Encoder/encoder.c ****         motor1_dir=abs(motor1.direct);
+ 598              		.loc 1 89 33 is_stmt 0 view .LVU128
+ 599 00e4 DA68     		ldr	r2, [r3, #12]	@ float
+  89:Encoder/encoder.c ****         motor1_dir=abs(motor1.direct);
+ 600              		.loc 1 89 22 view .LVU129
+ 601 00e6 22F00042 		bic	r2, r2, #-2147483648
+  89:Encoder/encoder.c ****         motor1_dir=abs(motor1.direct);
+ 602              		.loc 1 89 21 view .LVU130
+ 603 00ea 204B     		ldr	r3, .L59+40
+ 604 00ec 1A60     		str	r2, [r3]	@ float
+  90:Encoder/encoder.c ****         PWM = Double_Loop_Control(current_angle,test_angle,motor1_speed,test_speed);
+ 605              		.loc 1 90 9 is_stmt 1 view .LVU131
+  90:Encoder/encoder.c ****         PWM = Double_Loop_Control(current_angle,test_angle,motor1_speed,test_speed);
+ 606              		.loc 1 90 19 is_stmt 0 view .LVU132
+ 607 00ee 204B     		ldr	r3, .L59+44
+ 608 00f0 1D60     		str	r5, [r3]
+  91:Encoder/encoder.c ****        
+ 609              		.loc 1 91 9 is_stmt 1 view .LVU133
+  91:Encoder/encoder.c ****        
+ 610              		.loc 1 91 15 is_stmt 0 view .LVU134
+ 611 00f2 204B     		ldr	r3, .L59+48
+ 612 00f4 1B68     		ldr	r3, [r3]	@ float
+ 613 00f6 2049     		ldr	r1, .L59+52
+ 614 00f8 0968     		ldr	r1, [r1]	@ float
+ 615 00fa 2048     		ldr	r0, .L59+56
+ 616 00fc 0068     		ldr	r0, [r0]	@ float
+ 617 00fe FFF7FEFF 		bl	Double_Loop_Control
+ 618              	.LVL48:
+  91:Encoder/encoder.c ****        
+ 619              		.loc 1 91 13 view .LVU135
+ 620 0102 1F4B     		ldr	r3, .L59+60
+ 621 0104 1860     		str	r0, [r3]
+ 622              	.LBE2:
+  94:Encoder/encoder.c **** void SET_PWM(int pwm)
+ 623              		.loc 1 94 1 view .LVU136
+ 624 0106 88E7     		b	.L32
+ 625              	.LVL49:
+ 626              	.L53:
+ 627              	.LBB8:
+ 628              	.LBB7:
+ 629              	.LBB5:
+  73:Encoder/encoder.c ****         }
+ 630              		.loc 1 73 26 view .LVU137
+ 631 0108 1E4E     		ldr	r6, .L59+64
+ 632              	.LVL50:
+  73:Encoder/encoder.c ****         }
+ 633              		.loc 1 73 26 view .LVU138
+ 634 010a E7E7     		b	.L38
+ 635              	.L52:
+  73:Encoder/encoder.c ****         }
+ 636              		.loc 1 73 26 view .LVU139
+ 637              	.LBE5:
+ARM GAS  /tmp/cchWZBUS.s 			page 16
+
+
+ 638              	.LBB6:
+  79:Encoder/encoder.c ****         // 检查速度变化率是否超过阈值
+ 639              		.loc 1 79 13 is_stmt 1 view .LVU140
+  79:Encoder/encoder.c ****         // 检查速度变化率是否超过阈值
+ 640              		.loc 1 79 34 is_stmt 0 view .LVU141
+ 641 010c 3046     		mov	r0, r6
+ 642 010e FFF7FEFF 		bl	__aeabi_i2f
+ 643              	.LVL51:
+  79:Encoder/encoder.c ****         // 检查速度变化率是否超过阈值
+ 644              		.loc 1 79 80 view .LVU142
+ 645 0112 1349     		ldr	r1, .L59+28
+ 646 0114 FFF7FEFF 		bl	__aeabi_fdiv
+ 647              	.LVL52:
+  79:Encoder/encoder.c ****         // 检查速度变化率是否超过阈值
+ 648              		.loc 1 79 19 view .LVU143
+ 649 0118 1249     		ldr	r1, .L59+32
+ 650 011a FFF7FEFF 		bl	__aeabi_fmul
+ 651              	.LVL53:
+ 652 011e 0646     		mov	r6, r0
+ 653              	.LVL54:
+  81:Encoder/encoder.c ****             speed_change = speed_change > 0 ? SPEED_THRESHOLD : -SPEED_THRESHOLD;
+ 654              		.loc 1 81 9 is_stmt 1 view .LVU144
+  81:Encoder/encoder.c ****             speed_change = speed_change > 0 ? SPEED_THRESHOLD : -SPEED_THRESHOLD;
+ 655              		.loc 1 81 13 is_stmt 0 view .LVU145
+ 656 0120 20F00040 		bic	r0, r0, #-2147483648
+ 657              	.LVL55:
+  81:Encoder/encoder.c ****             speed_change = speed_change > 0 ? SPEED_THRESHOLD : -SPEED_THRESHOLD;
+ 658              		.loc 1 81 12 view .LVU146
+ 659 0124 1049     		ldr	r1, .L59+36
+ 660 0126 FFF7FEFF 		bl	__aeabi_fcmpgt
+ 661              	.LVL56:
+ 662 012a 28B1     		cbz	r0, .L42
+  82:Encoder/encoder.c ****         }
+ 663              		.loc 1 82 13 is_stmt 1 view .LVU147
+  82:Encoder/encoder.c ****         }
+ 664              		.loc 1 82 26 is_stmt 0 view .LVU148
+ 665 012c 0021     		movs	r1, #0
+ 666 012e 3046     		mov	r0, r6
+ 667 0130 FFF7FEFF 		bl	__aeabi_fcmpgt
+ 668              	.LVL57:
+ 669 0134 18B1     		cbz	r0, .L54
+ 670 0136 0C4E     		ldr	r6, .L59+36
+ 671              	.LVL58:
+ 672              	.L42:
+  84:Encoder/encoder.c ****             //motor1.speed = (float)(motor1.totalCount - motor1.totalCount) / (4 * MOTOR_SPEED_RERA
+ 673              		.loc 1 84 9 is_stmt 1 view .LVU149
+  84:Encoder/encoder.c ****             //motor1.speed = (float)(motor1.totalCount - motor1.totalCount) / (4 * MOTOR_SPEED_RERA
+ 674              		.loc 1 84 22 is_stmt 0 view .LVU150
+ 675 0138 074B     		ldr	r3, .L59+20
+ 676 013a DE60     		str	r6, [r3, #12]	@ float
+ 677 013c D0E7     		b	.L41
+ 678              	.L54:
+  82:Encoder/encoder.c ****         }
+ 679              		.loc 1 82 26 view .LVU151
+ 680 013e 114E     		ldr	r6, .L59+64
+ 681              	.LVL59:
+  82:Encoder/encoder.c ****         }
+ARM GAS  /tmp/cchWZBUS.s 			page 17
+
+
+ 682              		.loc 1 82 26 view .LVU152
+ 683 0140 FAE7     		b	.L42
+ 684              	.L60:
+ 685 0142 00BF     		.align	2
+ 686              	.L59:
+ 687 0144 00000000 		.word	htim2
+ 688 0148 00000000 		.word	htim3
+ 689 014c 00080140 		.word	1073809408
+ 690 0150 00000000 		.word	.LANCHOR6
+ 691 0154 00000000 		.word	.LANCHOR7
+ 692 0158 00000000 		.word	.LANCHOR0
+ 693 015c 00409F40 		.word	1084178432
+ 694 0160 00007044 		.word	1148190720
+ 695 0164 00002041 		.word	1092616192
+ 696 0168 00004040 		.word	1077936128
+ 697 016c 00000000 		.word	.LANCHOR8
+ 698 0170 00000000 		.word	.LANCHOR9
+ 699 0174 00000000 		.word	.LANCHOR10
+ 700 0178 00000000 		.word	.LANCHOR11
+ 701 017c 00000000 		.word	.LANCHOR2
+ 702 0180 00000000 		.word	.LANCHOR12
+ 703 0184 000040C0 		.word	-1069547520
+ 704              	.LBE6:
+ 705              	.LBE7:
+ 706              	.LBE8:
+ 707              		.cfi_endproc
+ 708              	.LFE66:
+ 710              		.global	test_speed
+ 711              		.global	test_angle
+ 712              		.global	overflowNum
+ 713              		.global	diff_count
+ 714              		.global	diff_angle
+ 715              		.global	tar_angle
+ 716              		.global	add_count
+ 717              		.global	count
+ 718              		.global	current_angle
+ 719              		.global	PWM
+ 720              		.global	motor1_dir
+ 721              		.global	motor1_speed
+ 722              		.global	motor1
+ 723              		.section	.bss.PWM,"aw",%nobits
+ 724              		.align	2
+ 725              		.set	.LANCHOR12,. + 0
+ 728              	PWM:
+ 729 0000 00000000 		.space	4
+ 730              		.section	.bss.add_count,"aw",%nobits
+ 731              		.align	2
+ 732              		.set	.LANCHOR1,. + 0
+ 735              	add_count:
+ 736 0000 00000000 		.space	4
+ 737              		.section	.bss.count,"aw",%nobits
+ 738              		.align	2
+ 739              		.set	.LANCHOR7,. + 0
+ 742              	count:
+ 743 0000 00000000 		.space	4
+ 744              		.section	.bss.current_angle,"aw",%nobits
+ 745              		.align	2
+ARM GAS  /tmp/cchWZBUS.s 			page 18
+
+
+ 746              		.set	.LANCHOR2,. + 0
+ 749              	current_angle:
+ 750 0000 00000000 		.space	4
+ 751              		.section	.bss.diff_angle,"aw",%nobits
+ 752              		.align	2
+ 753              		.set	.LANCHOR4,. + 0
+ 756              	diff_angle:
+ 757 0000 00000000 		.space	4
+ 758              		.section	.bss.diff_count,"aw",%nobits
+ 759              		.align	2
+ 760              		.set	.LANCHOR5,. + 0
+ 763              	diff_count:
+ 764 0000 00000000 		.space	4
+ 765              		.section	.bss.motor1,"aw",%nobits
+ 766              		.align	2
+ 767              		.set	.LANCHOR0,. + 0
+ 770              	motor1:
+ 771 0000 00000000 		.space	20
+ 771      00000000 
+ 771      00000000 
+ 771      00000000 
+ 771      00000000 
+ 772              		.section	.bss.motor1_dir,"aw",%nobits
+ 773              		.align	2
+ 774              		.set	.LANCHOR9,. + 0
+ 777              	motor1_dir:
+ 778 0000 00000000 		.space	4
+ 779              		.section	.bss.motor1_speed,"aw",%nobits
+ 780              		.align	2
+ 781              		.set	.LANCHOR8,. + 0
+ 784              	motor1_speed:
+ 785 0000 00000000 		.space	4
+ 786              		.section	.bss.tar_angle,"aw",%nobits
+ 787              		.align	2
+ 788              		.set	.LANCHOR3,. + 0
+ 791              	tar_angle:
+ 792 0000 00000000 		.space	4
+ 793              		.section	.data.overflowNum,"aw"
+ 794              		.align	2
+ 795              		.set	.LANCHOR6,. + 0
+ 798              	overflowNum:
+ 799 0000 01000000 		.word	1
+ 800              		.section	.data.test_angle,"aw"
+ 801              		.align	2
+ 802              		.set	.LANCHOR11,. + 0
+ 805              	test_angle:
+ 806 0000 00003444 		.word	1144258560
+ 807              		.section	.data.test_speed,"aw"
+ 808              		.align	2
+ 809              		.set	.LANCHOR10,. + 0
+ 812              	test_speed:
+ 813 0000 00000040 		.word	1073741824
+ 814              		.text
+ 815              	.Letext0:
+ 816              		.file 2 "/usr/lib/gcc/arm-none-eabi/10.3.1/include/stdint.h"
+ 817              		.file 3 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ 818              		.file 4 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+ARM GAS  /tmp/cchWZBUS.s 			page 19
+
+
+ 819              		.file 5 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio.h"
+ 820              		.file 6 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
+ 821              		.file 7 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h"
+ 822              		.file 8 "Core/Inc/tim.h"
+ 823              		.file 9 "Encoder/encoder.h"
+ 824              		.file 10 "<built-in>"
+ 825              		.file 11 "Encoder/PID.h"
+ARM GAS  /tmp/cchWZBUS.s 			page 20
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 encoder.c
+     /tmp/cchWZBUS.s:16     .text.Motor_Init:0000000000000000 $t
+     /tmp/cchWZBUS.s:24     .text.Motor_Init:0000000000000000 Motor_Init
+     /tmp/cchWZBUS.s:85     .text.Motor_Init:000000000000003c $d
+     /tmp/cchWZBUS.s:93     .text.motor_dir:0000000000000000 $t
+     /tmp/cchWZBUS.s:100    .text.motor_dir:0000000000000000 motor_dir
+     /tmp/cchWZBUS.s:166    .text.motor_dir:0000000000000040 $d
+     /tmp/cchWZBUS.s:171    .text.SET_PWM:0000000000000000 $t
+     /tmp/cchWZBUS.s:178    .text.SET_PWM:0000000000000000 SET_PWM
+     /tmp/cchWZBUS.s:229    .text.SET_PWM:0000000000000024 $d
+     /tmp/cchWZBUS.s:237    .text.Read_angle:0000000000000000 $t
+     /tmp/cchWZBUS.s:244    .text.Read_angle:0000000000000000 Read_angle
+     /tmp/cchWZBUS.s:284    .text.Read_angle:0000000000000028 $d
+     /tmp/cchWZBUS.s:294    .text.calcu_angle:0000000000000000 $t
+     /tmp/cchWZBUS.s:301    .text.calcu_angle:0000000000000000 calcu_angle
+     /tmp/cchWZBUS.s:338    .text.calcu_angle:0000000000000024 $d
+     /tmp/cchWZBUS.s:346    .text.calcu_add_count:0000000000000000 $t
+     /tmp/cchWZBUS.s:353    .text.calcu_add_count:0000000000000000 calcu_add_count
+     /tmp/cchWZBUS.s:380    .text.calcu_add_count:0000000000000018 $d
+     /tmp/cchWZBUS.s:391    .text.HAL_TIM_PeriodElapsedCallback:0000000000000000 $t
+     /tmp/cchWZBUS.s:398    .text.HAL_TIM_PeriodElapsedCallback:0000000000000000 HAL_TIM_PeriodElapsedCallback
+     /tmp/cchWZBUS.s:687    .text.HAL_TIM_PeriodElapsedCallback:0000000000000144 $d
+     /tmp/cchWZBUS.s:812    .data.test_speed:0000000000000000 test_speed
+     /tmp/cchWZBUS.s:805    .data.test_angle:0000000000000000 test_angle
+     /tmp/cchWZBUS.s:798    .data.overflowNum:0000000000000000 overflowNum
+     /tmp/cchWZBUS.s:763    .bss.diff_count:0000000000000000 diff_count
+     /tmp/cchWZBUS.s:756    .bss.diff_angle:0000000000000000 diff_angle
+     /tmp/cchWZBUS.s:791    .bss.tar_angle:0000000000000000 tar_angle
+     /tmp/cchWZBUS.s:735    .bss.add_count:0000000000000000 add_count
+     /tmp/cchWZBUS.s:742    .bss.count:0000000000000000 count
+     /tmp/cchWZBUS.s:749    .bss.current_angle:0000000000000000 current_angle
+     /tmp/cchWZBUS.s:728    .bss.PWM:0000000000000000 PWM
+     /tmp/cchWZBUS.s:777    .bss.motor1_dir:0000000000000000 motor1_dir
+     /tmp/cchWZBUS.s:784    .bss.motor1_speed:0000000000000000 motor1_speed
+     /tmp/cchWZBUS.s:770    .bss.motor1:0000000000000000 motor1
+     /tmp/cchWZBUS.s:724    .bss.PWM:0000000000000000 $d
+     /tmp/cchWZBUS.s:731    .bss.add_count:0000000000000000 $d
+     /tmp/cchWZBUS.s:738    .bss.count:0000000000000000 $d
+     /tmp/cchWZBUS.s:745    .bss.current_angle:0000000000000000 $d
+     /tmp/cchWZBUS.s:752    .bss.diff_angle:0000000000000000 $d
+     /tmp/cchWZBUS.s:759    .bss.diff_count:0000000000000000 $d
+     /tmp/cchWZBUS.s:766    .bss.motor1:0000000000000000 $d
+     /tmp/cchWZBUS.s:773    .bss.motor1_dir:0000000000000000 $d
+     /tmp/cchWZBUS.s:780    .bss.motor1_speed:0000000000000000 $d
+     /tmp/cchWZBUS.s:787    .bss.tar_angle:0000000000000000 $d
+     /tmp/cchWZBUS.s:794    .data.overflowNum:0000000000000000 $d
+     /tmp/cchWZBUS.s:801    .data.test_angle:0000000000000000 $d
+     /tmp/cchWZBUS.s:808    .data.test_speed:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+HAL_TIM_Encoder_Start
+HAL_TIM_Base_Start_IT
+HAL_TIM_PWM_Start
+htim2
+htim3
+htim1
+ARM GAS  /tmp/cchWZBUS.s 			page 21
+
+
+HAL_GPIO_WritePin
+__aeabi_i2d
+__aeabi_dmul
+__aeabi_d2f
+__aeabi_fsub
+__aeabi_fmul
+__aeabi_f2iz
+__aeabi_dcmpgt
+__aeabi_i2f
+__aeabi_fdiv
+__aeabi_fcmpgt
+HAL_GPIO_ReadPin
+Double_Loop_Control

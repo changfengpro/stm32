@@ -1,0 +1,991 @@
+ARM GAS  /tmp/cczjyl7h.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 1
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"PID.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.ver_PID_Init,"ax",%progbits
+  16              		.align	1
+  17              		.global	ver_PID_Init
+  18              		.arch armv7-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu softvfp
+  24              	ver_PID_Init:
+  25              	.LFB68:
+  26              		.file 1 "Encoder/PID.c"
+   1:Encoder/PID.c **** #include "PID.h"
+   2:Encoder/PID.c **** #include "stdio.h"
+   3:Encoder/PID.c **** #define TARGET_SPEED_MAX    3    // 目标速度的最大值
+   4:Encoder/PID.c **** #define ANGLE_DEADZONE 1 // 角度死区阈值，单位：度
+   5:Encoder/PID.c **** 
+   6:Encoder/PID.c **** PID ver_PID;
+   7:Encoder/PID.c **** PID pos_PID;
+   8:Encoder/PID.c **** 
+   9:Encoder/PID.c **** float pos_Bias,ver_Bias,velocity_sum;
+  10:Encoder/PID.c **** int pwm_output,ver_Pwm =0;
+  11:Encoder/PID.c **** float target_speed;
+  12:Encoder/PID.c **** extern float motor1_speed;
+  13:Encoder/PID.c **** float pos_Pwm = 0;
+  14:Encoder/PID.c **** void ver_PID_Init()
+  15:Encoder/PID.c **** {
+  27              		.loc 1 15 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  16:Encoder/PID.c **** 	ver_PID.kp = 300;
+  32              		.loc 1 16 2 view .LVU1
+  33              		.loc 1 16 13 is_stmt 0 view .LVU2
+  34 0000 034B     		ldr	r3, .L2
+  35 0002 044A     		ldr	r2, .L2+4
+  36 0004 1A60     		str	r2, [r3]	@ float
+  17:Encoder/PID.c **** 	ver_PID.ki = 0;
+  37              		.loc 1 17 2 is_stmt 1 view .LVU3
+  38              		.loc 1 17 13 is_stmt 0 view .LVU4
+  39 0006 0022     		movs	r2, #0
+  40 0008 5A60     		str	r2, [r3, #4]	@ float
+  18:Encoder/PID.c **** 	ver_PID.kd = 0;
+ARM GAS  /tmp/cczjyl7h.s 			page 2
+
+
+  41              		.loc 1 18 2 is_stmt 1 view .LVU5
+  42              		.loc 1 18 13 is_stmt 0 view .LVU6
+  43 000a 9A60     		str	r2, [r3, #8]	@ float
+  19:Encoder/PID.c **** }
+  44              		.loc 1 19 1 view .LVU7
+  45 000c 7047     		bx	lr
+  46              	.L3:
+  47 000e 00BF     		.align	2
+  48              	.L2:
+  49 0010 00000000 		.word	.LANCHOR0
+  50 0014 00009643 		.word	1133903872
+  51              		.cfi_endproc
+  52              	.LFE68:
+  54              		.section	.text.pos_PID_Init,"ax",%progbits
+  55              		.align	1
+  56              		.global	pos_PID_Init
+  57              		.syntax unified
+  58              		.thumb
+  59              		.thumb_func
+  60              		.fpu softvfp
+  62              	pos_PID_Init:
+  63              	.LFB69:
+  20:Encoder/PID.c **** void pos_PID_Init()
+  21:Encoder/PID.c **** {
+  64              		.loc 1 21 1 is_stmt 1 view -0
+  65              		.cfi_startproc
+  66              		@ args = 0, pretend = 0, frame = 0
+  67              		@ frame_needed = 0, uses_anonymous_args = 0
+  68              		@ link register save eliminated.
+  22:Encoder/PID.c **** 	pos_PID.kp = 0.1;
+  69              		.loc 1 22 2 view .LVU9
+  70              		.loc 1 22 13 is_stmt 0 view .LVU10
+  71 0000 034B     		ldr	r3, .L5
+  72 0002 044A     		ldr	r2, .L5+4
+  73 0004 1A60     		str	r2, [r3]	@ float
+  23:Encoder/PID.c **** 	pos_PID.ki = 0;
+  74              		.loc 1 23 2 is_stmt 1 view .LVU11
+  75              		.loc 1 23 13 is_stmt 0 view .LVU12
+  76 0006 0022     		movs	r2, #0
+  77 0008 5A60     		str	r2, [r3, #4]	@ float
+  24:Encoder/PID.c **** 	pos_PID.kd = 0;
+  78              		.loc 1 24 2 is_stmt 1 view .LVU13
+  79              		.loc 1 24 13 is_stmt 0 view .LVU14
+  80 000a 9A60     		str	r2, [r3, #8]	@ float
+  25:Encoder/PID.c **** }
+  81              		.loc 1 25 1 view .LVU15
+  82 000c 7047     		bx	lr
+  83              	.L6:
+  84 000e 00BF     		.align	2
+  85              	.L5:
+  86 0010 00000000 		.word	.LANCHOR1
+  87 0014 CDCCCC3D 		.word	1036831949
+  88              		.cfi_endproc
+  89              	.LFE69:
+  91              		.global	__aeabi_i2f
+  92              		.global	__aeabi_fadd
+  93              		.global	__aeabi_fcmpgt
+ARM GAS  /tmp/cczjyl7h.s 			page 3
+
+
+  94              		.global	__aeabi_fcmplt
+  95              		.global	__aeabi_fmul
+  96              		.global	__aeabi_fsub
+  97              		.global	__aeabi_f2iz
+  98              		.section	.text.Position_PID,"ax",%progbits
+  99              		.align	1
+ 100              		.global	Position_PID
+ 101              		.syntax unified
+ 102              		.thumb
+ 103              		.thumb_func
+ 104              		.fpu softvfp
+ 106              	Position_PID:
+ 107              	.LVL0:
+ 108              	.LFB71:
+  26:Encoder/PID.c **** 
+  27:Encoder/PID.c **** int Double_Loop_Control(float position, float target_position, float current_speed, float desired_s
+  28:Encoder/PID.c **** {
+  29:Encoder/PID.c **** 	
+  30:Encoder/PID.c ****     
+  31:Encoder/PID.c **** int position_error = target_position - position;
+  32:Encoder/PID.c **** 
+  33:Encoder/PID.c ****     // 角度死区处理
+  34:Encoder/PID.c ****     if (position_error < ANGLE_DEADZONE && position_error > -ANGLE_DEADZONE) {
+  35:Encoder/PID.c ****         target_speed = 0; // 在死区内，目标速度置零
+  36:Encoder/PID.c ****     } else {
+  37:Encoder/PID.c ****         
+  38:Encoder/PID.c **** 
+  39:Encoder/PID.c **** 		// 位置环控制
+  40:Encoder/PID.c **** 		target_speed = Position_PID(position, target_position);
+  41:Encoder/PID.c **** 		/* 目标速度上限处理 */
+  42:Encoder/PID.c **** 		if (target_speed > desired_speed)// 目标速度的最大值
+  43:Encoder/PID.c **** 		{
+  44:Encoder/PID.c **** 			target_speed = desired_speed;
+  45:Encoder/PID.c **** 		}
+  46:Encoder/PID.c **** 		else if (target_speed < -desired_speed)
+  47:Encoder/PID.c **** 		{
+  48:Encoder/PID.c **** 			target_speed = -desired_speed;
+  49:Encoder/PID.c **** 		}
+  50:Encoder/PID.c **** 	}
+  51:Encoder/PID.c **** 	
+  52:Encoder/PID.c **** 
+  53:Encoder/PID.c ****     // 速度环控制
+  54:Encoder/PID.c ****     pwm_output = Incremental_PID(current_speed, target_speed);
+  55:Encoder/PID.c **** 
+  56:Encoder/PID.c **** 	
+  57:Encoder/PID.c ****     return pwm_output;
+  58:Encoder/PID.c **** }
+  59:Encoder/PID.c **** 
+  60:Encoder/PID.c **** 
+  61:Encoder/PID.c **** /*											多环控制  										*/
+  62:Encoder/PID.c **** /*
+  63:Encoder/PID.c **** *	函数功能：位置式PID控制器
+  64:Encoder/PID.c **** *	入口参数：编码器测量位置信息，目标位置
+  65:Encoder/PID.c **** *	返回  值：电机PWM
+  66:Encoder/PID.c **** *	根据位置式离散PID公式 
+  67:Encoder/PID.c **** *	pwm=Kp*e(k)+Ki*∑e(k)+Kd[e（k）-e(k-1)]
+  68:Encoder/PID.c **** *	e(k)代表本次偏差 
+ARM GAS  /tmp/cczjyl7h.s 			page 4
+
+
+  69:Encoder/PID.c **** *	e(k-1)代表上一次的偏差  
+  70:Encoder/PID.c **** *	∑e(k)代表e(k)以及之前的偏差的累积和;其中k为1,2,,k;
+  71:Encoder/PID.c **** *	pwm代表输出
+  72:Encoder/PID.c **** **************************************************************************/
+  73:Encoder/PID.c **** int Position_PID (int position,int target)
+  74:Encoder/PID.c **** { 
+ 109              		.loc 1 74 1 is_stmt 1 view -0
+ 110              		.cfi_startproc
+ 111              		@ args = 0, pretend = 0, frame = 0
+ 112              		@ frame_needed = 0, uses_anonymous_args = 0
+ 113              		.loc 1 74 1 is_stmt 0 view .LVU17
+ 114 0000 70B5     		push	{r4, r5, r6, lr}
+ 115              	.LCFI0:
+ 116              		.cfi_def_cfa_offset 16
+ 117              		.cfi_offset 4, -16
+ 118              		.cfi_offset 5, -12
+ 119              		.cfi_offset 6, -8
+ 120              		.cfi_offset 14, -4
+  75:Encoder/PID.c **** 	static float Pwm,Integral_bias,Last_Bias;
+ 121              		.loc 1 75 2 is_stmt 1 view .LVU18
+  76:Encoder/PID.c **** 	pos_Bias=target-position;                                  //计算偏差
+ 122              		.loc 1 76 2 view .LVU19
+ 123              		.loc 1 76 10 is_stmt 0 view .LVU20
+ 124 0002 081A     		subs	r0, r1, r0
+ 125              	.LVL1:
+ 126              		.loc 1 76 10 view .LVU21
+ 127 0004 FFF7FEFF 		bl	__aeabi_i2f
+ 128              	.LVL2:
+ 129              		.loc 1 76 10 view .LVU22
+ 130 0008 0446     		mov	r4, r0
+ 131 000a 1D4B     		ldr	r3, .L15
+ 132 000c 1860     		str	r0, [r3]	@ float
+  77:Encoder/PID.c **** 	Integral_bias+=pos_Bias;	                                 //求出偏差的积分
+ 133              		.loc 1 77 2 is_stmt 1 view .LVU23
+ 134              		.loc 1 77 15 is_stmt 0 view .LVU24
+ 135 000e 1D4D     		ldr	r5, .L15+4
+ 136 0010 2968     		ldr	r1, [r5]	@ float
+ 137 0012 FFF7FEFF 		bl	__aeabi_fadd
+ 138              	.LVL3:
+ 139 0016 2860     		str	r0, [r5]	@ float
+  78:Encoder/PID.c **** 	if(Integral_bias>400)Integral_bias=400;				//对积分 限幅
+ 140              		.loc 1 78 2 is_stmt 1 view .LVU25
+ 141              		.loc 1 78 4 is_stmt 0 view .LVU26
+ 142 0018 1B49     		ldr	r1, .L15+8
+ 143 001a FFF7FEFF 		bl	__aeabi_fcmpgt
+ 144              	.LVL4:
+ 145 001e 08B1     		cbz	r0, .L8
+ 146              		.loc 1 78 23 is_stmt 1 discriminator 1 view .LVU27
+ 147              		.loc 1 78 36 is_stmt 0 discriminator 1 view .LVU28
+ 148 0020 194A     		ldr	r2, .L15+8
+ 149 0022 2A60     		str	r2, [r5]	@ float
+ 150              	.L8:
+  79:Encoder/PID.c **** 	if(Integral_bias<-400)Integral_bias=-400;		//积分限幅 防止到达目标位置后过冲
+ 151              		.loc 1 79 2 is_stmt 1 view .LVU29
+ 152              		.loc 1 79 4 is_stmt 0 view .LVU30
+ 153 0024 1949     		ldr	r1, .L15+12
+ 154 0026 174B     		ldr	r3, .L15+4
+ARM GAS  /tmp/cczjyl7h.s 			page 5
+
+
+ 155 0028 1868     		ldr	r0, [r3]	@ float
+ 156 002a FFF7FEFF 		bl	__aeabi_fcmplt
+ 157              	.LVL5:
+ 158 002e 10B1     		cbz	r0, .L10
+ 159              		.loc 1 79 24 is_stmt 1 discriminator 1 view .LVU31
+ 160              		.loc 1 79 37 is_stmt 0 discriminator 1 view .LVU32
+ 161 0030 144B     		ldr	r3, .L15+4
+ 162 0032 164A     		ldr	r2, .L15+12
+ 163 0034 1A60     		str	r2, [r3]	@ float
+ 164              	.L10:
+  80:Encoder/PID.c **** 	
+  81:Encoder/PID.c **** 	Last_Bias=pos_Bias;                                       //保存上一次偏差 
+ 165              		.loc 1 81 2 is_stmt 1 view .LVU33
+ 166              		.loc 1 81 11 is_stmt 0 view .LVU34
+ 167 0036 164B     		ldr	r3, .L15+16
+ 168 0038 1C60     		str	r4, [r3]	@ float
+  82:Encoder/PID.c **** 	// if(pos_Bias < 10)
+  83:Encoder/PID.c **** 	// {
+  84:Encoder/PID.c **** 	// 	Pwm = 0;
+  85:Encoder/PID.c **** 	// }
+  86:Encoder/PID.c **** 	pos_Pwm=pos_PID.kp*pos_Bias+pos_PID.ki*Integral_bias+pos_PID.kd*(pos_Bias-Last_Bias);       //位�
+ 169              		.loc 1 86 2 is_stmt 1 view .LVU35
+ 170              		.loc 1 86 17 is_stmt 0 view .LVU36
+ 171 003a 164E     		ldr	r6, .L15+20
+ 172              		.loc 1 86 20 view .LVU37
+ 173 003c 3168     		ldr	r1, [r6]	@ float
+ 174 003e 2046     		mov	r0, r4
+ 175 0040 FFF7FEFF 		bl	__aeabi_fmul
+ 176              	.LVL6:
+ 177 0044 0546     		mov	r5, r0
+ 178              		.loc 1 86 40 view .LVU38
+ 179 0046 0F4B     		ldr	r3, .L15+4
+ 180 0048 1968     		ldr	r1, [r3]	@ float
+ 181 004a 7068     		ldr	r0, [r6, #4]	@ float
+ 182 004c FFF7FEFF 		bl	__aeabi_fmul
+ 183              	.LVL7:
+ 184 0050 0146     		mov	r1, r0
+ 185              		.loc 1 86 29 view .LVU39
+ 186 0052 2846     		mov	r0, r5
+ 187 0054 FFF7FEFF 		bl	__aeabi_fadd
+ 188              	.LVL8:
+ 189 0058 0546     		mov	r5, r0
+ 190              		.loc 1 86 62 view .LVU40
+ 191 005a B668     		ldr	r6, [r6, #8]	@ float
+ 192              		.loc 1 86 75 view .LVU41
+ 193 005c 2146     		mov	r1, r4
+ 194 005e 2046     		mov	r0, r4
+ 195 0060 FFF7FEFF 		bl	__aeabi_fsub
+ 196              	.LVL9:
+ 197 0064 0146     		mov	r1, r0
+ 198              		.loc 1 86 65 view .LVU42
+ 199 0066 3046     		mov	r0, r6
+ 200 0068 FFF7FEFF 		bl	__aeabi_fmul
+ 201              	.LVL10:
+ 202 006c 0146     		mov	r1, r0
+ 203              		.loc 1 86 54 view .LVU43
+ 204 006e 2846     		mov	r0, r5
+ARM GAS  /tmp/cczjyl7h.s 			page 6
+
+
+ 205 0070 FFF7FEFF 		bl	__aeabi_fadd
+ 206              	.LVL11:
+ 207              		.loc 1 86 9 view .LVU44
+ 208 0074 084B     		ldr	r3, .L15+24
+ 209 0076 1860     		str	r0, [r3]	@ float
+  87:Encoder/PID.c **** 	return pos_Pwm;                                           //增量输出
+ 210              		.loc 1 87 2 is_stmt 1 view .LVU45
+ 211              		.loc 1 87 9 is_stmt 0 view .LVU46
+ 212 0078 FFF7FEFF 		bl	__aeabi_f2iz
+ 213              	.LVL12:
+  88:Encoder/PID.c **** }
+ 214              		.loc 1 88 1 view .LVU47
+ 215 007c 70BD     		pop	{r4, r5, r6, pc}
+ 216              	.L16:
+ 217 007e 00BF     		.align	2
+ 218              	.L15:
+ 219 0080 00000000 		.word	.LANCHOR2
+ 220 0084 00000000 		.word	.LANCHOR3
+ 221 0088 0000C843 		.word	1137180672
+ 222 008c 0000C8C3 		.word	-1010302976
+ 223 0090 00000000 		.word	.LANCHOR4
+ 224 0094 00000000 		.word	.LANCHOR1
+ 225 0098 00000000 		.word	.LANCHOR5
+ 226              		.cfi_endproc
+ 227              	.LFE71:
+ 229              		.section	.text.Xianfu_Pwm,"ax",%progbits
+ 230              		.align	1
+ 231              		.global	Xianfu_Pwm
+ 232              		.syntax unified
+ 233              		.thumb
+ 234              		.thumb_func
+ 235              		.fpu softvfp
+ 237              	Xianfu_Pwm:
+ 238              	.LVL13:
+ 239              	.LFB73:
+  89:Encoder/PID.c **** 
+  90:Encoder/PID.c **** 
+  91:Encoder/PID.c **** /**************************************************************************
+  92:Encoder/PID.c **** 函数功能：增量PI控制器
+  93:Encoder/PID.c **** 入口参数：编码器测量值，目标速度
+  94:Encoder/PID.c **** 返回  值：电机PWM
+  95:Encoder/PID.c **** 根据增量式离散PID公式 
+  96:Encoder/PID.c **** pwm+=Kp[e（k）-e(k-1)]+Ki*e(k)+Kd[e(k)-2e(k-1)+e(k-2)]
+  97:Encoder/PID.c **** e(k)代表本次偏差 
+  98:Encoder/PID.c **** e(k-1)代表上一次的偏差  以此类推 
+  99:Encoder/PID.c **** pwm代表增量输出
+ 100:Encoder/PID.c **** 在我们的速度控制闭环系统里面，只使用PI控制
+ 101:Encoder/PID.c **** pwm+=Kp[e（k）-e(k-1)]+Ki*e(k)
+ 102:Encoder/PID.c **** **************************************************************************/
+ 103:Encoder/PID.c **** // int Incremental_PID (int Encoder,int Target)
+ 104:Encoder/PID.c **** // {
+ 105:Encoder/PID.c **** // 	float filt_velocity,velocity,last_filt_velocity;
+ 106:Encoder/PID.c **** //     float a=0.3;
+ 107:Encoder/PID.c **** //     filt_velocity = a*velocity+(1-a)*last_filt_velocity;
+ 108:Encoder/PID.c **** //     velocity_sum += filt_velocity;
+ 109:Encoder/PID.c **** //     I_xianfu(3500);
+ 110:Encoder/PID.c **** //     last_filt_velocity = filt_velocity;
+ARM GAS  /tmp/cczjyl7h.s 			page 7
+
+
+ 111:Encoder/PID.c **** 
+ 112:Encoder/PID.c **** //     return  ver_PID.kp*filt_velocity + ver_PID.ki*velocity_sum + ver_PID.kd * (filt_velocity - l
+ 113:Encoder/PID.c **** // }
+ 114:Encoder/PID.c **** int Incremental_PID (float Encoder,float Target)
+ 115:Encoder/PID.c **** { 	
+ 116:Encoder/PID.c **** 		
+ 117:Encoder/PID.c **** 	static float Last_bias,llast_bias,Bias_sum;
+ 118:Encoder/PID.c **** 	ver_Bias=Target-Encoder;                //计算偏差
+ 119:Encoder/PID.c **** 	Bias_sum += ver_Bias;
+ 120:Encoder/PID.c **** 	llast_bias = Last_bias;
+ 121:Encoder/PID.c **** 		                   //保存上一次偏差 
+ 122:Encoder/PID.c **** 	// if(pos_Bias < 10)
+ 123:Encoder/PID.c **** 	// {
+ 124:Encoder/PID.c **** 	// 	Pwm = 0;
+ 125:Encoder/PID.c **** 	// }
+ 126:Encoder/PID.c **** 	// if(ver_Bias < 0.1)
+ 127:Encoder/PID.c **** 	// {
+ 128:Encoder/PID.c **** 	// 	ver_Bias = 0;
+ 129:Encoder/PID.c **** 	// 	Last_bias = 0;
+ 130:Encoder/PID.c **** 	// 	llast_bias = 0;
+ 131:Encoder/PID.c **** 	// }
+ 132:Encoder/PID.c **** 	I_xianfu(8000);
+ 133:Encoder/PID.c **** 	ver_Pwm = ver_PID.kp*ver_Bias+ver_PID.ki*Bias_sum +ver_PID.kd*(ver_Bias - Last_bias);   //增量�
+ 134:Encoder/PID.c **** 	Last_bias=ver_Bias;
+ 135:Encoder/PID.c **** 	return ver_Pwm;                         //增量输出
+ 136:Encoder/PID.c **** }
+ 137:Encoder/PID.c **** 
+ 138:Encoder/PID.c **** 
+ 139:Encoder/PID.c **** /**************************************************************************
+ 140:Encoder/PID.c **** 函数功能：限制PWM赋值 
+ 141:Encoder/PID.c **** 入口参数：无
+ 142:Encoder/PID.c **** 返回  值：无
+ 143:Encoder/PID.c **** **************************************************************************/
+ 144:Encoder/PID.c **** int Xianfu_Pwm(int moto) //限制幅度的函数
+ 145:Encoder/PID.c ****  {
+ 240              		.loc 1 145 2 is_stmt 1 view -0
+ 241              		.cfi_startproc
+ 242              		@ args = 0, pretend = 0, frame = 0
+ 243              		@ frame_needed = 0, uses_anonymous_args = 0
+ 244              		@ link register save eliminated.
+ 146:Encoder/PID.c ****    int Amplitude=3500;  //===PWM满幅是8400 限制7000
+ 245              		.loc 1 146 4 view .LVU49
+ 147:Encoder/PID.c **** 	 if(moto<-Amplitude)  moto = -Amplitude;
+ 246              		.loc 1 147 3 view .LVU50
+ 247              		.loc 1 147 5 is_stmt 0 view .LVU51
+ 248 0000 064B     		ldr	r3, .L21
+ 249 0002 9842     		cmp	r0, r3
+ 250 0004 04DB     		blt	.L19
+ 148:Encoder/PID.c **** 	 if(moto>Amplitude)   moto =  Amplitude;
+ 251              		.loc 1 148 3 is_stmt 1 view .LVU52
+ 252              		.loc 1 148 5 is_stmt 0 view .LVU53
+ 253 0006 40F6AC53 		movw	r3, #3500
+ 254 000a 9842     		cmp	r0, r3
+ 255 000c 02DC     		bgt	.L20
+ 256 000e 7047     		bx	lr
+ 257              	.L19:
+ 147:Encoder/PID.c **** 	 if(moto<-Amplitude)  moto = -Amplitude;
+ARM GAS  /tmp/cczjyl7h.s 			page 8
+
+
+ 258              		.loc 1 147 29 view .LVU54
+ 259 0010 0248     		ldr	r0, .L21
+ 260              	.LVL14:
+ 147:Encoder/PID.c **** 	 if(moto<-Amplitude)  moto = -Amplitude;
+ 261              		.loc 1 147 29 view .LVU55
+ 262 0012 7047     		bx	lr
+ 263              	.LVL15:
+ 264              	.L20:
+ 265              		.loc 1 148 29 view .LVU56
+ 266 0014 40F6AC50 		movw	r0, #3500
+ 267              	.LVL16:
+ 149:Encoder/PID.c **** 	 return moto;
+ 268              		.loc 1 149 3 is_stmt 1 view .LVU57
+ 150:Encoder/PID.c ****  }
+ 269              		.loc 1 150 2 is_stmt 0 view .LVU58
+ 270 0018 7047     		bx	lr
+ 271              	.L22:
+ 272 001a 00BF     		.align	2
+ 273              	.L21:
+ 274 001c 54F2FFFF 		.word	-3500
+ 275              		.cfi_endproc
+ 276              	.LFE73:
+ 278              		.section	.text.I_xianfu,"ax",%progbits
+ 279              		.align	1
+ 280              		.global	I_xianfu
+ 281              		.syntax unified
+ 282              		.thumb
+ 283              		.thumb_func
+ 284              		.fpu softvfp
+ 286              	I_xianfu:
+ 287              	.LVL17:
+ 288              	.LFB74:
+ 151:Encoder/PID.c ****  void I_xianfu(int max)
+ 152:Encoder/PID.c **** {
+ 289              		.loc 1 152 1 is_stmt 1 view -0
+ 290              		.cfi_startproc
+ 291              		@ args = 0, pretend = 0, frame = 0
+ 292              		@ frame_needed = 0, uses_anonymous_args = 0
+ 293              		.loc 1 152 1 is_stmt 0 view .LVU60
+ 294 0000 38B5     		push	{r3, r4, r5, lr}
+ 295              	.LCFI1:
+ 296              		.cfi_def_cfa_offset 16
+ 297              		.cfi_offset 3, -16
+ 298              		.cfi_offset 4, -12
+ 299              		.cfi_offset 5, -8
+ 300              		.cfi_offset 14, -4
+ 301 0002 0446     		mov	r4, r0
+ 153:Encoder/PID.c **** 	if(velocity_sum>max)  velocity_sum=max;
+ 302              		.loc 1 153 2 is_stmt 1 view .LVU61
+ 303              		.loc 1 153 17 is_stmt 0 view .LVU62
+ 304 0004 FFF7FEFF 		bl	__aeabi_i2f
+ 305              	.LVL18:
+ 306              		.loc 1 153 17 view .LVU63
+ 307 0008 0546     		mov	r5, r0
+ 308              		.loc 1 153 4 view .LVU64
+ 309 000a 094B     		ldr	r3, .L31
+ 310 000c 1968     		ldr	r1, [r3]	@ float
+ARM GAS  /tmp/cczjyl7h.s 			page 9
+
+
+ 311 000e FFF7FEFF 		bl	__aeabi_fcmplt
+ 312              	.LVL19:
+ 313 0012 08B1     		cbz	r0, .L24
+ 314              		.loc 1 153 24 is_stmt 1 discriminator 1 view .LVU65
+ 315              		.loc 1 153 36 is_stmt 0 discriminator 1 view .LVU66
+ 316 0014 064B     		ldr	r3, .L31
+ 317 0016 1D60     		str	r5, [r3]	@ float
+ 318              	.L24:
+ 154:Encoder/PID.c **** 	if(velocity_sum<-max) velocity_sum=-max;
+ 319              		.loc 1 154 2 is_stmt 1 view .LVU67
+ 320              		.loc 1 154 17 is_stmt 0 view .LVU68
+ 321 0018 6042     		rsbs	r0, r4, #0
+ 322 001a FFF7FEFF 		bl	__aeabi_i2f
+ 323              	.LVL20:
+ 324 001e 0446     		mov	r4, r0
+ 325              	.LVL21:
+ 326              		.loc 1 154 4 view .LVU69
+ 327 0020 034B     		ldr	r3, .L31
+ 328 0022 1968     		ldr	r1, [r3]	@ float
+ 329 0024 FFF7FEFF 		bl	__aeabi_fcmpgt
+ 330              	.LVL22:
+ 331 0028 08B1     		cbz	r0, .L23
+ 332              		.loc 1 154 24 is_stmt 1 discriminator 1 view .LVU70
+ 333              		.loc 1 154 36 is_stmt 0 discriminator 1 view .LVU71
+ 334 002a 014B     		ldr	r3, .L31
+ 335 002c 1C60     		str	r4, [r3]	@ float
+ 336              	.L23:
+ 155:Encoder/PID.c **** }
+ 337              		.loc 1 155 1 view .LVU72
+ 338 002e 38BD     		pop	{r3, r4, r5, pc}
+ 339              	.L32:
+ 340              		.align	2
+ 341              	.L31:
+ 342 0030 00000000 		.word	.LANCHOR6
+ 343              		.cfi_endproc
+ 344              	.LFE74:
+ 346              		.section	.text.Incremental_PID,"ax",%progbits
+ 347              		.align	1
+ 348              		.global	Incremental_PID
+ 349              		.syntax unified
+ 350              		.thumb
+ 351              		.thumb_func
+ 352              		.fpu softvfp
+ 354              	Incremental_PID:
+ 355              	.LVL23:
+ 356              	.LFB72:
+ 115:Encoder/PID.c **** 		
+ 357              		.loc 1 115 1 is_stmt 1 view -0
+ 358              		.cfi_startproc
+ 359              		@ args = 0, pretend = 0, frame = 0
+ 360              		@ frame_needed = 0, uses_anonymous_args = 0
+ 115:Encoder/PID.c **** 		
+ 361              		.loc 1 115 1 is_stmt 0 view .LVU74
+ 362 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+ 363              	.LCFI2:
+ 364              		.cfi_def_cfa_offset 24
+ 365              		.cfi_offset 4, -24
+ARM GAS  /tmp/cczjyl7h.s 			page 10
+
+
+ 366              		.cfi_offset 5, -20
+ 367              		.cfi_offset 6, -16
+ 368              		.cfi_offset 7, -12
+ 369              		.cfi_offset 8, -8
+ 370              		.cfi_offset 14, -4
+ 371 0004 0B46     		mov	r3, r1
+ 117:Encoder/PID.c **** 	ver_Bias=Target-Encoder;                //计算偏差
+ 372              		.loc 1 117 2 is_stmt 1 view .LVU75
+ 118:Encoder/PID.c **** 	Bias_sum += ver_Bias;
+ 373              		.loc 1 118 2 view .LVU76
+ 118:Encoder/PID.c **** 	Bias_sum += ver_Bias;
+ 374              		.loc 1 118 17 is_stmt 0 view .LVU77
+ 375 0006 0146     		mov	r1, r0
+ 376              	.LVL24:
+ 118:Encoder/PID.c **** 	Bias_sum += ver_Bias;
+ 377              		.loc 1 118 17 view .LVU78
+ 378 0008 1846     		mov	r0, r3
+ 379              	.LVL25:
+ 118:Encoder/PID.c **** 	Bias_sum += ver_Bias;
+ 380              		.loc 1 118 17 view .LVU79
+ 381 000a FFF7FEFF 		bl	__aeabi_fsub
+ 382              	.LVL26:
+ 118:Encoder/PID.c **** 	Bias_sum += ver_Bias;
+ 383              		.loc 1 118 17 view .LVU80
+ 384 000e 0146     		mov	r1, r0
+ 118:Encoder/PID.c **** 	Bias_sum += ver_Bias;
+ 385              		.loc 1 118 10 view .LVU81
+ 386 0010 1B4D     		ldr	r5, .L35
+ 387 0012 2860     		str	r0, [r5]	@ float
+ 119:Encoder/PID.c **** 	llast_bias = Last_bias;
+ 388              		.loc 1 119 2 is_stmt 1 view .LVU82
+ 119:Encoder/PID.c **** 	llast_bias = Last_bias;
+ 389              		.loc 1 119 11 is_stmt 0 view .LVU83
+ 390 0014 DFF86C80 		ldr	r8, .L35+4
+ 391 0018 D8F80000 		ldr	r0, [r8]	@ float
+ 392 001c FFF7FEFF 		bl	__aeabi_fadd
+ 393              	.LVL27:
+ 394 0020 C8F80000 		str	r0, [r8]	@ float
+ 120:Encoder/PID.c **** 		                   //保存上一次偏差 
+ 395              		.loc 1 120 2 is_stmt 1 view .LVU84
+ 120:Encoder/PID.c **** 		                   //保存上一次偏差 
+ 396              		.loc 1 120 13 is_stmt 0 view .LVU85
+ 397 0024 184C     		ldr	r4, .L35+8
+ 398 0026 2268     		ldr	r2, [r4]	@ float
+ 399 0028 184B     		ldr	r3, .L35+12
+ 400 002a 1A60     		str	r2, [r3]	@ float
+ 132:Encoder/PID.c **** 	ver_Pwm = ver_PID.kp*ver_Bias+ver_PID.ki*Bias_sum +ver_PID.kd*(ver_Bias - Last_bias);   //增量�
+ 401              		.loc 1 132 2 is_stmt 1 view .LVU86
+ 402 002c 4FF4FA50 		mov	r0, #8000
+ 403 0030 FFF7FEFF 		bl	I_xianfu
+ 404              	.LVL28:
+ 133:Encoder/PID.c **** 	Last_bias=ver_Bias;
+ 405              		.loc 1 133 2 view .LVU87
+ 133:Encoder/PID.c **** 	Last_bias=ver_Bias;
+ 406              		.loc 1 133 19 is_stmt 0 view .LVU88
+ 407 0034 164F     		ldr	r7, .L35+16
+ 133:Encoder/PID.c **** 	Last_bias=ver_Bias;
+ARM GAS  /tmp/cczjyl7h.s 			page 11
+
+
+ 408              		.loc 1 133 22 view .LVU89
+ 409 0036 2D68     		ldr	r5, [r5]	@ float
+ 410 0038 2946     		mov	r1, r5
+ 411 003a 3868     		ldr	r0, [r7]	@ float
+ 412 003c FFF7FEFF 		bl	__aeabi_fmul
+ 413              	.LVL29:
+ 414 0040 0646     		mov	r6, r0
+ 133:Encoder/PID.c **** 	Last_bias=ver_Bias;
+ 415              		.loc 1 133 42 view .LVU90
+ 416 0042 D8F80010 		ldr	r1, [r8]	@ float
+ 417 0046 7868     		ldr	r0, [r7, #4]	@ float
+ 418 0048 FFF7FEFF 		bl	__aeabi_fmul
+ 419              	.LVL30:
+ 420 004c 0146     		mov	r1, r0
+ 133:Encoder/PID.c **** 	Last_bias=ver_Bias;
+ 421              		.loc 1 133 31 view .LVU91
+ 422 004e 3046     		mov	r0, r6
+ 423 0050 FFF7FEFF 		bl	__aeabi_fadd
+ 424              	.LVL31:
+ 425 0054 0646     		mov	r6, r0
+ 133:Encoder/PID.c **** 	Last_bias=ver_Bias;
+ 426              		.loc 1 133 60 view .LVU92
+ 427 0056 BF68     		ldr	r7, [r7, #8]	@ float
+ 133:Encoder/PID.c **** 	Last_bias=ver_Bias;
+ 428              		.loc 1 133 74 view .LVU93
+ 429 0058 2168     		ldr	r1, [r4]	@ float
+ 430 005a 2846     		mov	r0, r5
+ 431 005c FFF7FEFF 		bl	__aeabi_fsub
+ 432              	.LVL32:
+ 433 0060 0146     		mov	r1, r0
+ 133:Encoder/PID.c **** 	Last_bias=ver_Bias;
+ 434              		.loc 1 133 63 view .LVU94
+ 435 0062 3846     		mov	r0, r7
+ 436 0064 FFF7FEFF 		bl	__aeabi_fmul
+ 437              	.LVL33:
+ 438 0068 0146     		mov	r1, r0
+ 133:Encoder/PID.c **** 	Last_bias=ver_Bias;
+ 439              		.loc 1 133 52 view .LVU95
+ 440 006a 3046     		mov	r0, r6
+ 441 006c FFF7FEFF 		bl	__aeabi_fadd
+ 442              	.LVL34:
+ 133:Encoder/PID.c **** 	Last_bias=ver_Bias;
+ 443              		.loc 1 133 10 view .LVU96
+ 444 0070 FFF7FEFF 		bl	__aeabi_f2iz
+ 445              	.LVL35:
+ 446 0074 074B     		ldr	r3, .L35+20
+ 447 0076 1860     		str	r0, [r3]
+ 134:Encoder/PID.c **** 	return ver_Pwm;                         //增量输出
+ 448              		.loc 1 134 2 is_stmt 1 view .LVU97
+ 134:Encoder/PID.c **** 	return ver_Pwm;                         //增量输出
+ 449              		.loc 1 134 11 is_stmt 0 view .LVU98
+ 450 0078 2560     		str	r5, [r4]	@ float
+ 135:Encoder/PID.c **** }
+ 451              		.loc 1 135 2 is_stmt 1 view .LVU99
+ 136:Encoder/PID.c **** 
+ 452              		.loc 1 136 1 is_stmt 0 view .LVU100
+ 453 007a BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ARM GAS  /tmp/cczjyl7h.s 			page 12
+
+
+ 454              	.L36:
+ 455 007e 00BF     		.align	2
+ 456              	.L35:
+ 457 0080 00000000 		.word	.LANCHOR7
+ 458 0084 00000000 		.word	.LANCHOR8
+ 459 0088 00000000 		.word	.LANCHOR10
+ 460 008c 00000000 		.word	.LANCHOR9
+ 461 0090 00000000 		.word	.LANCHOR0
+ 462 0094 00000000 		.word	.LANCHOR11
+ 463              		.cfi_endproc
+ 464              	.LFE72:
+ 466              		.section	.text.Double_Loop_Control,"ax",%progbits
+ 467              		.align	1
+ 468              		.global	Double_Loop_Control
+ 469              		.syntax unified
+ 470              		.thumb
+ 471              		.thumb_func
+ 472              		.fpu softvfp
+ 474              	Double_Loop_Control:
+ 475              	.LVL36:
+ 476              	.LFB70:
+  28:Encoder/PID.c **** 	
+ 477              		.loc 1 28 1 is_stmt 1 view -0
+ 478              		.cfi_startproc
+ 479              		@ args = 0, pretend = 0, frame = 0
+ 480              		@ frame_needed = 0, uses_anonymous_args = 0
+  28:Encoder/PID.c **** 	
+ 481              		.loc 1 28 1 is_stmt 0 view .LVU102
+ 482 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 483              	.LCFI3:
+ 484              		.cfi_def_cfa_offset 24
+ 485              		.cfi_offset 3, -24
+ 486              		.cfi_offset 4, -20
+ 487              		.cfi_offset 5, -16
+ 488              		.cfi_offset 6, -12
+ 489              		.cfi_offset 7, -8
+ 490              		.cfi_offset 14, -4
+ 491 0002 0446     		mov	r4, r0
+ 492 0004 0D46     		mov	r5, r1
+ 493 0006 1746     		mov	r7, r2
+ 494 0008 1E46     		mov	r6, r3
+  31:Encoder/PID.c **** 
+ 495              		.loc 1 31 1 is_stmt 1 view .LVU103
+  31:Encoder/PID.c **** 
+ 496              		.loc 1 31 38 is_stmt 0 view .LVU104
+ 497 000a 0146     		mov	r1, r0
+ 498              	.LVL37:
+  31:Encoder/PID.c **** 
+ 499              		.loc 1 31 38 view .LVU105
+ 500 000c 2846     		mov	r0, r5
+ 501              	.LVL38:
+  31:Encoder/PID.c **** 
+ 502              		.loc 1 31 38 view .LVU106
+ 503 000e FFF7FEFF 		bl	__aeabi_fsub
+ 504              	.LVL39:
+  31:Encoder/PID.c **** 
+ 505              		.loc 1 31 5 view .LVU107
+ARM GAS  /tmp/cczjyl7h.s 			page 13
+
+
+ 506 0012 FFF7FEFF 		bl	__aeabi_f2iz
+ 507              	.LVL40:
+  34:Encoder/PID.c ****         target_speed = 0; // 在死区内，目标速度置零
+ 508              		.loc 1 34 5 is_stmt 1 view .LVU108
+  34:Encoder/PID.c ****         target_speed = 0; // 在死区内，目标速度置零
+ 509              		.loc 1 34 8 is_stmt 0 view .LVU109
+ 510 0016 50B9     		cbnz	r0, .L38
+  35:Encoder/PID.c ****     } else {
+ 511              		.loc 1 35 9 is_stmt 1 view .LVU110
+  35:Encoder/PID.c ****     } else {
+ 512              		.loc 1 35 22 is_stmt 0 view .LVU111
+ 513 0018 154B     		ldr	r3, .L47
+ 514 001a 0022     		movs	r2, #0
+ 515 001c 1A60     		str	r2, [r3]	@ float
+ 516              	.LVL41:
+ 517              	.L39:
+  54:Encoder/PID.c **** 
+ 518              		.loc 1 54 5 is_stmt 1 view .LVU112
+  54:Encoder/PID.c **** 
+ 519              		.loc 1 54 18 is_stmt 0 view .LVU113
+ 520 001e 144B     		ldr	r3, .L47
+ 521 0020 1968     		ldr	r1, [r3]	@ float
+ 522 0022 3846     		mov	r0, r7
+ 523 0024 FFF7FEFF 		bl	Incremental_PID
+ 524              	.LVL42:
+  54:Encoder/PID.c **** 
+ 525              		.loc 1 54 16 view .LVU114
+ 526 0028 124B     		ldr	r3, .L47+4
+ 527 002a 1860     		str	r0, [r3]
+  57:Encoder/PID.c **** }
+ 528              		.loc 1 57 5 is_stmt 1 view .LVU115
+  58:Encoder/PID.c **** 
+ 529              		.loc 1 58 1 is_stmt 0 view .LVU116
+ 530 002c F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 531              	.LVL43:
+ 532              	.L38:
+  40:Encoder/PID.c **** 		/* 目标速度上限处理 */
+ 533              		.loc 1 40 3 is_stmt 1 view .LVU117
+  40:Encoder/PID.c **** 		/* 目标速度上限处理 */
+ 534              		.loc 1 40 18 is_stmt 0 view .LVU118
+ 535 002e 2846     		mov	r0, r5
+ 536              	.LVL44:
+  40:Encoder/PID.c **** 		/* 目标速度上限处理 */
+ 537              		.loc 1 40 18 view .LVU119
+ 538 0030 FFF7FEFF 		bl	__aeabi_f2iz
+ 539              	.LVL45:
+ 540 0034 0546     		mov	r5, r0
+ 541              	.LVL46:
+  40:Encoder/PID.c **** 		/* 目标速度上限处理 */
+ 542              		.loc 1 40 18 view .LVU120
+ 543 0036 2046     		mov	r0, r4
+ 544 0038 FFF7FEFF 		bl	__aeabi_f2iz
+ 545              	.LVL47:
+ 546 003c 2946     		mov	r1, r5
+ 547 003e FFF7FEFF 		bl	Position_PID
+ 548              	.LVL48:
+  40:Encoder/PID.c **** 		/* 目标速度上限处理 */
+ARM GAS  /tmp/cczjyl7h.s 			page 14
+
+
+ 549              		.loc 1 40 16 view .LVU121
+ 550 0042 FFF7FEFF 		bl	__aeabi_i2f
+ 551              	.LVL49:
+ 552 0046 0546     		mov	r5, r0
+ 553 0048 094B     		ldr	r3, .L47
+ 554 004a 1860     		str	r0, [r3]	@ float
+  42:Encoder/PID.c **** 		{
+ 555              		.loc 1 42 3 is_stmt 1 view .LVU122
+  42:Encoder/PID.c **** 		{
+ 556              		.loc 1 42 6 is_stmt 0 view .LVU123
+ 557 004c 3146     		mov	r1, r6
+ 558 004e FFF7FEFF 		bl	__aeabi_fcmpgt
+ 559              	.LVL50:
+ 560 0052 10B1     		cbz	r0, .L45
+  44:Encoder/PID.c **** 		}
+ 561              		.loc 1 44 4 is_stmt 1 view .LVU124
+  44:Encoder/PID.c **** 		}
+ 562              		.loc 1 44 17 is_stmt 0 view .LVU125
+ 563 0054 064B     		ldr	r3, .L47
+ 564 0056 1E60     		str	r6, [r3]	@ float
+ 565 0058 E1E7     		b	.L39
+ 566              	.L45:
+  46:Encoder/PID.c **** 		{
+ 567              		.loc 1 46 8 is_stmt 1 view .LVU126
+  46:Encoder/PID.c **** 		{
+ 568              		.loc 1 46 27 is_stmt 0 view .LVU127
+ 569 005a 06F10046 		add	r6, r6, #-2147483648
+ 570              	.LVL51:
+  46:Encoder/PID.c **** 		{
+ 571              		.loc 1 46 11 view .LVU128
+ 572 005e 3146     		mov	r1, r6
+ 573 0060 2846     		mov	r0, r5
+ 574 0062 FFF7FEFF 		bl	__aeabi_fcmplt
+ 575              	.LVL52:
+ 576 0066 0028     		cmp	r0, #0
+ 577 0068 D9D0     		beq	.L39
+  48:Encoder/PID.c **** 		}
+ 578              		.loc 1 48 4 is_stmt 1 view .LVU129
+  48:Encoder/PID.c **** 		}
+ 579              		.loc 1 48 17 is_stmt 0 view .LVU130
+ 580 006a 014B     		ldr	r3, .L47
+ 581 006c 1E60     		str	r6, [r3]	@ float
+ 582 006e D6E7     		b	.L39
+ 583              	.L48:
+ 584              		.align	2
+ 585              	.L47:
+ 586 0070 00000000 		.word	.LANCHOR12
+ 587 0074 00000000 		.word	.LANCHOR13
+ 588              		.cfi_endproc
+ 589              	.LFE70:
+ 591              		.global	pos_Pwm
+ 592              		.global	target_speed
+ 593              		.global	ver_Pwm
+ 594              		.global	pwm_output
+ 595              		.global	velocity_sum
+ 596              		.global	ver_Bias
+ 597              		.global	pos_Bias
+ARM GAS  /tmp/cczjyl7h.s 			page 15
+
+
+ 598              		.global	pos_PID
+ 599              		.global	ver_PID
+ 600              		.section	.bss.Bias_sum.2,"aw",%nobits
+ 601              		.align	2
+ 602              		.set	.LANCHOR8,. + 0
+ 605              	Bias_sum.2:
+ 606 0000 00000000 		.space	4
+ 607              		.section	.bss.Integral_bias.4,"aw",%nobits
+ 608              		.align	2
+ 609              		.set	.LANCHOR3,. + 0
+ 612              	Integral_bias.4:
+ 613 0000 00000000 		.space	4
+ 614              		.section	.bss.Last_Bias.3,"aw",%nobits
+ 615              		.align	2
+ 616              		.set	.LANCHOR4,. + 0
+ 619              	Last_Bias.3:
+ 620 0000 00000000 		.space	4
+ 621              		.section	.bss.Last_bias.1,"aw",%nobits
+ 622              		.align	2
+ 623              		.set	.LANCHOR10,. + 0
+ 626              	Last_bias.1:
+ 627 0000 00000000 		.space	4
+ 628              		.section	.bss.llast_bias.0,"aw",%nobits
+ 629              		.align	2
+ 630              		.set	.LANCHOR9,. + 0
+ 633              	llast_bias.0:
+ 634 0000 00000000 		.space	4
+ 635              		.section	.bss.pos_Bias,"aw",%nobits
+ 636              		.align	2
+ 637              		.set	.LANCHOR2,. + 0
+ 640              	pos_Bias:
+ 641 0000 00000000 		.space	4
+ 642              		.section	.bss.pos_PID,"aw",%nobits
+ 643              		.align	2
+ 644              		.set	.LANCHOR1,. + 0
+ 647              	pos_PID:
+ 648 0000 00000000 		.space	12
+ 648      00000000 
+ 648      00000000 
+ 649              		.section	.bss.pos_Pwm,"aw",%nobits
+ 650              		.align	2
+ 651              		.set	.LANCHOR5,. + 0
+ 654              	pos_Pwm:
+ 655 0000 00000000 		.space	4
+ 656              		.section	.bss.pwm_output,"aw",%nobits
+ 657              		.align	2
+ 658              		.set	.LANCHOR13,. + 0
+ 661              	pwm_output:
+ 662 0000 00000000 		.space	4
+ 663              		.section	.bss.target_speed,"aw",%nobits
+ 664              		.align	2
+ 665              		.set	.LANCHOR12,. + 0
+ 668              	target_speed:
+ 669 0000 00000000 		.space	4
+ 670              		.section	.bss.velocity_sum,"aw",%nobits
+ 671              		.align	2
+ 672              		.set	.LANCHOR6,. + 0
+ARM GAS  /tmp/cczjyl7h.s 			page 16
+
+
+ 675              	velocity_sum:
+ 676 0000 00000000 		.space	4
+ 677              		.section	.bss.ver_Bias,"aw",%nobits
+ 678              		.align	2
+ 679              		.set	.LANCHOR7,. + 0
+ 682              	ver_Bias:
+ 683 0000 00000000 		.space	4
+ 684              		.section	.bss.ver_PID,"aw",%nobits
+ 685              		.align	2
+ 686              		.set	.LANCHOR0,. + 0
+ 689              	ver_PID:
+ 690 0000 00000000 		.space	12
+ 690      00000000 
+ 690      00000000 
+ 691              		.section	.bss.ver_Pwm,"aw",%nobits
+ 692              		.align	2
+ 693              		.set	.LANCHOR11,. + 0
+ 696              	ver_Pwm:
+ 697 0000 00000000 		.space	4
+ 698              		.text
+ 699              	.Letext0:
+ 700              		.file 2 "Encoder/PID.h"
+ARM GAS  /tmp/cczjyl7h.s 			page 17
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 PID.c
+     /tmp/cczjyl7h.s:16     .text.ver_PID_Init:0000000000000000 $t
+     /tmp/cczjyl7h.s:24     .text.ver_PID_Init:0000000000000000 ver_PID_Init
+     /tmp/cczjyl7h.s:49     .text.ver_PID_Init:0000000000000010 $d
+     /tmp/cczjyl7h.s:55     .text.pos_PID_Init:0000000000000000 $t
+     /tmp/cczjyl7h.s:62     .text.pos_PID_Init:0000000000000000 pos_PID_Init
+     /tmp/cczjyl7h.s:86     .text.pos_PID_Init:0000000000000010 $d
+     /tmp/cczjyl7h.s:99     .text.Position_PID:0000000000000000 $t
+     /tmp/cczjyl7h.s:106    .text.Position_PID:0000000000000000 Position_PID
+     /tmp/cczjyl7h.s:219    .text.Position_PID:0000000000000080 $d
+     /tmp/cczjyl7h.s:230    .text.Xianfu_Pwm:0000000000000000 $t
+     /tmp/cczjyl7h.s:237    .text.Xianfu_Pwm:0000000000000000 Xianfu_Pwm
+     /tmp/cczjyl7h.s:274    .text.Xianfu_Pwm:000000000000001c $d
+     /tmp/cczjyl7h.s:279    .text.I_xianfu:0000000000000000 $t
+     /tmp/cczjyl7h.s:286    .text.I_xianfu:0000000000000000 I_xianfu
+     /tmp/cczjyl7h.s:342    .text.I_xianfu:0000000000000030 $d
+     /tmp/cczjyl7h.s:347    .text.Incremental_PID:0000000000000000 $t
+     /tmp/cczjyl7h.s:354    .text.Incremental_PID:0000000000000000 Incremental_PID
+     /tmp/cczjyl7h.s:457    .text.Incremental_PID:0000000000000080 $d
+     /tmp/cczjyl7h.s:467    .text.Double_Loop_Control:0000000000000000 $t
+     /tmp/cczjyl7h.s:474    .text.Double_Loop_Control:0000000000000000 Double_Loop_Control
+     /tmp/cczjyl7h.s:586    .text.Double_Loop_Control:0000000000000070 $d
+     /tmp/cczjyl7h.s:654    .bss.pos_Pwm:0000000000000000 pos_Pwm
+     /tmp/cczjyl7h.s:668    .bss.target_speed:0000000000000000 target_speed
+     /tmp/cczjyl7h.s:696    .bss.ver_Pwm:0000000000000000 ver_Pwm
+     /tmp/cczjyl7h.s:661    .bss.pwm_output:0000000000000000 pwm_output
+     /tmp/cczjyl7h.s:675    .bss.velocity_sum:0000000000000000 velocity_sum
+     /tmp/cczjyl7h.s:682    .bss.ver_Bias:0000000000000000 ver_Bias
+     /tmp/cczjyl7h.s:640    .bss.pos_Bias:0000000000000000 pos_Bias
+     /tmp/cczjyl7h.s:647    .bss.pos_PID:0000000000000000 pos_PID
+     /tmp/cczjyl7h.s:689    .bss.ver_PID:0000000000000000 ver_PID
+     /tmp/cczjyl7h.s:601    .bss.Bias_sum.2:0000000000000000 $d
+     /tmp/cczjyl7h.s:605    .bss.Bias_sum.2:0000000000000000 Bias_sum.2
+     /tmp/cczjyl7h.s:608    .bss.Integral_bias.4:0000000000000000 $d
+     /tmp/cczjyl7h.s:612    .bss.Integral_bias.4:0000000000000000 Integral_bias.4
+     /tmp/cczjyl7h.s:615    .bss.Last_Bias.3:0000000000000000 $d
+     /tmp/cczjyl7h.s:619    .bss.Last_Bias.3:0000000000000000 Last_Bias.3
+     /tmp/cczjyl7h.s:622    .bss.Last_bias.1:0000000000000000 $d
+     /tmp/cczjyl7h.s:626    .bss.Last_bias.1:0000000000000000 Last_bias.1
+     /tmp/cczjyl7h.s:629    .bss.llast_bias.0:0000000000000000 $d
+     /tmp/cczjyl7h.s:633    .bss.llast_bias.0:0000000000000000 llast_bias.0
+     /tmp/cczjyl7h.s:636    .bss.pos_Bias:0000000000000000 $d
+     /tmp/cczjyl7h.s:643    .bss.pos_PID:0000000000000000 $d
+     /tmp/cczjyl7h.s:650    .bss.pos_Pwm:0000000000000000 $d
+     /tmp/cczjyl7h.s:657    .bss.pwm_output:0000000000000000 $d
+     /tmp/cczjyl7h.s:664    .bss.target_speed:0000000000000000 $d
+     /tmp/cczjyl7h.s:671    .bss.velocity_sum:0000000000000000 $d
+     /tmp/cczjyl7h.s:678    .bss.ver_Bias:0000000000000000 $d
+     /tmp/cczjyl7h.s:685    .bss.ver_PID:0000000000000000 $d
+     /tmp/cczjyl7h.s:692    .bss.ver_Pwm:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+__aeabi_i2f
+__aeabi_fadd
+__aeabi_fcmpgt
+__aeabi_fcmplt
+ARM GAS  /tmp/cczjyl7h.s 			page 18
+
+
+__aeabi_fmul
+__aeabi_fsub
+__aeabi_f2iz
