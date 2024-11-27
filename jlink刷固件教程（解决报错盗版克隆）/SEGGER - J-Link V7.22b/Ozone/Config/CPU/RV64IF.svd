@@ -1,0 +1,1993 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<device schemaVersion="1.3.5" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="CMSIS-SVD_Schema_1_3_5.xsd">
+  <cpu>
+    <name>RV64IF</name>
+    <groups>
+      <group>
+        <name>Core (ABI)</name>
+        <description>Core integer registers</description>
+        <size>64</size>
+        <access>RW</access>
+        <type>unsigned long long</type>
+        <registers>
+          <register>
+            <name>pc</name>
+            <description>Program counter</description>
+            <Index>0x1080</Index>
+          </register>
+          <register>
+            <name>x0</name>
+            <AliasName>zero</AliasName>
+            <displayName>zero</displayName>
+            <description>zero</description>
+            <Index>0x1000</Index>
+          </register>
+          <register>
+            <name>x1</name>
+            <AliasName>ra</AliasName>
+            <displayName>ra</displayName>
+            <description>return address</description>
+            <Index>0x1001</Index>
+          </register>
+          <register>
+            <name>x2</name>
+            <AliasName>sp</AliasName>
+            <displayName>sp</displayName>
+            <description>Stack pointer</description>
+            <Index>0x1002</Index>
+          </register>
+          <register>
+            <name>x3</name>
+            <AliasName>gp</AliasName>
+            <displayName>gp</displayName>
+            <description>Global pointer</description>
+            <Index>0x1003</Index>
+          </register>
+          <register>
+            <name>x4</name>
+            <AliasName>tp</AliasName>
+            <displayName>tp</displayName>
+            <description>Thread pointer</description>
+            <Index>0x1004</Index>
+          </register>
+          <register>
+            <name>x10</name>
+            <AliasName>a0</AliasName>
+            <displayName>a0</displayName>
+            <description>Function argument / return value register 0</description>
+            <Index>0x100A</Index>
+          </register>
+          <register>
+            <name>x11</name>
+            <AliasName>a1</AliasName>
+            <displayName>a1</displayName>
+            <description>Function argument / return value register 1</description>
+            <Index>0x100B</Index>
+          </register>
+          <register>
+            <name>x12</name>
+            <AliasName>a2</AliasName>
+            <displayName>a2</displayName>
+            <description>Function argument register 2</description>
+            <Index>0x100C</Index>
+          </register>
+          <register>
+            <name>x13</name>
+            <AliasName>a3</AliasName>
+            <displayName>a3</displayName>
+            <description>Function argument register 3</description>
+            <Index>0x100D</Index>
+          </register>
+          <register>
+            <name>x14</name>
+            <AliasName>a4</AliasName>
+            <displayName>a4</displayName>
+            <description>Function argument register 4</description>
+            <Index>0x100E</Index>
+          </register>
+          <register>
+            <name>x15</name>
+            <AliasName>a5</AliasName>
+            <displayName>a5</displayName>
+            <description>Function argument register 5</description>
+            <Index>0x100F</Index>
+          </register>
+          <register>
+            <name>x16</name>
+            <AliasName>a6</AliasName>
+            <displayName>a6</displayName>
+            <description>Function argument register 6</description>
+            <Index>0x1010</Index>
+          </register>
+          <register>
+            <name>x17</name>
+            <AliasName>a7</AliasName>
+            <displayName>a7</displayName>
+            <description>Function argument register 7</description>
+            <Index>0x1011</Index>
+          </register>
+          <register>
+            <name>x5</name>
+            <AliasName>t0</AliasName>
+            <displayName>t0</displayName>
+            <description>Temporary register 0</description>
+            <Index>0x1005</Index>
+          </register>
+          <register>
+            <name>x6</name>
+            <AliasName>t1</AliasName>
+            <displayName>t1</displayName>
+            <description>Temporary register 1</description>
+            <Index>0x1006</Index>
+          </register>
+          <register>
+            <name>x7</name>
+            <AliasName>t2</AliasName>
+            <displayName>t2</displayName>
+            <description>Temporary register 2</description>
+            <Index>0x1007</Index>
+          </register>
+          <register>
+            <name>x28</name>
+            <AliasName>t3</AliasName>
+            <displayName>t3</displayName>
+            <description>Temporary register 3</description>
+            <Index>0x101C</Index>
+          </register>
+          <register>
+            <name>x29</name>
+            <AliasName>t4</AliasName>
+            <displayName>t4</displayName>
+            <description>Temporary register 4</description>
+            <Index>0x101D</Index>
+          </register>
+          <register>
+            <name>x30</name>
+            <AliasName>t5</AliasName>
+            <displayName>t5</displayName>
+            <description>Temporary register 5</description>
+            <Index>0x101E</Index>
+          </register>
+          <register>
+            <name>x31</name>
+            <AliasName>t6</AliasName>
+            <displayName>t6</displayName>
+            <description>Temporary register 6</description>
+            <Index>0x101F</Index>
+          </register>
+          <register>
+            <name>x8</name>
+            <AliasName>s0</AliasName>
+            <displayName>s0</displayName>
+            <description>Frame pointer</description>
+            <Index>0x1008</Index>
+          </register>
+          <register>
+            <name>x9</name>
+            <AliasName>s1</AliasName>
+            <displayName>s1</displayName>
+            <description>Saved register 1</description>
+            <Index>0x1009</Index>
+          </register>
+          <register>
+            <name>x18</name>
+            <AliasName>s2</AliasName>
+            <displayName>s2</displayName>
+            <description>Saved register 2</description>
+            <Index>0x1012</Index>
+          </register>
+          <register>
+            <name>x19</name>
+            <AliasName>s3</AliasName>
+            <displayName>s3</displayName>
+            <description>Saved register 3</description>
+            <Index>0x1013</Index>
+          </register>
+          <register>
+            <name>x20</name>
+            <AliasName>s4</AliasName>
+            <displayName>s4</displayName>
+            <description>Saved register 4</description>
+            <Index>0x1014</Index>
+          </register>
+          <register>
+            <name>x21</name>
+            <AliasName>s5</AliasName>
+            <displayName>s5</displayName>
+            <description>Saved register 5</description>
+            <Index>0x1015</Index>
+          </register>
+          <register>
+            <name>x22</name>
+            <AliasName>s6</AliasName>
+            <displayName>s6</displayName>
+            <description>Saved register 6</description>
+            <Index>0x1016</Index>
+          </register>
+          <register>
+            <name>x23</name>
+            <AliasName>s7</AliasName>
+            <displayName>s7</displayName>
+            <description>Saved register 7</description>
+            <Index>0x1017</Index>
+          </register>
+          <register>
+            <name>x24</name>
+            <AliasName>s8</AliasName>
+            <displayName>s8</displayName>
+            <description>Saved register 8</description>
+            <Index>0x1018</Index>
+          </register>
+          <register>
+            <name>x25</name>
+            <AliasName>s9</AliasName>
+            <displayName>s9</displayName>
+            <description>Saved register 9</description>
+            <Index>0x1019</Index>
+          </register>
+          <register>
+            <name>x26</name>
+            <AliasName>s10</AliasName>
+            <displayName>s10</displayName>
+            <description>Saved register 10</description>
+            <Index>0x101A</Index>
+          </register>
+          <register>
+            <name>x27</name>
+            <AliasName>s11</AliasName>
+            <displayName>s11</displayName>
+            <description>Saved register 11</description>
+            <Index>0x101B</Index>
+          </register>
+        </registers>
+      </group>
+      <group>
+        <name>Core (Numerical)</name>
+        <description>Core integer registers</description>
+        <size>64</size>
+        <access>RW</access>
+        <type>unsigned long long</type>
+        <registers>
+          <register>
+            <name>pc</name>
+            <description>Program counter</description>
+            <Index>0x1080</Index>
+          </register>
+          <register>
+            <name>x0</name>
+            <AliasName>zero</AliasName>
+            <description>zero</description>
+            <Index>0x1000</Index>
+          </register>
+          <register>
+            <name>x1</name>
+            <AliasName>ra</AliasName>
+            <description>return address</description>
+            <Index>0x1001</Index>
+          </register>
+          <register>
+            <name>x2</name>
+            <AliasName>sp</AliasName>
+            <description>Stack pointer</description>
+            <Index>0x1002</Index>
+          </register>
+          <register>
+            <name>x3</name>
+            <AliasName>gp</AliasName>
+            <description>Global pointer</description>
+            <Index>0x1003</Index>
+          </register>
+          <register>
+            <name>x4</name>
+            <AliasName>tp</AliasName>
+            <description>Thread pointer</description>
+            <Index>0x1004</Index>
+          </register>
+          <register>
+            <name>x5</name>
+            <AliasName>t0</AliasName>
+            <description>Temporary register 0</description>
+            <Index>0x1005</Index>
+          </register>
+          <register>
+            <name>x6</name>
+            <AliasName>t1</AliasName>
+            <description>Temporary register 1</description>
+            <Index>0x1006</Index>
+          </register>
+          <register>
+            <name>x7</name>
+            <AliasName>t2</AliasName>
+            <description>Temporary register 2</description>
+            <Index>0x1007</Index>
+          </register>
+          <register>
+            <name>x8</name>
+            <AliasName>fp</AliasName>
+            <description>Frame pointer</description>
+            <Index>0x1008</Index>
+          </register>
+          <register>
+            <name>x9</name>
+            <AliasName>s1</AliasName>
+            <description>Saved register 1</description>
+            <Index>0x1009</Index>
+          </register>
+          <register>
+            <name>x10</name>
+            <AliasName>a0</AliasName>
+            <description>Function argument / return value register 0</description>
+            <Index>0x100A</Index>
+          </register>
+          <register>
+            <name>x11</name>
+            <AliasName>a1</AliasName>
+            <description>Function argument / return value register 1</description>
+            <Index>0x100B</Index>
+          </register>
+          <register>
+            <name>x12</name>
+            <AliasName>a2</AliasName>
+            <description>Function argument register 2</description>
+            <Index>0x100C</Index>
+          </register>
+          <register>
+            <name>x13</name>
+            <AliasName>a3</AliasName>
+            <description>Function argument register 3</description>
+            <Index>0x100D</Index>
+          </register>
+          <register>
+            <name>x14</name>
+            <AliasName>a4</AliasName>
+            <description>Function argument register 4</description>
+            <Index>0x100E</Index>
+          </register>
+          <register>
+            <name>x15</name>
+            <AliasName>a5</AliasName>
+            <description>Function argument register 5</description>
+            <Index>0x100F</Index>
+          </register>
+          <register>
+            <name>x16</name>
+            <AliasName>a6</AliasName>
+            <description>Function argument register 6</description>
+            <Index>0x1010</Index>
+          </register>
+          <register>
+            <name>x17</name>
+            <AliasName>a7</AliasName>
+            <description>Function argument register 7</description>
+            <Index>0x1011</Index>
+          </register>
+          <register>
+            <name>x18</name>
+            <AliasName>s2</AliasName>
+            <description>Saved register 2</description>
+            <Index>0x1012</Index>
+          </register>
+          <register>
+            <name>x19</name>
+            <AliasName>s3</AliasName>
+            <description>Saved register 3</description>
+            <Index>0x1013</Index>
+          </register>
+          <register>
+            <name>x20</name>
+            <AliasName>s4</AliasName>
+            <description>Saved register 4</description>
+            <Index>0x1014</Index>
+          </register>
+          <register>
+            <name>x21</name>
+            <AliasName>s5</AliasName>
+            <description>Saved register 5</description>
+            <Index>0x1015</Index>
+          </register>
+          <register>
+            <name>x22</name>
+            <AliasName>s6</AliasName>
+            <description>Saved register 6</description>
+            <Index>0x1016</Index>
+          </register>
+          <register>
+            <name>x23</name>
+            <AliasName>s7</AliasName>
+            <description>Saved register 7</description>
+            <Index>0x1017</Index>
+          </register>
+          <register>
+            <name>x24</name>
+            <AliasName>s8</AliasName>
+            <description>Saved register 8</description>
+            <Index>0x1018</Index>
+          </register>
+          <register>
+            <name>x25</name>
+            <AliasName>s9</AliasName>
+            <description>Saved register 9</description>
+            <Index>0x1019</Index>
+          </register>
+          <register>
+            <name>x26</name>
+            <AliasName>s10</AliasName>
+            <description>Saved register 10</description>
+            <Index>0x101A</Index>
+          </register>
+          <register>
+            <name>x27</name>
+            <AliasName>s11</AliasName>
+            <description>Saved register 11</description>
+            <Index>0x101B</Index>
+          </register>
+          <register>
+            <name>x28</name>
+            <AliasName>t3</AliasName>
+            <description>Temporary register 3</description>
+            <Index>0x101C</Index>
+          </register>
+          <register>
+            <name>x29</name>
+            <AliasName>t4</AliasName>
+            <description>Temporary register 4</description>
+            <Index>0x101D</Index>
+          </register>
+          <register>
+            <name>x30</name>
+            <AliasName>t5</AliasName>
+            <description>Temporary register 5</description>
+            <Index>0x101E</Index>
+          </register>
+          <register>
+            <name>x31</name>
+            <AliasName>t6</AliasName>
+            <description>Temporary register 6</description>
+            <Index>0x101F</Index>
+          </register>
+        </registers>
+      </group>
+      <group>
+        <name>FPU 32 (ABI)</name>
+        <description>Single-precision floating point registers</description>
+        <size>32</size>
+        <type>float</type>
+        <access>RW</access>
+        <registers>
+          <register>
+            <name>f10</name>
+            <AliasName>fa0</AliasName>
+            <displayName>fa0</displayName>
+            <description>Floating point argument/return value register 0</description>
+            <Index>0x102A</Index>
+          </register>
+          <register>
+            <name>f11</name>
+            <AliasName>fa1</AliasName>
+            <displayName>fa1</displayName>
+            <description>Floating point argument/return value register 1</description>
+            <Index>0x102B</Index>
+          </register>
+          <register>
+            <name>f12</name>
+            <AliasName>fa2</AliasName>
+            <displayName>fa2</displayName>
+            <description>Floating point argument register 2</description>
+            <Index>0x102C</Index>
+          </register>
+          <register>
+            <name>f13</name>
+            <AliasName>fa3</AliasName>
+            <displayName>fa3</displayName>
+            <description>Floating point argument register 3</description>
+            <Index>0x102D</Index>
+          </register>
+          <register>
+            <name>f14</name>
+            <AliasName>fa4</AliasName>
+            <displayName>fa4</displayName>
+            <description>Floating point argument register 4</description>
+            <Index>0x102E</Index>
+          </register>
+          <register>
+            <name>f15</name>
+            <AliasName>fa5</AliasName>
+            <displayName>fa5</displayName>
+            <description>Floating point argument register 5</description>
+            <Index>0x102F</Index>
+          </register>
+          <register>
+            <name>f16</name>
+            <AliasName>fa6</AliasName>
+            <displayName>fa6</displayName>
+            <description>Floating point argument register 6</description>
+            <Index>0x1030</Index>
+          </register>
+          <register>
+            <name>f17</name>
+            <AliasName>fa7</AliasName>
+            <displayName>fa7</displayName>
+            <description>Floating point argument register 7</description>
+            <Index>0x1031</Index>
+          </register>
+          <register>
+            <name>f0</name>
+            <AliasName>ft0</AliasName>
+            <displayName>ft0</displayName>
+            <description>Floating point temporary register 0</description>
+            <Index>0x1020</Index>
+          </register>
+          <register>
+            <name>f1</name>
+            <AliasName>ft1</AliasName>
+            <displayName>ft1</displayName>
+            <description>Floating point temporary register 1</description>
+            <Index>0x1021</Index>
+          </register>
+          <register>
+            <name>f2</name>
+            <AliasName>ft2</AliasName>
+            <displayName>ft2</displayName>
+            <description>Floating point temporary register 2</description>
+            <Index>0x1022</Index>
+          </register>
+          <register>
+            <name>f3</name>
+            <AliasName>ft3</AliasName>
+            <displayName>ft3</displayName>
+            <description>Floating point temporary register 3</description>
+            <Index>0x1023</Index>
+          </register>
+          <register>
+            <name>f4</name>
+            <AliasName>ft4</AliasName>
+            <displayName>ft4</displayName>
+            <description>Floating point temporary register 4</description>
+            <Index>0x1024</Index>
+          </register>
+          <register>
+            <name>f5</name>
+            <AliasName>ft5</AliasName>
+            <displayName>ft5</displayName>
+            <description>Floating point temporary register 5</description>
+            <Index>0x1025</Index>
+          </register>
+          <register>
+            <name>f6</name>
+            <AliasName>ft6</AliasName>
+            <displayName>ft6</displayName>
+            <description>Floating point temporary register 6</description>
+            <Index>0x1026</Index>
+          </register>
+          <register>
+            <name>f7</name>
+            <AliasName>ft7</AliasName>
+            <displayName>ft7</displayName>
+            <description>Floating point temporary register 7</description>
+            <Index>0x1027</Index>
+          </register>
+          <register>
+            <name>f28</name>
+            <AliasName>ft8</AliasName>
+            <displayName>ft8</displayName>
+            <description>Floating point temporary register 8</description>
+            <Index>0x103C</Index>
+          </register>
+          <register>
+            <name>f29</name>
+            <AliasName>ft9</AliasName>
+            <displayName>ft9</displayName>
+            <description>Floating point temporary register 9</description>
+            <Index>0x103D</Index>
+          </register>
+          <register>
+            <name>f30</name>
+            <AliasName>ft10</AliasName>
+            <displayName>ft10</displayName>
+            <description>Floating point temporary register 10</description>
+            <Index>0x103E</Index>
+          </register>
+          <register>
+            <name>f31</name>
+            <AliasName>ft11</AliasName>
+            <displayName>ft11</displayName>
+            <description>Floating point temporary register 11</description>
+            <Index>0x103F</Index>
+          </register>
+          <register>
+            <name>f8</name>
+            <AliasName>fs0</AliasName>
+            <displayName>fs0</displayName>
+            <description>Floating point saved register 0</description>
+            <Index>0x1028</Index>
+          </register>
+          <register>
+            <name>f9</name>
+            <AliasName>fs1</AliasName>
+            <displayName>fs1</displayName>
+            <description>Floating point saved register 1</description>
+            <Index>0x1029</Index>
+          </register>
+          <register>
+            <name>f18</name>
+            <AliasName>fs2</AliasName>
+            <displayName>fs2</displayName>
+            <description>Floating point saved register 2</description>
+            <Index>0x1032</Index>
+          </register>
+          <register>
+            <name>f19</name>
+            <AliasName>fs3</AliasName>
+            <displayName>fs3</displayName>
+            <description>Floating point saved register 3</description>
+            <Index>0x1033</Index>
+          </register>
+          <register>
+            <name>f20</name>
+            <AliasName>fs4</AliasName>
+            <displayName>fs4</displayName>
+            <description>Floating point saved register 4</description>
+            <Index>0x1034</Index>
+          </register>
+          <register>
+            <name>f21</name>
+            <AliasName>fs5</AliasName>
+            <displayName>fs5</displayName>
+            <description>Floating point saved register 5</description>
+            <Index>0x1035</Index>
+          </register>
+          <register>
+            <name>f22</name>
+            <AliasName>fs6</AliasName>
+            <displayName>fs6</displayName>
+            <description>Floating point saved register 6</description>
+            <Index>0x1036</Index>
+          </register>
+          <register>
+            <name>f23</name>
+            <AliasName>fs7</AliasName>
+            <displayName>fs7</displayName>
+            <description>Floating point saved register 7</description>
+            <Index>0x1037</Index>
+          </register>
+          <register>
+            <name>f24</name>
+            <AliasName>fs8</AliasName>
+            <displayName>fs8</displayName>
+            <description>Floating point saved register 8</description>
+            <Index>0x1038</Index>
+          </register>
+          <register>
+            <name>f25</name>
+            <AliasName>fs9</AliasName>
+            <displayName>fs9</displayName>
+            <description>Floating point saved register 9</description>
+            <Index>0x1039</Index>
+          </register>
+          <register>
+            <name>f26</name>
+            <AliasName>fs10</AliasName>
+            <displayName>fs10</displayName>
+            <description>Floating point saved register 10</description>
+            <Index>0x103A</Index>
+          </register>
+          <register>
+            <name>f27</name>
+            <AliasName>fs11</AliasName>
+            <displayName>fs11</displayName>
+            <description>Floating point saved register 11</description>
+            <Index>0x103B</Index>
+          </register>
+          <register>
+            <name>fcsr</name>
+            <size>32</size>
+            <type>unsigned int</type>
+            <description>Floating point control and status register</description>
+            <Index>0x3</Index>
+            <fields>
+              <field>
+                <name>NX</name>
+                <description>Inexact</description>
+                <bitRange>[0:0]</bitRange>
+              </field>
+              <field>
+                <name>UF</name>
+                <description>Underflow</description>
+                <bitRange>[1:1]</bitRange>
+              </field>
+              <field>
+                <name>OF</name>
+                <description>Overflow</description>
+                <bitRange>[2:2]</bitRange>
+              </field>
+              <field>
+                <name>DZ</name>
+                <description>Divide by zero</description>
+                <bitRange>[3:3]</bitRange>
+              </field>
+              <field>
+                <name>NV</name>
+                <description>Invalid Operation</description>
+                <bitRange>[4:4]</bitRange>
+              </field>
+              <field>
+                <name>FRM</name>
+                <description>Rounding Mode</description>
+                <bitRange>[7:5]</bitRange>
+                <enumeratedValues>
+                  <enumeratedValue>
+                    <description>Round to nearest, ties to even</description>
+                    <value>0</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Round towards zero</description>
+                    <value>1</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Round down</description>
+                    <value>2</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Round up</description>
+                    <value>3</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Round to nearest, ties to max. magnitude</description>
+                    <value>4</value>
+                  </enumeratedValue>
+                </enumeratedValues>
+              </field>
+            </fields>
+          </register>
+        </registers>
+      </group>
+      <group>
+        <name>FPU 32 (Numerical)</name>
+        <description>Single-precision floating point registers</description>
+        <size>32</size>
+        <type>float</type>
+        <access>RW</access>
+        <registers>
+          <register>
+            <name>f0</name>
+            <AliasName>ft0</AliasName>
+            <description>Floating point temporary register 0</description>
+            <Index>0x1020</Index>
+          </register>
+          <register>
+            <name>f1</name>
+            <AliasName>ft1</AliasName>
+            <description>Floating point temporary register 1</description>
+            <Index>0x1021</Index>
+          </register>
+          <register>
+            <name>f2</name>
+            <AliasName>ft2</AliasName>
+            <description>Floating point temporary register 2</description>
+            <Index>0x1022</Index>
+          </register>
+          <register>
+            <name>f3</name>
+            <AliasName>ft3</AliasName>
+            <description>Floating point temporary register 3</description>
+            <Index>0x1023</Index>
+          </register>
+          <register>
+            <name>f4</name>
+            <AliasName>ft4</AliasName>
+            <description>Floating point temporary register 4</description>
+            <Index>0x1024</Index>
+          </register>
+          <register>
+            <name>f5</name>
+            <AliasName>ft5</AliasName>
+            <description>Floating point temporary register 5</description>
+            <Index>0x1025</Index>
+          </register>
+          <register>
+            <name>f6</name>
+            <AliasName>ft6</AliasName>
+            <description>Floating point temporary register 6</description>
+            <Index>0x1026</Index>
+          </register>
+          <register>
+            <name>f7</name>
+            <AliasName>ft7</AliasName>
+            <description>Floating point temporary register 7</description>
+            <Index>0x1027</Index>
+          </register>
+          <register>
+            <name>f8</name>
+            <AliasName>fs0</AliasName>
+            <description>Floating point saved register 0</description>
+            <Index>0x1028</Index>
+          </register>
+          <register>
+            <name>f9</name>
+            <AliasName>fs1</AliasName>
+            <description>Floating point saved register 1</description>
+            <Index>0x1029</Index>
+          </register>
+          <register>
+            <name>f10</name>
+            <AliasName>fa0</AliasName>
+            <description>Floating point argument/return value register 0</description>
+            <Index>0x102A</Index>
+          </register>
+          <register>
+            <name>f11</name>
+            <AliasName>fa1</AliasName>
+            <description>Floating point argument/return value register 1</description>
+            <Index>0x102B</Index>
+          </register>
+          <register>
+            <name>f12</name>
+            <AliasName>fa2</AliasName>
+            <description>Floating point argument register 2</description>
+            <Index>0x102C</Index>
+          </register>
+          <register>
+            <name>f13</name>
+            <AliasName>fa3</AliasName>
+            <description>Floating point argument register 3</description>
+            <Index>0x102D</Index>
+          </register>
+          <register>
+            <name>f14</name>
+            <AliasName>fa4</AliasName>
+            <description>Floating point argument register 4</description>
+            <Index>0x102E</Index>
+          </register>
+          <register>
+            <name>f15</name>
+            <AliasName>fa5</AliasName>
+            <description>Floating point argument register 5</description>
+            <Index>0x102F</Index>
+          </register>
+          <register>
+            <name>f16</name>
+            <AliasName>fa6</AliasName>
+            <description>Floating point argument register 6</description>
+            <Index>0x1030</Index>
+          </register>
+          <register>
+            <name>f17</name>
+            <AliasName>fa7</AliasName>
+            <description>Floating point argument register 7</description>
+            <Index>0x1031</Index>
+          </register>
+          <register>
+            <name>f18</name>
+            <AliasName>fs2</AliasName>
+            <description>Floating point saved register 2</description>
+            <Index>0x1032</Index>
+          </register>
+          <register>
+            <name>f19</name>
+            <AliasName>fs3</AliasName>
+            <description>Floating point saved register 3</description>
+            <Index>0x1033</Index>
+          </register>
+          <register>
+            <name>f20</name>
+            <AliasName>fs4</AliasName>
+            <description>Floating point saved register 4</description>
+            <Index>0x1034</Index>
+          </register>
+          <register>
+            <name>f21</name>
+            <AliasName>fs5</AliasName>
+            <description>Floating point saved register 5</description>
+            <Index>0x1035</Index>
+          </register>
+          <register>
+            <name>f22</name>
+            <AliasName>fs6</AliasName>
+            <description>Floating point saved register 6</description>
+            <Index>0x1036</Index>
+          </register>
+          <register>
+            <name>f23</name>
+            <AliasName>fs7</AliasName>
+            <description>Floating point saved register 7</description>
+            <Index>0x1037</Index>
+          </register>
+          <register>
+            <name>f24</name>
+            <AliasName>fs8</AliasName>
+            <description>Floating point saved register 8</description>
+            <Index>0x1038</Index>
+          </register>
+          <register>
+            <name>f25</name>
+            <AliasName>fs9</AliasName>
+            <description>Floating point saved register 9</description>
+            <Index>0x1039</Index>
+          </register>
+          <register>
+            <name>f26</name>
+            <AliasName>fs10</AliasName>
+            <description>Floating point saved register 10</description>
+            <Index>0x103A</Index>
+          </register>
+          <register>
+            <name>f27</name>
+            <AliasName>fs11</AliasName>
+            <description>Floating point saved register 11</description>
+            <Index>0x103B</Index>
+          </register>
+          <register>
+            <name>f28</name>
+            <AliasName>ft8</AliasName>
+            <description>Floating point temporary register 8</description>
+            <Index>0x103C</Index>
+          </register>
+          <register>
+            <name>f29</name>
+            <AliasName>ft9</AliasName>
+            <description>Floating point temporary register 9</description>
+            <Index>0x103D</Index>
+          </register>
+          <register>
+            <name>f30</name>
+            <AliasName>ft10</AliasName>
+            <description>Floating point temporary register 10</description>
+            <Index>0x103E</Index>
+          </register>
+          <register>
+            <name>f31</name>
+            <AliasName>ft11</AliasName>
+            <description>Floating point temporary register 11</description>
+            <Index>0x103F</Index>
+          </register>
+          <register>
+            <name>fcsr</name>
+            <size>32</size>
+            <type>unsigned int</type>
+            <description>Floating point control and status register</description>
+            <Index>0x3</Index>
+            <fields>
+              <field>
+                <name>NX</name>
+                <description>Inexact</description>
+                <bitRange>[0:0]</bitRange>
+              </field>
+              <field>
+                <name>UF</name>
+                <description>Underflow</description>
+                <bitRange>[1:1]</bitRange>
+              </field>
+              <field>
+                <name>OF</name>
+                <description>Overflow</description>
+                <bitRange>[2:2]</bitRange>
+              </field>
+              <field>
+                <name>DZ</name>
+                <description>Divide by zero</description>
+                <bitRange>[3:3]</bitRange>
+              </field>
+              <field>
+                <name>NV</name>
+                <description>Invalid Operation</description>
+                <bitRange>[4:4]</bitRange>
+              </field>
+              <field>
+                <name>FRM</name>
+                <description>Rounding Mode</description>
+                <bitRange>[7:5]</bitRange>
+                <enumeratedValues>
+                  <enumeratedValue>
+                    <description>Round to nearest, ties to even</description>
+                    <value>0</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Round towards zero</description>
+                    <value>1</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Round down</description>
+                    <value>2</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Round up</description>
+                    <value>3</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Round to nearest, ties to max. magnitude</description>
+                    <value>4</value>
+                  </enumeratedValue>
+                </enumeratedValues>
+              </field>
+            </fields>
+          </register>
+        </registers>
+      </group>
+      <group>
+        <name>Machine Information Registers</name>
+        <description>Machine Information Registers</description>
+        <size>64</size>
+        <access>RW</access>
+        <type>unsigned long long</type>
+        <registers>
+          <register>
+            <name>mvendorid</name>
+            <description>Vendor ID register</description>
+            <Index>0xF11</Index>
+          </register>
+          <register>
+            <name>marchid</name>
+            <description>Architecture ID register</description>
+            <Index>0xF12</Index>
+          </register>
+          <register>
+            <name>mimpid</name>
+            <description>Implementation ID register</description>
+            <Index>0xF13</Index>
+          </register>
+          <register>
+            <name>mhartid</name>
+            <description>Hardware thread ID register</description>
+            <Index>0xF14</Index>
+          </register>
+        </registers>
+      </group>
+      <group>
+        <name>Machine Trap Setup</name>
+        <description>Machine Trap Setup Registers</description>
+        <size>64</size>
+        <access>RW</access>
+        <type>unsigned long long</type>
+        <registers>
+          <register>
+            <name>mstatus</name>
+            <description>Machine status register</description>
+            <Index>0x300</Index>
+            <fields>
+              <field>
+                <name>UIE</name>
+                <description>Interrupt enable, user mode</description>
+                <bitRange>[0:0]</bitRange>
+              </field>
+              <field>
+                <name>SIE</name>
+                <description>Interrupt enable, supervisor mode</description>
+                <bitRange>[1:1]</bitRange>
+              </field>
+              <field>
+                <name>MIE</name>
+                <description>Interrupt enable, machine mode</description>
+                <bitRange>[3:3]</bitRange>
+              </field>
+              <field>
+                <name>UPIE</name>
+                <description>Interrupt enable prior to trap, user mode</description>
+                <bitRange>[4:4]</bitRange>
+              </field>
+              <field>
+                <name>SPIE</name>
+                <description>Interrupt enable prior to trap, supervisor mode</description>
+                <bitRange>[5:5]</bitRange>
+              </field>
+              <field>
+                <name>MPIE</name>
+                <description>Interrupt enable prior to trap, machine mode</description>
+                <bitRange>[7:7]</bitRange>
+              </field>
+              <field>
+                <name>SPP</name>
+                <description>Previous priviledge level, supervisor mode</description>
+                <bitRange>[8:8]</bitRange>
+              </field>
+              <field>
+                <name>MPP</name>
+                <description>Previous priviledge level, machine mode</description>
+                <bitRange>[12:11]</bitRange>
+              </field>
+              <field>
+                <name>FS</name>
+                <description>Floating point unit status</description>
+                <bitRange>[14:13]</bitRange>
+                <enumeratedValues>
+                  <enumeratedValue>
+                    <description>Off</description>
+                    <value>0</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Initial</description>
+                    <value>1</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Clean</description>
+                    <value>2</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Dirty</description>
+                    <value>3</value>
+                  </enumeratedValue>
+                </enumeratedValues>
+              </field>
+              <field>
+                <name>XS</name>
+                <description>Status of user mode extensions</description>
+                <bitRange>[16:15]</bitRange>
+                <enumeratedValues>
+                  <enumeratedValue>
+                    <description>Off</description>
+                    <value>0</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Initial</description>
+                    <value>1</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Clean</description>
+                    <value>2</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Dirty</description>
+                    <value>3</value>
+                  </enumeratedValue>
+                </enumeratedValues>
+              </field>
+              <field>
+                <name>MPRV</name>
+                <description>Modify priviledge bits</description>
+                <bitRange>[17:17]</bitRange>
+              </field>
+              <field>
+                <name>SUM</name>
+                <description>Permit supervisor memory access</description>
+                <bitRange>[18:18]</bitRange>
+              </field>
+              <field>
+                <name>MXR</name>
+                <description>Make executable readable</description>
+                <bitRange>[19:19]</bitRange>
+              </field>
+              <field>
+                <name>TVM</name>
+                <description>Trap virtual memory</description>
+                <bitRange>[20:20]</bitRange>
+              </field>
+              <field>
+                <name>TW</name>
+                <description>Timeout wait</description>
+                <bitRange>[21:21]</bitRange>
+              </field>
+              <field>
+                <name>TSR</name>
+                <description>Trap SRET instruction</description>
+                <bitRange>[22:22]</bitRange>
+              </field>
+              <field>
+                <name>SD</name>
+                <description>Extended user context save required</description>
+                <bitRange>[31:31]</bitRange>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>misa</name>
+            <description>Machine ISA register</description>
+            <Index>0x301</Index>
+            <fields>
+              <field>
+                <name>A</name>
+                <description>Atomic instruction extension implemented</description>
+                <bitRange>[0:0]</bitRange>
+              </field>
+              <field>
+                <name>C</name>
+                <description>Compressed instruction extension implemented</description>
+                <bitRange>[2:2]</bitRange>
+              </field>
+              <field>
+                <name>D</name>
+                <description>Double-precision floating point extension implemented</description>
+                <bitRange>[3:3]</bitRange>
+              </field>
+              <field>
+                <name>E</name>
+                <description>Reduced integer ISA for embedded systems implemented</description>
+                <bitRange>[4:4]</bitRange>
+              </field>
+              <field>
+                <name>F</name>
+                <description>Single-precision floating point extension implemented</description>
+                <bitRange>[5:5]</bitRange>
+              </field>
+              <field>
+                <name>G</name>
+                <description>IMAFD extensions implemented</description>
+                <bitRange>[6:6]</bitRange>
+              </field>
+              <field>
+                <name>I</name>
+                <description>Base integer ISA implemented</description>
+                <bitRange>[8:8]</bitRange>
+              </field>
+              <field>
+                <name>M</name>
+                <description>Integer multiply and divide extension implemented</description>
+                <bitRange>[12:12]</bitRange>
+              </field>
+              <field>
+                <name>N</name>
+                <description>User level interrupts extension implemented</description>
+                <bitRange>[13:13]</bitRange>
+              </field>
+              <field>
+                <name>Q</name>
+                <description>Quad-precision floating point extension implemented</description>
+                <bitRange>[16:16]</bitRange>
+              </field>
+              <field>
+                <name>S</name>
+                <description>Supervisor priviledge level implemented</description>
+                <bitRange>[18:18]</bitRange>
+              </field>
+              <field>
+                <name>U</name>
+                <description>User priviledge level implemented</description>
+                <bitRange>[20:20]</bitRange>
+              </field>
+              <field>
+                <name>X</name>
+                <description>Non-standard extension present</description>
+                <bitRange>[23:23]</bitRange>
+              </field>
+              <field>
+                <name>MXL</name>
+                <description>Machine XLEN</description>
+                <bitRange>[31:30]</bitRange>
+                <enumeratedValues>
+                  <enumeratedValue>
+                    <description>32 bit</description>
+                    <value>1</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>64 bit</description>
+                    <value>2</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>128 bit</description>
+                    <value>3</value>
+                  </enumeratedValue>
+                </enumeratedValues>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>medeleg</name>
+            <description>Machine exception delegetion register</description>
+            <Index>0x302</Index>
+          </register>
+          <register>
+            <name>mideleg</name>
+            <description>Machine interrupt delegation register</description>
+            <Index>0x303</Index>
+          </register>
+          <register>
+            <name>mie</name>
+            <description>Machine interrupt enable register</description>
+            <Index>0x304</Index>
+            <fields>
+              <field>
+                <name>USIE</name>
+                <description>Interupt delegation to supervisor enable</description>
+                <bitRange>[0:0]</bitRange>
+              </field>
+              <field>
+                <name>SSIE</name>
+                <description>Interupt delegation to supervisor enable</description>
+                <bitRange>[1:1]</bitRange>
+              </field>
+              <field>
+                <name>MSIE</name>
+                <description>Interupt delegation to supervisor enable</description>
+                <bitRange>[3:3]</bitRange>
+              </field>
+              <field>
+                <name>UTIE</name>
+                <description>User timer interrupt enable</description>
+                <bitRange>[4:4]</bitRange>
+              </field>
+              <field>
+                <name>STIE</name>
+                <description>Supervisor timer interrupt enable</description>
+                <bitRange>[5:5]</bitRange>
+              </field>
+              <field>
+                <name>MTIE</name>
+                <description>Machine timer interrupt enable</description>
+                <bitRange>[7:7]</bitRange>
+              </field>
+              <field>
+                <name>UEIE</name>
+                <description>User external interrupt enable</description>
+                <bitRange>[8:8]</bitRange>
+              </field>
+              <field>
+                <name>SEIE</name>
+                <description>Supervisor external interrupt enable</description>
+                <bitRange>[9:9]</bitRange>
+              </field>
+              <field>
+                <name>MEIE</name>
+                <description>Machine external interrupt enable</description>
+                <bitRange>[11:11]</bitRange>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>mtvec</name>
+            <description>Machine trap vector base address register</description>
+            <Index>0x305</Index>
+          </register>
+          <register>
+            <name>mcounteren</name>
+            <size>32</size>
+            <type>unsigned int</type>
+            <description>Machine counter enable register</description>
+            <Index>0x306</Index>
+          </register>
+        </registers>
+      </group>
+      <group>
+        <name>Machine Trap Handling</name>
+        <description>Machine Trap Handling Registers</description>
+        <size>64</size>
+        <access>RW</access>
+        <type>unsigned long long</type>
+        <registers>
+          <register>
+            <name>mscratch</name>
+            <description>Machine scratch register</description>
+            <Index>0x340</Index>
+          </register>
+          <register>
+            <name>mepc</name>
+            <description>Machine exception program counter</description>
+            <Index>0x341</Index>
+          </register>
+          <register>
+            <name>mcause</name>
+            <description>Machine trap cause register</description>
+            <Index>0x342</Index>
+            <fields>
+              <field>
+                <name>Cause</name>
+                <description>Cause bit</description>
+                <bitRange>[31:31]</bitRange>
+                <enumeratedValues>
+                  <enumeratedValue>
+                    <description>Cause=Exception</description>
+                    <value>0</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Cause=Interrupt</description>
+                    <value>1</value>
+                  </enumeratedValue>
+                </enumeratedValues>
+              </field>
+              <field>
+                <name>Exception</name>
+                <description>Exception Code</description>
+                <bitRange>[30:0]</bitRange>
+                <enumeratedValues>
+                  <enumeratedValue>
+                    <description>Instruction address misaligned</description>
+                    <value>0</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Instruction access fault</description>
+                    <value>1</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Illegal instruction</description>
+                    <value>2</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Breakpoint</description>
+                    <value>3</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Load address misaligned</description>
+                    <value>4</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Load access fault</description>
+                    <value>5</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Store/AMO address misaligned</description>
+                    <value>6</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Store/AMO access fault</description>
+                    <value>7</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Environment call from user mode</description>
+                    <value>8</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Environment call from supervisor mode</description>
+                    <value>9</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Environment call from machine mode</description>
+                    <value>11</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Instruction page fault</description>
+                    <value>12</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Load page fault</description>
+                    <value>13</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Store/AMO page fault</description>
+                    <value>15</value>
+                  </enumeratedValue>
+                </enumeratedValues>
+              </field>
+              <field>
+                <name>Interrupt</name>
+                <description>Interrupt Code</description>
+                <bitRange>[30:0]</bitRange>
+                <enumeratedValues>
+                  <enumeratedValue>
+                    <description>User software interrupt</description>
+                    <value>0</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Supervisor software interrupt</description>
+                    <value>1</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Machine software interrupt</description>
+                    <value>3</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>User timer interrupt</description>
+                    <value>4</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Supervisor timer interrupt</description>
+                    <value>5</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Machine timer interrupt</description>
+                    <value>7</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>User external interrupt</description>
+                    <value>8</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Supervisor external interrupt</description>
+                    <value>9</value>
+                  </enumeratedValue>
+                  <enumeratedValue>
+                    <description>Machine external interrupt</description>
+                    <value>11</value>
+                  </enumeratedValue>
+                </enumeratedValues>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>mtval</name>
+            <description>Machine trap value register</description>
+            <Index>0x343</Index>
+          </register>
+          <register>
+            <name>mip</name>
+            <description>Machine interrupt pending register</description>
+            <Index>0x344</Index>
+            <fields>
+              <field>
+                <name>USIP</name>
+                <description>Interupt delegation to supervisor pending (U-Mode)</description>
+                <bitRange>[0:0]</bitRange>
+              </field>
+              <field>
+                <name>SSIP</name>
+                <description>Interupt delegation to supervisor pending (S-Mode)</description>
+                <bitRange>[1:1]</bitRange>
+              </field>
+              <field>
+                <name>MSIP</name>
+                <description>Interupt delegation to supervisor pending (M-Mode)</description>
+                <bitRange>[3:3]</bitRange>
+              </field>
+              <field>
+                <name>UTIP</name>
+                <description>User timer interrupt pending</description>
+                <bitRange>[4:4]</bitRange>
+              </field>
+              <field>
+                <name>STIP</name>
+                <description>Supervisor timer interrupt pending</description>
+                <bitRange>[5:5]</bitRange>
+              </field>
+              <field>
+                <name>MTIP</name>
+                <description>Machine timer interrupt pending</description>
+                <bitRange>[7:7]</bitRange>
+              </field>
+              <field>
+                <name>UEIP</name>
+                <description>User external interrupt pending</description>
+                <bitRange>[8:8]</bitRange>
+              </field>
+              <field>
+                <name>SEIP</name>
+                <description>Supervisor external interrupt pending</description>
+                <bitRange>[9:9]</bitRange>
+              </field>
+              <field>
+                <name>MEIP</name>
+                <description>Machine external interrupt pending</description>
+                <bitRange>[11:11]</bitRange>
+              </field>
+            </fields>
+          </register>
+        </registers>
+      </group>
+      <group>
+        <name>Machine Protection and Translation</name>
+        <description>Machine Protection and translation registers</description>
+        <size>64</size>
+        <access>RW</access>
+        <type>unsigned long long</type>
+        <registers>
+          <register>
+            <name>pmpcfg0</name>
+            <size>32</size>
+            <type>unsigned int</type>
+            <description>Physical memory protection configuration register 0</description>
+            <Index>0x3A0</Index>
+          </register>
+          <register>
+            <name>pmpcfg1</name>
+            <size>32</size>
+            <type>unsigned int</type>
+            <description>Physical memory protection configuration register 1</description>
+            <Index>0x3A1</Index>
+          </register>
+          <register>
+            <name>pmpcfg2</name>
+            <size>32</size>
+            <type>unsigned int</type>
+            <description>Physical memory protection configuration register 2</description>
+            <Index>0x3A2</Index>
+          </register>
+          <register>
+            <name>pmpcfg3</name>
+            <size>32</size>
+            <type>unsigned int</type>
+            <description>Physical memory protection configuration register 3</description>
+            <Index>0x3A3</Index>
+          </register>
+          <register>
+            <name>pmpaddr0</name>
+            <description>Physical memory protection address register 0</description>
+            <Index>0x3B0</Index>
+          </register>
+          <register>
+            <name>pmpaddr1</name>
+            <description>Physical memory protection address register 1</description>
+            <Index>0x3B1</Index>
+          </register>
+          <register>
+            <name>pmpaddr2</name>
+            <description>Physical memory protection address register 1</description>
+            <Index>0x3B2</Index>
+          </register>
+          <register>
+            <name>pmpaddr3</name>
+            <description>Physical memory protection address register 1</description>
+            <Index>0x3B3</Index>
+          </register>
+          <register>
+            <name>pmpaddr4</name>
+            <description>Physical memory protection address register 1</description>
+            <Index>0x3B4</Index>
+          </register>
+          <register>
+            <name>pmpaddr5</name>
+            <description>Physical memory protection address register 1</description>
+            <Index>0x3B5</Index>
+          </register>
+          <register>
+            <name>pmpaddr6</name>
+            <description>Physical memory protection address register 1</description>
+            <Index>0x3B6</Index>
+          </register>
+          <register>
+            <name>pmpaddr7</name>
+            <description>Physical memory protection address register 1</description>
+            <Index>0x3B7</Index>
+          </register>
+          <register>
+            <name>pmpaddr8</name>
+            <description>Physical memory protection address register 1</description>
+            <Index>0x3B8</Index>
+          </register>
+          <register>
+            <name>pmpaddr9</name>
+            <description>Physical memory protection address register 1</description>
+            <Index>0x3B9</Index>
+          </register>
+          <register>
+            <name>pmpaddr10</name>
+            <description>Physical memory protection address register 1</description>
+            <Index>0x3BA</Index>
+          </register>
+          <register>
+            <name>pmpaddr11</name>
+            <description>Physical memory protection address register 1</description>
+            <Index>0x3BB</Index>
+          </register>
+          <register>
+            <name>pmpaddr12</name>
+            <description>Physical memory protection address register 1</description>
+            <Index>0x3BC</Index>
+          </register>
+          <register>
+            <name>pmpaddr13</name>
+            <description>Physical memory protection address register 1</description>
+            <Index>0x3BD</Index>
+          </register>
+          <register>
+            <name>pmpaddr14</name>
+            <description>Physical memory protection address register 1</description>
+            <Index>0x3BE</Index>
+          </register>
+          <register>
+            <name>pmpaddr15</name>
+            <description>Physical memory protection address register 1</description>
+            <Index>0x3BF</Index>
+          </register>
+        </registers>
+      </group>
+      <group>
+        <name>Machine Counters/Timers</name>
+        <description>Machine counter and timer registers</description>
+        <size>64</size>
+        <access>RW</access>
+        <type>unsigned long long</type>
+        <registers>
+          <register>
+            <name>mcycle</name>
+            <description>Cycle counter</description>
+            <Index>0xB00</Index>
+          </register>
+          <register>
+            <name>minstret</name>
+            <description>Number of instructions retired</description>
+            <Index>0xB02</Index>
+          </register>
+          <register>
+            <name>mhpmcounter3</name>
+            <description>Event counter register 3</description>
+            <Index>0xB03</Index>
+          </register>
+          <register>
+            <name>mhpmcounter4</name>
+            <description>Event counter register 4</description>
+            <Index>0xB04</Index>
+          </register>
+          <register>
+            <name>mhpmcounter5</name>
+            <description>Event counter register 5</description>
+            <Index>0xB05</Index>
+          </register>
+          <register>
+            <name>mhpmcounter6</name>
+            <description>Event counter register 6</description>
+            <Index>0xB06</Index>
+          </register>
+          <register>
+            <name>mhpmcounter7</name>
+            <description>Event counter register 7</description>
+            <Index>0xB07</Index>
+          </register>
+          <register>
+            <name>mhpmcounter8</name>
+            <description>Event counter register 8</description>
+            <Index>0xB08</Index>
+          </register>
+          <register>
+            <name>mhpmcounter9</name>
+            <description>Event counter register 9</description>
+            <Index>0xB09</Index>
+          </register>
+          <register>
+            <name>mhpmcounter10</name>
+            <description>Event counter register 10</description>
+            <Index>0xB0A</Index>
+          </register>
+          <register>
+            <name>mhpmcounter11</name>
+            <description>Event counter register 11</description>
+            <Index>0xB0B</Index>
+          </register>
+          <register>
+            <name>mhpmcounter12</name>
+            <description>Event counter register 12</description>
+            <Index>0xB0C</Index>
+          </register>
+          <register>
+            <name>mhpmcounter13</name>
+            <description>Event counter register 13</description>
+            <Index>0xB0D</Index>
+          </register>
+          <register>
+            <name>mhpmcounter14</name>
+            <description>Event counter register 14</description>
+            <Index>0xB0E</Index>
+          </register>
+          <register>
+            <name>mhpmcounter15</name>
+            <description>Event counter register 15</description>
+            <Index>0xB0F</Index>
+          </register>
+          <register>
+            <name>mhpmcounter16</name>
+            <description>Event counter register 16</description>
+            <Index>0xB10</Index>
+          </register>
+          <register>
+            <name>mhpmcounter17</name>
+            <description>Event counter register 17</description>
+            <Index>0xB11</Index>
+          </register>
+          <register>
+            <name>mhpmcounter18</name>
+            <description>Event counter register 18</description>
+            <Index>0xB12</Index>
+          </register>
+          <register>
+            <name>mhpmcounter19</name>
+            <description>Event counter register 19</description>
+            <Index>0xB13</Index>
+          </register>
+          <register>
+            <name>mhpmcounter20</name>
+            <description>Event counter register 20</description>
+            <Index>0xB14</Index>
+          </register>
+          <register>
+            <name>mhpmcounter21</name>
+            <description>Event counter register 21</description>
+            <Index>0xB15</Index>
+          </register>
+          <register>
+            <name>mhpmcounter22</name>
+            <description>Event counter register 22</description>
+            <Index>0xB16</Index>
+          </register>
+          <register>
+            <name>mhpmcounter23</name>
+            <description>Event counter register 23</description>
+            <Index>0xB17</Index>
+          </register>
+          <register>
+            <name>mhpmcounter24</name>
+            <description>Event counter register 24</description>
+            <Index>0xB18</Index>
+          </register>
+          <register>
+            <name>mhpmcounter25</name>
+            <description>Event counter register 25</description>
+            <Index>0xB19</Index>
+          </register>
+          <register>
+            <name>mhpmcounter26</name>
+            <description>Event counter register 26</description>
+            <Index>0xB1A</Index>
+          </register>
+          <register>
+            <name>mhpmcounter27</name>
+            <description>Event counter register 27</description>
+            <Index>0xB1B</Index>
+          </register>
+          <register>
+            <name>mhpmcounter28</name>
+            <description>Event counter register 28</description>
+            <Index>0xB1C</Index>
+          </register>
+          <register>
+            <name>mhpmcounter29</name>
+            <description>Event counter register 29</description>
+            <Index>0xB1D</Index>
+          </register>
+          <register>
+            <name>mhpmcounter30</name>
+            <description>Event counter register 30</description>
+            <Index>0xB1E</Index>
+          </register>
+          <register>
+            <name>mhpmcounter31</name>
+            <description>Event counter register 31</description>
+            <Index>0xB1F</Index>
+          </register>
+        </registers>
+      </group>
+      <group>
+        <name>User Counters/Timers</name>
+        <description>User counter and timer registers</description>
+        <size>64</size>
+        <access>RW</access>
+        <type>unsigned long long</type>
+        <registers>
+          <register>
+            <name>cycle</name>
+            <description>Cycle counter</description>
+            <Index>0xC00</Index>
+          </register>
+          <register>
+            <name>time</name>
+            <description>Number of instructions retired</description>
+            <Index>0xC01</Index>
+          </register>
+          <register>
+            <name>instret</name>
+            <description>Number of instructions retired</description>
+            <Index>0xC02</Index>
+          </register>
+          <register>
+            <name>hpmcounter3</name>
+            <description>Event counter register 3</description>
+            <Index>0xC03</Index>
+          </register>
+          <register>
+            <name>hpmcounter4</name>
+            <description>Event counter register 4</description>
+            <Index>0xC04</Index>
+          </register>
+          <register>
+            <name>hpmcounter5</name>
+            <description>Event counter register 5</description>
+            <Index>0xC05</Index>
+          </register>
+          <register>
+            <name>hpmcounter6</name>
+            <description>Event counter register 6</description>
+            <Index>0xC06</Index>
+          </register>
+          <register>
+            <name>hpmcounter7</name>
+            <description>Event counter register 7</description>
+            <Index>0xC07</Index>
+          </register>
+          <register>
+            <name>hpmcounter8</name>
+            <description>Event counter register 8</description>
+            <Index>0xC08</Index>
+          </register>
+          <register>
+            <name>hpmcounter9</name>
+            <description>Event counter register 9</description>
+            <Index>0xC09</Index>
+          </register>
+          <register>
+            <name>hpmcounter10</name>
+            <description>Event counter register 10</description>
+            <Index>0xC0A</Index>
+          </register>
+          <register>
+            <name>hpmcounter11</name>
+            <description>Event counter register 11</description>
+            <Index>0xC0B</Index>
+          </register>
+          <register>
+            <name>hpmcounter12</name>
+            <description>Event counter register 12</description>
+            <Index>0xC0C</Index>
+          </register>
+          <register>
+            <name>hpmcounter13</name>
+            <description>Event counter register 13</description>
+            <Index>0xC0D</Index>
+          </register>
+          <register>
+            <name>hpmcounter14</name>
+            <description>Event counter register 14</description>
+            <Index>0xC0E</Index>
+          </register>
+          <register>
+            <name>hpmcounter15</name>
+            <description>Event counter register 15</description>
+            <Index>0xC0F</Index>
+          </register>
+          <register>
+            <name>hpmcounter16</name>
+            <description>Event counter register 16</description>
+            <Index>0xC10</Index>
+          </register>
+          <register>
+            <name>hpmcounter17</name>
+            <description>Event counter register 17</description>
+            <Index>0xC11</Index>
+          </register>
+          <register>
+            <name>hpmcounter18</name>
+            <description>Event counter register 18</description>
+            <Index>0xC12</Index>
+          </register>
+          <register>
+            <name>hpmcounter19</name>
+            <description>Event counter register 19</description>
+            <Index>0xC13</Index>
+          </register>
+          <register>
+            <name>hpmcounter20</name>
+            <description>Event counter register 20</description>
+            <Index>0xC14</Index>
+          </register>
+          <register>
+            <name>hpmcounter21</name>
+            <description>Event counter register 21</description>
+            <Index>0xC15</Index>
+          </register>
+          <register>
+            <name>hpmcounter22</name>
+            <description>Event counter register 22</description>
+            <Index>0xC16</Index>
+          </register>
+          <register>
+            <name>hpmcounter23</name>
+            <description>Event counter register 23</description>
+            <Index>0xC17</Index>
+          </register>
+          <register>
+            <name>hpmcounter24</name>
+            <description>Event counter register 24</description>
+            <Index>0xC18</Index>
+          </register>
+          <register>
+            <name>hpmcounter25</name>
+            <description>Event counter register 25</description>
+            <Index>0xC19</Index>
+          </register>
+          <register>
+            <name>hpmcounter26</name>
+            <description>Event counter register 26</description>
+            <Index>0xC1A</Index>
+          </register>
+          <register>
+            <name>hpmcounter27</name>
+            <description>Event counter register 27</description>
+            <Index>0xC1B</Index>
+          </register>
+          <register>
+            <name>hpmcounter28</name>
+            <description>Event counter register 28</description>
+            <Index>0xC1C</Index>
+          </register>
+          <register>
+            <name>hpmcounter29</name>
+            <description>Event counter register 29</description>
+            <Index>0xC1D</Index>
+          </register>
+          <register>
+            <name>hpmcounter30</name>
+            <description>Event counter register 30</description>
+            <Index>0xC1E</Index>
+          </register>
+          <register>
+            <name>hpmcounter31</name>
+            <description>Event counter register 31</description>
+            <Index>0xC1F</Index>
+          </register>
+        </registers>
+      </group>
+    </groups>
+  </cpu>
+</device>

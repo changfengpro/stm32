@@ -1,0 +1,4985 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<device schemaVersion="1.3.5" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="CMSIS-SVD_Schema_1_3_5.xsd">
+  <cpu>
+    <name>CA9</name>
+    <displayName>Cortex-A9</displayName>
+    <groups>
+      <group>
+        <name>State</name>
+        <description>Current CPU State</description>
+        <IsCPUModeItem>1</IsCPUModeItem>
+      </group>
+      <group>
+        <name>Core (Now)</name>
+        <description>Current State CPU Registers</description>
+        <size>32</size>
+        <access>RW</access>
+        <type>unsigned int</type>
+        <registers>
+          <register>
+            <name>R0</name>
+            <description>General purpose register 0</description>
+            <Index>0</Index>
+          </register>
+          <register>
+            <name>R1</name>
+            <description>General purpose register 1</description>
+            <Index>1</Index>
+          </register>
+          <register>
+            <name>R2</name>
+            <description>General purpose register 2 </description>
+            <Index>2</Index>
+          </register>
+          <register>
+            <name>R3</name>
+            <description>General purpose register 3 </description>
+            <Index>3</Index>
+          </register>
+          <register>
+            <name>R4</name>
+            <description>General purpose register 4</description>
+            <Index>4</Index>
+          </register>
+          <register>
+            <name>R5</name>
+            <description>General purpose register 5</description>
+            <Index>5</Index>
+          </register>
+          <register>
+            <name>R6</name>
+            <description>General purpose register 6</description>
+            <Index>6</Index>
+          </register>
+          <register>
+            <name>R7</name>
+            <description>General purpose register 7</description>
+            <Index>7</Index>
+          </register>
+          <register>
+            <name>R8</name>
+            <description>General purpose register 8</description>
+            <Index>74</Index>
+          </register>
+          <register>
+            <name>R9</name>
+            <description>General purpose register 9</description>
+            <Index>75</Index>
+          </register>
+          <register>
+            <name>R10</name>
+            <description>General purpose register 10</description>
+            <Index>76</Index>
+          </register>
+          <register>
+            <name>R11</name>
+            <description>General purpose register 11</description>
+            <Index>77</Index>
+          </register>
+          <register>
+            <name>R12</name>
+            <description>General purpose register 12</description>
+            <Index>78</Index>
+          </register>
+          <register>
+            <name>R13</name>
+            <AliasName>SP</AliasName>
+            <displayName>R13 (SP)</displayName>
+            <description>Stack pointer (SP)</description>
+            <Index>79</Index>
+          </register>
+          <register>
+            <name>R14</name>
+            <AliasName>LR</AliasName>
+            <displayName>R14 (LR)</displayName>
+            <description>Link register (LR)</description>
+            <Index>80</Index>
+          </register>
+          <register>
+            <name>R15</name>
+            <AliasName>PC</AliasName>
+            <displayName>R15 (PC)</displayName>
+            <description>Program counter (PC)</description>
+            <Index>9</Index>
+          </register>
+          <register>
+            <name>CPSR</name>
+            <description>Current program status register</description>
+            <Index>8</Index>
+            <fields>
+              <field>
+                <name>M</name>
+                <description>Mode bits</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>5</bitWidth>
+              </field>
+              <field>
+                <name>T</name>
+                <description>Thumb state</description>
+                <bitOffset>5</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>F</name>
+                <description>SVC disable</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>I</name>
+                <description>IRQ disable</description>
+                <bitOffset>7</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>A</name>
+                <description>Asynchroneous abort disable</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>E</name>
+                <description>Data endianess</description>
+                <bitOffset>9</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IC/IT Low</name>
+                <description>Interruptible-continuable instruction low bits</description>
+                <bitOffset>10</bitOffset>
+                <bitWidth>6</bitWidth>
+              </field>
+              <field>
+                <name>IC/IT High</name>
+                <description>Interruptible-continuable instruction high bits</description>
+                <bitOffset>25</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>GE</name>
+                <description>Greater-than-or-equal bits</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>J</name>
+                <description>Java state</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Q</name>
+                <description>Sticky overflow flag</description>
+                <bitOffset>27</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>V</name>
+                <description>Overflow flag</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>C</name>
+                <description>Carry flag</description>
+                <bitOffset>29</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Z</name>
+                <description>Zero flag</description>
+                <bitOffset>30</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>N</name>
+                <description>Negative flag</description>
+                <bitOffset>31</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+        </registers>
+      </group>
+      <group>
+        <name>FPU</name>
+        <description>Floating Point Registers</description>
+        <size>32</size>
+        <access>RW</access>
+        <type>float</type>
+        <registers>
+          <register>
+            <name>S0</name>
+            <description>Floating point register 0</description>
+            <Index>40</Index>
+          </register>
+          <register>
+            <name>S1</name>
+            <description>Floating point register 1</description>
+            <Index>41</Index>
+          </register>
+          <register>
+            <name>S2</name>
+            <description>Floating point register 2</description>
+            <Index>42</Index>
+          </register>
+          <register>
+            <name>S3</name>
+            <description>Floating point register 3</description>
+            <Index>43</Index>
+          </register>
+          <register>
+            <name>S4</name>
+            <description>Floating point register 4</description>
+            <Index>44</Index>
+          </register>
+          <register>
+            <name>S5</name>
+            <description>Floating point register 5</description>
+            <Index>45</Index>
+          </register>
+          <register>
+            <name>S6</name>
+            <description>Floating point register 6</description>
+            <Index>46</Index>
+          </register>
+          <register>
+            <name>S7</name>
+            <description>Floating point register 7</description>
+            <Index>47</Index>
+          </register>
+          <register>
+            <name>S8</name>
+            <description>Floating point register 8</description>
+            <Index>48</Index>
+          </register>
+          <register>
+            <name>S9</name>
+            <description>Floating point register 9</description>
+            <Index>49</Index>
+          </register>
+          <register>
+            <name>S10</name>
+            <description>Floating point register 10</description>
+            <Index>50</Index>
+          </register>
+          <register>
+            <name>S11</name>
+            <description>Floating point register 11</description>
+            <Index>51</Index>
+          </register>
+          <register>
+            <name>S12</name>
+            <description>Floating point register 12</description>
+            <Index>52</Index>
+          </register>
+          <register>
+            <name>S13</name>
+            <description>Floating point register 13</description>
+            <Index>53</Index>
+          </register>
+          <register>
+            <name>S14</name>
+            <description>Floating point register 14</description>
+            <Index>54</Index>
+          </register>
+          <register>
+            <name>S15</name>
+            <description>Floating point register 15</description>
+            <Index>55</Index>
+          </register>
+          <register>
+            <name>S16</name>
+            <description>Floating point register 16</description>
+            <Index>56</Index>
+          </register>
+          <register>
+            <name>S17</name>
+            <description>Floating point register 17</description>
+            <Index>57</Index>
+          </register>
+          <register>
+            <name>S18</name>
+            <description>Floating point register 18</description>
+            <Index>58</Index>
+          </register>
+          <register>
+            <name>S19</name>
+            <description>Floating point register 19</description>
+            <Index>59</Index>
+          </register>
+          <register>
+            <name>S20</name>
+            <description>Floating point register 20</description>
+            <Index>60</Index>
+          </register>
+          <register>
+            <name>S21</name>
+            <description>Floating point register 21</description>
+            <Index>61</Index>
+          </register>
+          <register>
+            <name>S22</name>
+            <description>Floating point register 22</description>
+            <Index>62</Index>
+          </register>
+          <register>
+            <name>S23</name>
+            <description>Floating point register 23</description>
+            <Index>63</Index>
+          </register>
+          <register>
+            <name>S24</name>
+            <description>Floating point register 24</description>
+            <Index>64</Index>
+          </register>
+          <register>
+            <name>S25</name>
+            <description>Floating point register 25</description>
+            <Index>65</Index>
+          </register>
+          <register>
+            <name>S26</name>
+            <description>Floating point register 26</description>
+            <Index>66</Index>
+          </register>
+          <register>
+            <name>S27</name>
+            <description>Floating point register 27</description>
+            <Index>67</Index>
+          </register>
+          <register>
+            <name>S28</name>
+            <description>Floating point register 28</description>
+            <Index>68</Index>
+          </register>
+          <register>
+            <name>S29</name>
+            <description>Floating point register 29</description>
+            <Index>69</Index>
+          </register>
+          <register>
+            <name>S30</name>
+            <description>Floating point register 30</description>
+            <Index>70</Index>
+          </register>
+          <register>
+            <name>S31</name>
+            <description>Floating point register 31</description>
+            <Index>71</Index>
+          </register>
+          <register>
+            <name>FPSID</name>
+            <description>Floating point system information register</description>
+            <access>RO</access>
+            <reset>0x41033094</reset>
+            <type>unsigned int</type>
+            <Index>37</Index>
+            <fields>
+              <field>
+                <name>Implementer</name>
+                <description>Implementer ID</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>8</bitWidth>
+              </field>
+              <field>
+                <name>SW</name>
+                <description>Software emulation support flag</description>
+                <bitOffset>23</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Architecture</name>
+                <description>Architecture version</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>7</bitWidth>
+              </field>
+              <field>
+                <name>PartNumber</name>
+                <description>Part number</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>8</bitWidth>
+              </field>
+              <field>
+                <name>Variant</name>
+                <description>Variant ID</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>Revision</name>
+                <description>Revision number</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>FPSCR</name>
+            <description>Floating point status and control register</description>
+            <access>RW</access>
+            <reset>0x0</reset>
+            <type>unsigned int</type>
+            <Index>38</Index>
+            <fields>
+              <field>
+                <name>IOC</name>
+                <description>Invalid operation cumulative exception flag</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>DZC</name>
+                <description>Division by zero cumulative exception flag</description>
+                <bitOffset>1</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>OFC</name>
+                <description>Overflow cumulative exception flag</description>
+                <bitOffset>2</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>UFC</name>
+                <description>Underflow cumulative exception flag</description>
+                <bitOffset>3</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IXC</name>
+                <description>Inexact cumulative exception flag</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IDC</name>
+                <description>Input denormal cumulative exception flag</description>
+                <bitOffset>7</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Len</name>
+                <description>Vector length</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>3</bitWidth>
+              </field>
+              <field>
+                <name>Stride</name>
+                <description>Stride control</description>
+                <bitOffset>20</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>R-Mode</name>
+                <description>Rounding mode control</description>
+                <bitOffset>22</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>FZ</name>
+                <description>Flush-to-zero mode enable bit</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>DN</name>
+                <description>Default NaN mode enable bit</description>
+                <bitOffset>25</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>AHP</name>
+                <description>Alternative half-precision control bit</description>
+                <bitOffset>26</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>V</name>
+                <description>Set if comparison produces an unordered result</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>C</name>
+                <description>Set if comparison produces an equal, greater than, or unordered result</description>
+                <bitOffset>29</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Z</name>
+                <description>Set if comparison produces an equal result</description>
+                <bitOffset>30</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>N</name>
+                <description>Set if comparison produces a less than result</description>
+                <bitOffset>31</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>FPEXC</name>
+            <description>Floating point exception register</description>
+            <access>RW</access>
+            <reset>0x0</reset>
+            <type>unsigned int</type>
+            <Index>39</Index>
+            <fields>
+              <field>
+                <name>DEX</name>
+                <description>Undefined instruction exception flag</description>
+                <bitOffset>29</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>EN</name>
+                <description>VFP enable bit</description>
+                <bitOffset>30</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>MVFR0</name>
+            <description>Media and VFP feature register 0</description>
+            <access>RO</access>
+            <reset>0x10110221</reset>
+            <type>unsigned int</type>
+            <Index>72</Index>
+            <fields>
+              <field>
+                <name>RB</name>
+                <description>Sixteen 64-bit registers supported</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>SP</name>
+                <description>Single-precision operations supported</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>DP</name>
+                <description>Double-precision operations supported</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>TE</name>
+                <description>VFP exception trapping not supported</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>D</name>
+                <description>VFP divide operation supported</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>SR</name>
+                <description>VFP square root operation supported</description>
+                <bitOffset>20</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>SV</name>
+                <description>VFP short vectors not supported</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>RM</name>
+                <description>All VFP rounding modes supported</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>MVFR1</name>
+            <description>Media and VFP feature register 1</description>
+            <access>RO</access>
+            <reset>0x01000011</reset>
+            <type>unsigned int</type>
+            <Index>73</Index>
+            <fields>
+              <field>
+                <name>FZ</name>
+                <description>VFP denormal airthmetic operations supported</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>DN</name>
+                <description>VFP NaN value propagation supported</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>LS</name>
+                <description>Advanded SIMD load/store instructions not supported</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>I</name>
+                <description>Advanced SIMD integer operations not supported</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>SPFP</name>
+                <description>Advanced SIMD single-precision operations not supported</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>HPFP</name>
+                <description>Advanced SIMD half-precision operations not supported</description>
+                <bitOffset>20</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>VFP HPFP</name>
+                <description>VFP half-precision operations supported</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>FMAC</name>
+                <description>Fused multiply accumulate operations supported</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+            </fields>
+          </register>
+        </registers>
+      </group>
+      <group>
+        <name>FPU (Double)</name>
+        <description>Floating Point Registers (double-precision)</description>
+        <size>64</size>
+        <access>RW</access>
+        <type>double</type>
+        <registers>
+          <register>
+            <name>D0</name>
+            <description>Floating point register 0</description>
+            <Index1>40</Index1>
+            <Index2>41</Index2>
+          </register>
+          <register>
+            <name>D1</name>
+            <description>Floating point register 1</description>
+            <Index1>42</Index1>
+            <Index2>43</Index2>
+          </register>
+          <register>
+            <name>D2</name>
+            <description>Floating point register 2</description>
+            <Index1>44</Index1>
+            <Index2>45</Index2>
+          </register>
+          <register>
+            <name>D3</name>
+            <description>Floating point register 3</description>
+            <Index1>46</Index1>
+            <Index2>47</Index2>
+          </register>
+          <register>
+            <name>D4</name>
+            <description>Floating point register 4</description>
+            <Index1>48</Index1>
+            <Index2>49</Index2>
+          </register>
+          <register>
+            <name>D5</name>
+            <description>Floating point register 5</description>
+            <Index1>50</Index1>
+            <Index2>51</Index2>
+          </register>
+          <register>
+            <name>D6</name>
+            <description>Floating point register 6</description>
+            <Index1>52</Index1>
+            <Index2>53</Index2>
+          </register>
+          <register>
+            <name>D7</name>
+            <description>Floating point register 7</description>
+            <Index1>54</Index1>
+            <Index2>55</Index2>
+          </register>
+          <register>
+            <name>D8</name>
+            <description>Floating point register 8</description>
+            <Index1>56</Index1>
+            <Index2>57</Index2>
+          </register>
+          <register>
+            <name>D9</name>
+            <description>Floating point register 9</description>
+            <Index1>58</Index1>
+            <Index2>59</Index2>
+          </register>
+          <register>
+            <name>D10</name>
+            <description>Floating point register 10</description>
+            <Index1>60</Index1>
+            <Index2>61</Index2>
+          </register>
+          <register>
+            <name>D11</name>
+            <description>Floating point register 11</description>
+            <Index1>62</Index1>
+            <Index2>63</Index2>
+          </register>
+          <register>
+            <name>D12</name>
+            <description>Floating point register 12</description>
+            <Index1>64</Index1>
+            <Index2>65</Index2>
+          </register>
+          <register>
+            <name>D13</name>
+            <description>Floating point register 13</description>
+            <Index1>66</Index1>
+            <Index2>67</Index2>
+          </register>
+          <register>
+            <name>D14</name>
+            <description>Floating point register 14</description>
+            <Index1>68</Index1>
+            <Index2>69</Index2>
+          </register>
+          <register>
+            <name>D15</name>
+            <description>Floating point register 15</description>
+            <Index1>70</Index1>
+            <Index2>71</Index2>
+          </register>   
+          <register>
+            <name>D16</name>
+            <description>Floating point register 16</description>
+            <Index>82</Index>
+          </register>
+          <register>
+            <name>D17</name>
+            <description>Floating point register 17</description>
+            <Index>83</Index>
+          </register>
+          <register>
+            <name>D18</name>
+            <description>Floating point register 18</description>
+            <Index>84</Index>
+          </register>
+          <register>
+            <name>D19</name>
+            <description>Floating point register 19</description>
+            <Index>85</Index>
+          </register>
+          <register>
+            <name>D20</name>
+            <description>Floating point register 20</description>
+            <Index>86</Index>
+          </register>
+          <register>
+            <name>D21</name>
+            <description>Floating point register 21</description>
+            <Index>87</Index>
+          </register>
+          <register>
+            <name>D22</name>
+            <description>Floating point register 22</description>
+            <Index>88</Index>
+          </register>
+          <register>
+            <name>D23</name>
+            <description>Floating point register 23</description>
+            <Index>89</Index>
+          </register>
+          <register>
+            <name>D24</name>
+            <description>Floating point register 24</description>
+            <Index>90</Index>
+          </register>
+          <register>
+            <name>D25</name>
+            <description>Floating point register 25</description>
+            <Index>91</Index>
+          </register>
+          <register>
+            <name>D26</name>
+            <description>Floating point register 26</description>
+            <Index>92</Index>
+          </register>
+          <register>
+            <name>D27</name>
+            <description>Floating point register 27</description>
+            <Index>93</Index>
+          </register>
+          <register>
+            <name>D28</name>
+            <description>Floating point register 28</description>
+            <Index>94</Index>
+          </register>
+          <register>
+            <name>D29</name>
+            <description>Floating point register 29</description>
+            <Index>95</Index>
+          </register>
+          <register>
+            <name>D30</name>
+            <description>Floating point register 30</description>
+            <Index>96</Index>
+          </register>
+          <register>
+            <name>D31</name>
+            <description>Floating point register 31</description>
+            <Index>97</Index>
+          </register>
+          <register>
+            <name>FPSID</name>
+            <description>Floating point system information register</description>
+            <access>RO</access>
+            <size>32</size>
+            <reset>0x41023140</reset>
+            <Index>37</Index>
+            <fields>
+              <field>
+                <name>Implementer</name>
+                <description>Implementer ID</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>8</bitWidth>
+              </field>
+              <field>
+                <name>SW</name>
+                <description>Software emulation support flag</description>
+                <bitOffset>23</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Architecture</name>
+                <description>Architecture version</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>7</bitWidth>
+              </field>
+              <field>
+                <name>PartNumber</name>
+                <description>Part number</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>8</bitWidth>
+              </field>
+              <field>
+                <name>Variant</name>
+                <description>Variant ID</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>Revision</name>
+                <description>Revision number</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>FPSCR</name>
+            <description>Floating point status and control register</description>
+            <access>RW</access>
+            <size>32</size>
+            <reset>0x0</reset>
+            <Index>38</Index>
+            <fields>
+              <field>
+                <name>IOC</name>
+                <description>Invalid operation cumulative exception flag</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>DZC</name>
+                <description>Division by zero cumulative exception flag</description>
+                <bitOffset>1</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>OFC</name>
+                <description>Overflow cumulative exception flag</description>
+                <bitOffset>2</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>UFC</name>
+                <description>Underflow cumulative exception flag</description>
+                <bitOffset>3</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IXC</name>
+                <description>Inexact cumulative exception flag</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IDC</name>
+                <description>Input denormal cumulative exception flag</description>
+                <bitOffset>7</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IOE</name>
+                <description>Invalid operation exception enable bit</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>DZE</name>
+                <description>Division by zero exception enable bit</description>
+                <bitOffset>9</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>OFE</name>
+                <description>Overflow exception enable bit</description>
+                <bitOffset>10</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>UFE</name>
+                <description>Underflow exception enable bit</description>
+                <bitOffset>11</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IXE</name>
+                <description>Inexact exception enable bit</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IDE</name>
+                <description>Input Subnormal exception enable bit</description>
+                <bitOffset>15</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Len</name>
+                <description>Vector length</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>3</bitWidth>
+              </field>
+              <field>
+                <name>Stride</name>
+                <description>Stride control</description>
+                <bitOffset>20</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>R-Mode</name>
+                <description>Rounding mode control</description>
+                <bitOffset>22</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>FZ</name>
+                <description>Flush-to-zero mode enable bit</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>DN</name>
+                <description>Default NaN mode enable bit</description>
+                <bitOffset>25</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>QC</name>
+                <description>Saturation cumulative flag</description>
+                <bitOffset>27</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>V</name>
+                <description>Set if comparison produces an unordered result</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>C</name>
+                <description>Set if comparison produces an equal, greater than, or unordered result</description>
+                <bitOffset>29</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Z</name>
+                <description>Set if comparison produces an equal result</description>
+                <bitOffset>30</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>N</name>
+                <description>Set if comparison produces a less than result</description>
+                <bitOffset>31</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>FPEXC</name>
+            <description>Floating point exception register</description>
+            <access>RW</access>
+            <size>32</size>
+            <reset>0x0</reset>
+            <Index>39</Index>
+            <fields>
+              <field>
+                <name>DEX</name>
+                <description>Undefined instruction exception flag</description>
+                <bitOffset>29</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>EN</name>
+                <description>VFP enable bit</description>
+                <bitOffset>30</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>MVFR0</name>
+            <description>Media and VFP feature register 0</description>
+            <access>RO</access>
+            <size>32</size>
+            <reset>0x10110221</reset>
+            <Index>72</Index>
+            <fields>
+              <field>
+                <name>RB</name>
+                <description>Sixteen 64-bir registers supported</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>SP</name>
+                <description>Single-precision operations supported</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>DP</name>
+                <description>Double-precision operations supported</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>TE</name>
+                <description>VFP exception trapping not supported</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>D</name>
+                <description>VFP divide operation supported</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>SR</name>
+                <description>VFP square root operation supported</description>
+                <bitOffset>20</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>SV</name>
+                <description>VFP short vectors not supported</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>RM</name>
+                <description>All VFP rounding modes supported</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>MVFR1</name>
+            <description>Media and VFP feature register 1</description>
+            <access>RO</access>
+            <size>32</size>
+            <reset>0x00000011</reset>
+            <Index>73</Index>
+            <fields>
+              <field>
+                <name>FZ</name>
+                <description>VFP denormal airthmetic operations supported</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>DN</name>
+                <description>VFP NaN value propagation supported</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>LS</name>
+                <description>Advanded SIMD load/store instructions not supported</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>I</name>
+                <description>Advanced SIMD integer operations not supported</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>SPFP</name>
+                <description>Advanced SIMD single-precision operations not supported</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>HPFP</name>
+                <description>Advanced SIMD half-precision operations not supported</description>
+                <bitOffset>20</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>VFP HPFP</name>
+                <description>VFP half-precision operations supported</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+            </fields>
+          </register>
+        </registers>
+      </group>
+      <group>
+        <name>Core (All)</name>
+        <description>All CPU Registers</description>
+        <size>32</size>
+        <access>RW</access>
+        <type>unsigned int</type>
+        <registers>
+          <register>
+            <name>R0_USR</name>
+            <description>General purpose register 0 (User Mode)</description>
+            <Index>0</Index>
+          </register>
+          <register>
+            <name>R1_USR</name>
+            <description>General purpose register 1 (User Mode)</description>
+            <Index>1</Index>
+          </register>
+          <register>
+            <name>R2_USR</name>
+            <description>General purpose register 2 (User Mode)</description>
+            <Index>2</Index>
+          </register>
+          <register>
+            <name>R3_USR</name>
+            <description>General purpose register 3 (User Mode)</description>
+            <Index>3</Index>
+          </register>
+          <register>
+            <name>R4_USR</name>
+            <description>General purpose register 4 (User Mode)</description>
+            <Index>4</Index>
+          </register>
+          <register>
+            <name>R5_USR</name>
+            <description>General purpose register 5 (User Mode)</description>
+            <Index>5</Index>
+          </register>
+          <register>
+            <name>R6_USR</name>
+            <description>General purpose register 6 (User Mode)</description>
+            <Index>6</Index>
+          </register>
+          <register>
+            <name>R7_USR</name>
+            <description>General purpose register 7 (User Mode)</description>
+            <Index>7</Index>
+          </register>
+          <register>
+            <name>R8_USR</name>
+            <description>General purpose register 8 (User Mode)</description>
+            <Index>10</Index>
+          </register>
+          <register>
+            <name>R9_USR</name>
+            <description>General purpose register 9 (User Mode)</description>
+            <Index>11</Index>
+          </register>
+          <register>
+            <name>R10_USR</name>
+            <description>General purpose register 10 (User Mode)</description>
+            <Index>12</Index>
+          </register>
+          <register>
+            <name>R11_USR</name>
+            <description>General purpose register 11 (User Mode)</description>
+            <Index>13</Index>
+          </register>
+          <register>
+            <name>R12_USR</name>
+            <description>General purpose register 12 (User Mode)</description>
+            <Index>14</Index>
+          </register>
+          <register>
+            <name>R13_USR</name>
+            <description>Stack pointer (User Mode)</description>
+            <Index>15</Index>
+          </register>
+          <register>
+            <name>R14_USR</name>
+            <description>Link register (User Mode)</description>
+            <Index>16</Index>
+          </register>
+          <register>
+            <name>R15_USR</name>
+            <description>Program counter (User Mode)</description>
+            <Index>9</Index>
+          </register>
+          <register>
+            <name>SPSR_USR</name>
+            <description>Current program status register (User Mode)</description>
+            <Index>8</Index>
+            <fields>
+              <field>
+                <name>M</name>
+                <description>Mode bits</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>5</bitWidth>
+              </field>
+              <field>
+                <name>T</name>
+                <description>Thumb state</description>
+                <bitOffset>5</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>F</name>
+                <description>SVC disable</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>I</name>
+                <description>IRQ disable</description>
+                <bitOffset>7</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>A</name>
+                <description>Asynchroneous abort disable</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>E</name>
+                <description>Data endianess</description>
+                <bitOffset>9</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IC/IT Low</name>
+                <description>Interruptible-continuable instruction low bits</description>
+                <bitOffset>10</bitOffset>
+                <bitWidth>6</bitWidth>
+              </field>
+              <field>
+                <name>IC/IT High</name>
+                <description>Interruptible-continuable instruction high bits</description>
+                <bitOffset>25</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>GE</name>
+                <description>Greater-than-or-equal bits</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>J</name>
+                <description>Java state</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Q</name>
+                <description>Sticky overflow flag</description>
+                <bitOffset>27</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>V</name>
+                <description>Overflow flag</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>C</name>
+                <description>Carry flag</description>
+                <bitOffset>29</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Z</name>
+                <description>Zero flag</description>
+                <bitOffset>30</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>N</name>
+                <description>Negative flag</description>
+                <bitOffset>31</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>R8_FIQ</name>
+            <description>General purpose register 8 (Fast Interrupt Mode)</description>
+            <Index>18</Index>
+          </register>
+          <register>
+            <name>R9_FIQ</name>
+            <description>General purpose register 9 (Fast Interrupt Mode)</description>
+            <Index>19</Index>
+          </register>
+          <register>
+            <name>R10_FIQ</name>
+            <description>General purpose register 10 (Fast Interrupt Mode)</description>
+            <Index>20</Index>
+          </register>
+          <register>
+            <name>R11_FIQ</name>
+            <description>General purpose register 11 (Fast Interrupt Mode)</description>
+            <Index>21</Index>
+          </register>
+          <register>
+            <name>R12_FIQ</name>
+            <description>General purpose register 12 (Fast Interrupt Mode)</description>
+            <Index>22</Index>
+          </register>
+          <register>
+            <name>R13_FIQ</name>
+            <description>Stack pointer (Fast Interrupt Mode)</description>
+            <Index>23</Index>
+          </register>
+          <register>
+            <name>R14_FIQ</name>
+            <description>Link register (Fast Interrupt Mode)</description>
+            <Index>24</Index>
+          </register>
+          <register>
+            <name>SPSR_FIQ</name>
+            <description>Current program status register (Fast Interrupt Mode)</description>
+            <Index>17</Index>
+            <fields>
+              <field>
+                <name>M</name>
+                <description>Mode bits</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>5</bitWidth>
+              </field>
+              <field>
+                <name>T</name>
+                <description>Thumb state</description>
+                <bitOffset>5</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>F</name>
+                <description>SVC disable</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>I</name>
+                <description>IRQ disable</description>
+                <bitOffset>7</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>A</name>
+                <description>Asynchroneous abort disable</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>E</name>
+                <description>Data endianess</description>
+                <bitOffset>9</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IC/IT Low</name>
+                <description>Interruptible-continuable instruction low bits</description>
+                <bitOffset>10</bitOffset>
+                <bitWidth>6</bitWidth>
+              </field>
+              <field>
+                <name>IC/IT High</name>
+                <description>Interruptible-continuable instruction high bits</description>
+                <bitOffset>25</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>GE</name>
+                <description>Greater-than-or-equal bits</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>J</name>
+                <description>Java state</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Q</name>
+                <description>Sticky overflow flag</description>
+                <bitOffset>27</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>V</name>
+                <description>Overflow flag</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>C</name>
+                <description>Carry flag</description>
+                <bitOffset>29</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Z</name>
+                <description>Zero flag</description>
+                <bitOffset>30</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>N</name>
+                <description>Negative flag</description>
+                <bitOffset>31</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>R13_SVC</name>
+            <description>Stack pointer (Supervisor Mode)</description>
+            <Index>26</Index>
+          </register>
+          <register>
+            <name>R14_SVC</name>
+            <description>Link register (Supervisor Mode)</description>
+            <Index>27</Index>
+          </register>
+          <register>
+            <name>SPSR_SVC</name>
+            <description>Current program status register (Supervisor Mode)</description>
+            <Index>25</Index>
+            <fields>
+              <field>
+                <name>M</name>
+                <description>Mode bits</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>5</bitWidth>
+              </field>
+              <field>
+                <name>T</name>
+                <description>Thumb state</description>
+                <bitOffset>5</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>F</name>
+                <description>SVC disable</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>I</name>
+                <description>IRQ disable</description>
+                <bitOffset>7</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>A</name>
+                <description>Asynchroneous abort disable</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>E</name>
+                <description>Data endianess</description>
+                <bitOffset>9</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IC/IT Low</name>
+                <description>Interruptible-continuable instruction low bits</description>
+                <bitOffset>10</bitOffset>
+                <bitWidth>6</bitWidth>
+              </field>
+              <field>
+                <name>IC/IT High</name>
+                <description>Interruptible-continuable instruction high bits</description>
+                <bitOffset>25</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>GE</name>
+                <description>Greater-than-or-equal bits</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>J</name>
+                <description>Java state</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Q</name>
+                <description>Sticky overflow flag</description>
+                <bitOffset>27</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>V</name>
+                <description>Overflow flag</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>C</name>
+                <description>Carry flag</description>
+                <bitOffset>29</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Z</name>
+                <description>Zero flag</description>
+                <bitOffset>30</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>N</name>
+                <description>Negative flag</description>
+                <bitOffset>31</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>R13_ABT</name>
+            <description>Stack pointer (Abort Mode)</description>
+            <Index>29</Index>
+          </register>
+          <register>
+            <name>R14_ABT</name>
+            <description>Link register (Abort Mode)</description>
+            <Index>30</Index>
+          </register>
+          <register>
+            <name>SPSR_ABT</name>
+            <description>Current program status register (Fast Interrupt Mode)</description>
+            <Index>28</Index>
+            <fields>
+              <field>
+                <name>M</name>
+                <description>Mode bits</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>5</bitWidth>
+              </field>
+              <field>
+                <name>T</name>
+                <description>Thumb state</description>
+                <bitOffset>5</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>F</name>
+                <description>SVC disable</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>I</name>
+                <description>IRQ disable</description>
+                <bitOffset>7</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>A</name>
+                <description>Asynchroneous abort disable</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>E</name>
+                <description>Data endianess</description>
+                <bitOffset>9</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IC/IT Low</name>
+                <description>Interruptible-continuable instruction low bits</description>
+                <bitOffset>10</bitOffset>
+                <bitWidth>6</bitWidth>
+              </field>
+              <field>
+                <name>IC/IT High</name>
+                <description>Interruptible-continuable instruction high bits</description>
+                <bitOffset>25</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>GE</name>
+                <description>Greater-than-or-equal bits</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>J</name>
+                <description>Java state</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Q</name>
+                <description>Sticky overflow flag</description>
+                <bitOffset>27</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>V</name>
+                <description>Overflow flag</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>C</name>
+                <description>Carry flag</description>
+                <bitOffset>29</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Z</name>
+                <description>Zero flag</description>
+                <bitOffset>30</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>N</name>
+                <description>Negative flag</description>
+                <bitOffset>31</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>R13_IRQ</name>
+            <description>Stack pointer (Interrupt Mode)</description>
+            <Index>32</Index>
+          </register>
+          <register>
+            <name>R14_IRQ</name>
+            <description>Link register (Interrupt Mode)</description>
+            <Index>33</Index>
+          </register>
+          <register>
+            <name>SPSR_IRQ</name>
+            <description>Current program status register (Interrupt Mode)</description>
+            <Index>31</Index>
+            <fields>
+              <field>
+                <name>M</name>
+                <description>Mode bits</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>5</bitWidth>
+              </field>
+              <field>
+                <name>T</name>
+                <description>Thumb state</description>
+                <bitOffset>5</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>F</name>
+                <description>SVC disable</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>I</name>
+                <description>IRQ disable</description>
+                <bitOffset>7</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>A</name>
+                <description>Asynchroneous abort disable</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>E</name>
+                <description>Data endianess</description>
+                <bitOffset>9</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IC/IT Low</name>
+                <description>Interruptible-continuable instruction low bits</description>
+                <bitOffset>10</bitOffset>
+                <bitWidth>6</bitWidth>
+              </field>
+              <field>
+                <name>IC/IT High</name>
+                <description>Interruptible-continuable instruction high bits</description>
+                <bitOffset>25</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>GE</name>
+                <description>Greater-than-or-equal bits</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>J</name>
+                <description>Java state</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Q</name>
+                <description>Sticky overflow flag</description>
+                <bitOffset>27</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>V</name>
+                <description>Overflow flag</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>C</name>
+                <description>Carry flag</description>
+                <bitOffset>29</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Z</name>
+                <description>Zero flag</description>
+                <bitOffset>30</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>N</name>
+                <description>Negative flag</description>
+                <bitOffset>31</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>R13_UND</name>
+            <description>Stack pointer (Undefined Mode)</description>
+            <Index>35</Index>
+          </register>
+          <register>
+            <name>R14_UND</name>
+            <description>Link register (Undefined Mode)</description>
+            <Index>36</Index>
+          </register>
+          <register>
+            <name>SPSR_UND</name>
+            <description>Current program status register (Undefined Mode)</description>
+            <Index>34</Index>
+            <fields>
+              <field>
+                <name>M</name>
+                <description>Mode bits</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>5</bitWidth>
+              </field>
+              <field>
+                <name>T</name>
+                <description>Thumb state</description>
+                <bitOffset>5</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>F</name>
+                <description>SVC disable</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>I</name>
+                <description>IRQ disable</description>
+                <bitOffset>7</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>A</name>
+                <description>Asynchroneous abort disable</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>E</name>
+                <description>Data endianess</description>
+                <bitOffset>9</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IC/IT Low</name>
+                <description>Interruptible-continuable instruction low bits</description>
+                <bitOffset>10</bitOffset>
+                <bitWidth>6</bitWidth>
+              </field>
+              <field>
+                <name>IC/IT High</name>
+                <description>Interruptible-continuable instruction high bits</description>
+                <bitOffset>25</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>GE</name>
+                <description>Greater-than-or-equal bits</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>J</name>
+                <description>Java state</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Q</name>
+                <description>Sticky overflow flag</description>
+                <bitOffset>27</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>V</name>
+                <description>Overflow flag</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>C</name>
+                <description>Carry flag</description>
+                <bitOffset>29</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Z</name>
+                <description>Zero flag</description>
+                <bitOffset>30</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>N</name>
+                <description>Negative flag</description>
+                <bitOffset>31</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+        </registers>
+      </group>
+      <group>
+        <name>CP15</name>
+        <description>Coprocessor 15 Registers</description>
+        <size>32</size>
+        <access>RW</access>
+        <type>unsigned int</type>
+        <!--c0 registers-->
+        <registers>
+          <register>
+            <name>MIDR</name>
+            <description>Main ID Register</description>
+            <groupName>ID Regs</groupName>
+            <access>RO</access>
+            <reset>0x413FC082</reset>
+            <ID>15,0,0,0,0</ID>
+            <fields>
+              <field>
+                <name>IMPLEMENTOR</name>
+                <description>Implementor</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>8</bitWidth>
+              </field>
+              <field>
+                <name>REV_MAJOR</name>
+                <description>Major revision number of the rnpn revision status</description>
+                <bitOffset>20</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>ARCHITECTURE</name>
+                <description>Architecture Code. 0xF: ARMv7</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>PART_NBR</name>
+                <description>Primary Part number. 0xC07: Cortex-A7 MPCore part number</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>12</bitWidth>
+              </field>
+              <field>
+                <name>REV_MINOR</name>
+                <description>Minor revision number of the rnpn revision status</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>CTR</name>
+            <description>Cache Type Register</description>
+            <groupName>ID Regs</groupName>
+            <access>RO</access>
+            <reset>0x83338003</reset>
+            <ID>15,0,0,0,1</ID>
+            <fields>
+              <field>
+                <name>CWG</name>
+                <description>Cache Write-Back Granule</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>D_MIN_LINE</name>
+                <description>Log2 of the number of words in the smalles cache line of all the data and unified caches under the core control</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>L1_POLICY</name>
+                <description>L1 instruction cache policy</description>
+                <bitOffset>14</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>I_MIN_LINE</name>
+                <description>Log2 of the number of words in the smallest cache line of all the instruction caches under the control of the processor</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>TCMTR</name>
+            <!--no fields-->
+            <description>Tightly Coupled Memory (TCM) Type Register</description>
+            <groupName>ID Regs</groupName>
+            <access>RO</access>
+            <reset>0x00000000</reset>
+            <ID>15,0,0,0,2</ID>
+          </register>
+          <register>
+            <name>TLBTR</name>
+            <!-- no fields -->
+            <description>Translation Lookaside Buffer (TLB) Type Register</description>
+            <groupName>ID Regs</groupName>
+            <access>RO</access>
+            <reset>0x00202001</reset>
+            <ID>15,0,0,0,3</ID>
+            <fields>
+              <field>
+                <name>IL_SIZE</name>
+                <description>Number of Instruction TLB Lockable Entries</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>8</bitWidth>
+              </field>
+              <field>
+                <name>DL_SIZE</name>
+                <description>Number of Data Lockable Entries</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>8</bitWidth>
+              </field>
+              <field>
+                <name>TLB_SIZE</name>
+                <description>Number of Table Entries (00=64, 01=128, 10=256, 11=512)</description>
+                <bitOffset>1</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>U</name>
+                <description>TLB is Unified</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>MPIDR</name>
+            <description>Multiprocessor Affinity Register</description>
+            <groupName>ID Regs</groupName>
+            <access>RO</access>
+            <ID>15,0,0,0,5</ID>
+            <fields>
+              <field>
+                <name>U</name>
+                <description>Uniprocessor System Present</description>
+                <bitOffset>30</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>CLUSTER_ID</name>
+                <description>Value read in CLUSTERID configuration pins.</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>CPU_ID</name>
+                <description>ID of the Processor</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>REVDIR</name>
+            <description>Revision ID Register</description>
+            <groupName>ID Regs</groupName>
+            <reset>0x00000000</reset>
+            <access>RO</access>
+            <ID>15,0,0,0,6</ID>
+            <fields>
+              <field>
+                <name>ID_NUMBER</name>
+                <description>Implementation-specific Revision Number</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>32</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>ID_PFR0</name>
+            <description>Processor Feature Register 0</description>
+            <groupName>ID Regs</groupName>
+            <access>RO</access>
+            <reset>0x00001231</reset>
+            <ID>15,0,1,0,0</ID>
+            <fields>
+              <field>
+                <name>STATE_3</name>
+                <description>ThumbEE instruction set supported</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>STATE_2</name>
+                <description>Jazelle extension interface supported</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>STATE_1</name>
+                <description>Thumb-2 Instruction Set supported (0x3)</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>STATE_0</name>
+                <description>32-bit ARM instruction set supported</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>ID_PFR1</name>
+            <description>Processor Feature Register 1</description>
+            <groupName>ID Regs</groupName>
+            <access>RO</access>
+            <reset>0x00000011</reset>
+            <ID>15,0,1,0,1</ID>
+            <fields>
+              <field>
+                <name>M_PROFILE</name>
+                <description>M profile programmers model supported</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>SECURITY_EXT</name>
+                <description>Security extension architecture v1 supported</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>PROG_MODEL</name>
+                <description>Standard ARMv4 programmers model supported</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>ID_DFR0</name>
+            <description>Debug Feature Register 0</description>
+            <groupName>ID Regs</groupName>
+            <access>RO</access>
+            <reset>0x00010400</reset>
+            <ID>15,0,1,0,2</ID>
+            <fields>
+              <field>
+                <name>M_PROFILE</name>
+                <description>Memory-mapped debug model for M Profile processors supported</description>
+                <bitOffset>20</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>MM_TRACE_MODEL</name>
+                <description>Memory-mapped trace debug model supported</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>CP_TRACE_MODEL</name>
+                <description>Coprocessor Trace Model supported</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>MM_DEBUG_MODEL</name>
+                <description>Memory-mapped Debug Model supported</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>CP_SEC_DBG_MODEL</name>
+                <description>Coprocessor-based secure debug model supported</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>CP_DBG_MODEL</name>
+                <description>Coprocessor based core debug model supported</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>ID_AFR0</name>
+            <!-- no fields, RAZ -->
+            <description>Auxiliary Feature Register 0</description>
+            <groupName>ID Regs</groupName>
+            <access>RO</access>
+            <reset>0x00000000</reset>
+            <ID>15,0,1,0,3</ID>
+          </register>
+          <register>
+            <name>ID_MMFR0</name>
+            <description>Memory Model Features Register 0</description>
+            <groupName>ID Regs</groupName>
+            <access>RO</access>
+            <reset>0x01100103</reset>
+            <ID>15,0,1,0,4</ID>
+            <fields>
+              <field>
+                <name>FCSE</name>
+                <description>Fast Context Switching Extension (FCSE) supported</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>AUX_CTRL_REG</name>
+                <description>Auxiliary Control Registers supported</description>
+                <bitOffset>20</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>TCM</name>
+                <description>Tight Coupled Memory (TCM) supported</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>OUTER_SHAREABLE</name>
+                <description>Indicates support for outer shareable attribute</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>CACHE_COHERENCE</name>
+                <description>Cache Coherency Maintenance supported</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>PMSA</name>
+                <description>Protected Memory System Architecture supported</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>VMSA</name>
+                <description>Virtual Memory System Architecture supported</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>ID_MMFR1</name>
+            <description>Memory Model Features Register 1</description>
+            <groupName>ID Regs</groupName>
+            <access>RO</access>
+            <reset>0x20000000</reset>
+            <ID>15,0,1,0,5</ID>
+            <fields>
+              <field>
+                <name>BTB</name>
+                <description>Branch Target Buffer Supported</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>L1_CACHE_TNC</name>
+                <description>L1 data cache test and clean operations supported</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>L1_UNIFIED_CACHE</name>
+                <description>L1 unified cache clean/invalidate-all operations supported</description>
+                <bitOffset>20</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>L1_HARVARD_CACHE</name>
+                <description>L1 data operations, harvard architecture, supported</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>L1_UNIFIED_CACHE_SW</name>
+                <description>L1 unfied cache maintencance operations by set/way supported</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>L1_HARVARD_CACHE_SW</name>
+                <description>L1 Hardvard cache maintenance operations by set/way supported</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>L1_UNIFIED_CACHE_MVA</name>
+                <description>L1 unified cache maintenance operations by MVA supported</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>L1_HARVARD_CACHE_MVA</name>
+                <description>L1 Harvard cache maintenance operations by MVA supported</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>ID_MMFR2</name>
+            <description>Memory Model Features Register 2</description>
+            <groupName>ID Regs</groupName>
+            <access>RO</access>
+            <reset>0x01230000</reset>
+            <ID>15,0,1,0,6</ID>
+            <fields>
+              <field>
+                <name>HW_ACCESS</name>
+                <description>Hardware access supported</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>WFI_STALL</name>
+                <description>Wait For Interrupt (WFI) stalling supported</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>MEM_BARRIER</name>
+                <description>Memory Barrier Operations supported</description>
+                <bitOffset>20</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>UNIFIED_TLB</name>
+                <description>Unified TLB maintenance operations supported</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>HARVARD_TLB</name>
+                <description>Harvard TLB maintenance operations supported</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>L1_HARVARD_RANGE</name>
+                <description>L1 Hardvard range supported</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>L1_HBP</name>
+                <description>L1 Harvard background prefetch operations supported</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>L1_HFP</name>
+                <description>L1 Harvard foreground prefetch operations supported</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>ID_MMFR3</name>
+            <description>Memory Model Features Register 3</description>
+            <groupName>ID Regs</groupName>
+            <access>RO</access>
+            <reset>0x00102111</reset>
+            <ID>15,0,1,0,7</ID>
+            <fields>
+              <field>
+                <name>SS_SUPPORT</name>
+                <description>16 MB supersections supported</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>BP_MAINTAIN</name>
+                <description>Branch Predictor (BP) maintenance operations supported</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>CACHE MT_SW</name>
+                <description>Set/Way cache maintenance supported</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>CACHE_MT_MVA</name>
+                <description>MVA cache maintenance supported</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>ID_ISAR0</name>
+            <description>Instruction Set Attributes Register 0</description>
+            <groupName>ID Regs</groupName>
+            <access>RO</access>
+            <reset>0x00101111</reset>
+            <ID>15,0,2,0,0</ID>
+            <fields>
+              <field>
+                <name>DIVIDE_INSTR</name>
+                <description>Integer hardware divide supported</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>DBG_INSTR</name>
+                <description>BKPT instruction supported</description>
+                <bitOffset>20</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>CP_INSTRS</name>
+                <description>CP14, CP15 and VFPv4 Coprocessor instructions supported</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>CAB_INSTRS</name>
+                <description>Compare-and-branch instructions CBZ and CBNZ supported</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>BF_INSTRS</name>
+                <description>Bit-Field instructions BFC, BFI, SBFX and UBFX supported</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>BC_INSTRS</name>
+                <description>Bit count instruction CLZ supported</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>SWAP_INSTRS</name>
+                <description>Swap instructions SWP and SWPB supported</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>ID_ISAR1</name>
+            <description>Instruction Set Attributes Register 1</description>
+            <groupName>ID Regs</groupName>
+            <access>RO</access>
+            <reset>0x13112111</reset>
+            <ID>15,0,2,0,1</ID>
+            <fields>
+              <field>
+                <name>JAZELLE_INSTRS</name>
+                <description>Jazelle instructions supported</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>INTERW_INSTRS</name>
+                <description>ARM/Thumb interworking instructions supported</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>IMM_INSTRS</name>
+                <description>Special immediate-generating instructions supported</description>
+                <bitOffset>20</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>ITE_INSTRS</name>
+                <description>Thumb IT blocks supported</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>EXTEND_INSTRS</name>
+                <description>Extend instructions supported</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>EXCPT2_INSTRS</name>
+                <description>Exception2-instructions SRS, RFE and CPS supported</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>EXCPT1_INSTRS</name>
+                <description>Exception1-instructions LDM(2), LDM(3) and STM(2) supported</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>ENDIAN_INSTRS</name>
+                <description>BE8 endian change supported with SETEND</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>ID_ISAR2</name>
+            <description>Instruction Set Attributes Register 2</description>
+            <groupName>ID Regs</groupName>
+            <access>RO</access>
+            <reset>0x21232041</reset>
+            <ID>15,0,2,0,2</ID>
+            <fields>
+              <field>
+                <name>REV_INSTRS</name>
+                <description>Reversal instructions REV, REV16, REVSH and RBIT supported</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>PSR_INSTRS</name>
+                <description>PSR instructions MRS and MSR and exception return data-processing instructions supported</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>MULT_INSTRS_AU</name>
+                <description>Long multiply instructions and UMAAL supported</description>
+                <bitOffset>20</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>MULT_INSTRS_AS</name>
+                <description>Signed-Multiply instructions and Q flag in PSRs supported</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>MULTIPLY_INSTRS</name>
+                <description>Multiply instructions MUL, MLA and MLS supported</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>MAI_INSTRS</name>
+                <description>Multi-access interruptible instructions (MAI) supported</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>MEM_HINT_INSTRS</name>
+                <description>Memory hint instructions PLD, PLI and PLDW supported</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>LS_INSTRS</name>
+                <description>Load and Store instructions LDRD and STRD supported</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>ID_ISAR3</name>
+            <description>Instruction Set Attributes Register 3</description>
+            <groupName>ID Regs</groupName>
+            <access>RO</access>
+            <reset>0x11112131</reset>
+            <ID>15,0,2,0,3</ID>
+            <fields>
+              <field>
+                <name>THUMB2_INSTRS</name>
+                <description>Thumb-2 Executable Environment Extension instructions supported</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>TRUE_NOP_INSTR</name>
+                <description>True no-operation instruction NOP32 supported</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>THUMB_CPY_INSTRS</name>
+                <description>Thumb copy instructions MOV(3) and CPY alias supported</description>
+                <bitOffset>20</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>TBL_BRANCH_INSTRS</name>
+                <description>Thumb table branch instruction TBB and TBH supported</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>SYNC_PRIMITIVES</name>
+                <description>Synchronization Orimitive Instructions Supported</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>SVC_INSTRS</name>
+                <description>SVC instructions supported</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>SIMD_INSTRS</name>
+                <description>All SIMD instructions supported</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>SAT_INSTRS</name>
+                <description>Saturate instructions QADD, QDADD, QDSUB, QSUB and Q flag in PSRs supported</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>ID_ISAR4</name>
+            <description>Instruction Set Attributes Register 4</description>
+            <groupName>ID Regs</groupName>
+            <access>RO</access>
+            <reset>0x00011142</reset>
+            <ID>15,0,2,0,4</ID>
+            <fields>
+              <field>
+                <name>EXCLUSIVE_INSTRS</name>
+                <description>Exclusive instructions CLREX, LDREX, STREX, supported</description>
+                <bitOffset>20</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>BARRIER_INSTRS</name>
+                <description>Barrier instructions DMB, DSB and ISB supported</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>SMC_INSTRS</name>
+                <description>Secure Monitor Call (SMC) instructions supported</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>WRITE_BACK_INSTRS</name>
+                <description>All defined write-back addressing instructions supported</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>WITH_SHIFT_INSTRS</name>
+                <description>Immediate and register control shifted operations supported</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>UNPRIVILEGED_INSTRS</name>
+                <description>Unpriviledges load/store instructions LDRT and STRT supported</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>CCSIDR</name>
+            <description>Cache Size Identification Register</description>
+            <groupName>ID Regs</groupName>
+            <access>RO</access>
+            <ID>15,0,0,1,0</ID>
+            <fields>
+              <field>
+                <name>WT</name>
+                <description>Write-Through supported</description>
+                <bitOffset>31</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>WB</name>
+                <description>Write-Back supported for (0x1) L1 data cache, (0x0) L1 instruction cache</description>
+                <bitOffset>30</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>RA</name>
+                <description>Cache read allocation supported</description>
+                <bitOffset>29</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>WA</name>
+                <description>Write allocation supported for: 1: L1 data cache, 0: L1 instruction cache</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>NUM_SETS</name>
+                <description>Number of cache sets</description>
+                <bitOffset>13</bitOffset>
+                <bitWidth>15</bitWidth>
+              </field>
+              <field>
+                <name>ASSOCIATIVITY</name>
+                <description>Cache associativity. 0x3: 4-way data cache, 0x1: 2-way instruction cache</description>
+                <bitOffset>3</bitOffset>
+                <bitWidth>10</bitWidth>
+              </field>
+              <field>
+                <name>LINE_SIZE</name>
+                <description>Number of words per line.  0x1: eight words per line</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>3</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>CLIDR</name>
+            <description>Cache Level ID Register</description>
+            <groupName>ID Regs</groupName>
+            <access>RO</access>
+            <reset>0x09000003</reset>
+            <ID>15,0,0,1,1</ID>
+            <fields>
+              <field>
+                <name>LoU</name>
+                <description>Level of Unification Uniprocessor</description>
+                <bitOffset>27</bitOffset>
+                <bitWidth>3</bitWidth>
+              </field>
+              <field>
+                <name>LoC</name>
+                <description>Level of Coherency</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>3</bitWidth>
+              </field>
+              <field>
+                <name>LoUIS</name>
+                <description>Level of Unifcation Inner Shareable</description>
+                <bitOffset>21</bitOffset>
+                <bitWidth>3</bitWidth>
+              </field>
+              <field>
+                <name>CTYPE_7</name>
+                <description>Type of Cache implemented at Level 7</description>
+                <bitOffset>18</bitOffset>
+                <bitWidth>3</bitWidth>
+              </field>
+              <field>
+                <name>CTYPE_6</name>
+                <description>Type of Cache implemented at Level 6</description>
+                <bitOffset>15</bitOffset>
+                <bitWidth>3</bitWidth>
+              </field>
+              <field>
+                <name>CTYPE_5</name>
+                <description>Type of Cache implemented at Level 5</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>3</bitWidth>
+              </field>
+              <field>
+                <name>CTYPE_4</name>
+                <description>Type of Cache implemented at Level 4</description>
+                <bitOffset>9</bitOffset>
+                <bitWidth>3</bitWidth>
+              </field>
+              <field>
+                <name>CTYPE_3</name>
+                <description>Type of Cache implemented at Level 3</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>3</bitWidth>
+              </field>
+              <field>
+                <name>CTYPE_2</name>
+                <description>Type of Cache implemented at Level 2</description>
+                <bitOffset>3</bitOffset>
+                <bitWidth>3</bitWidth>
+              </field>
+              <field>
+                <name>CTYPE_1</name>
+                <description>Type of Cache implemented at Level 1</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>3</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>AIDR</name>
+            <description>Auxilary ID Register</description>
+            <groupName>ID Regs</groupName>
+            <access>RO</access>
+            <reset>0x00000000</reset>
+            <ID>15,0,0,1,7</ID>
+            <fields>
+              <field>
+                <name>IMPLEMENTOR</name>
+                <description>Silicon Manufacturer ID</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>8</bitWidth>
+              </field>
+              <field>
+                <name>FEATURE</name>
+                <description>Implementation-Defines Field</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>8</bitWidth>
+              </field>
+              <field>
+                <name>MAJOR_REV</name>
+                <description>Major Revision Number</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>MINOR_REV</name>
+                <description>Minor Revision Number</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>CSSELR</name>
+            <description>Cache Size Selection Register</description>
+            <groupName>Cache</groupName>
+            <access>RW</access>
+            <ID>15,0,0,2,0</ID>
+            <fields>
+              <field>
+                <name>LEVEL</name>
+                <description>Cache level selected</description>
+                <bitOffset>1</bitOffset>
+                <bitWidth>3</bitWidth>
+              </field>
+              <field>
+                <name>InD</name>
+                <description>Selected Cache. 0x1: instruction cache,  0x0: data cache</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <!--c1 registers-->
+          <register>
+            <name>SCTLR</name>
+            <description>System Control Register</description>
+            <groupName>System</groupName>
+            <access>RW</access>
+            <reset>0x00C50078</reset>
+            <ID>15,1,0,0,0</ID>
+            <fields>
+              <field>
+                <name>TE</name>
+                <description>Thumb exception enable bit. 0: exceptions including reset are handled in ARM state, 1: exceptions including reset are handled in Thumb state</description>
+                <bitOffset>30</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>AFE</name>
+                <description>Access Flag Enable bit. 0: full access permissions behaviour, 1: simplified access permissions behaviour</description>
+                <bitOffset>29</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>TRE</name>
+                <description>TEX remap enable bit</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>NMFI</name>
+                <description>FIQ-exceptions cannot be masked by software</description>
+                <bitOffset>27</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>EE</name>
+                <description>Value the CPSR E bit is set to on an exception. 0: set to 0, little-endian, 1: set to 1, big endian</description>
+                <bitOffset>25</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>RR</name>
+                <description>Replacement strategy for instruction and data caches. 0:random, 1:round-robin</description>
+                <bitOffset>14</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>V</name>
+                <description>Location of exception vectors. 0:normal, 1:high</description>
+                <bitOffset>13</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>I</name>
+                <description>Instruction caching at any available cache level enabled</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Z</name>
+                <description>Branch Predictions enabled</description>
+                <bitOffset>11</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>SW</name>
+                <description>SWP and SWPB Instructions enabled</description>
+                <bitOffset>11</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>C</name>
+                <description>Data caching enabled</description>
+                <bitOffset>2</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>A</name>
+                <description>Strict alignment fault checking enabled</description>
+                <bitOffset>1</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>M</name>
+                <description>MMU enabled</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>ACTLR</name>
+            <description>Auxiliary Control Register</description>
+            <groupName>System</groupName>
+            <access>RW</access>
+            <reset>0x00000002</reset>
+            <ID>15,1,0,0,1</ID>
+            <fields>
+              <field>
+                <name>PARITY_ON</name>
+                <description>Parity Checking Enabled</description>
+                <bitOffset>9</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>ALLOC_1W</name>
+                <description>Enable allocation in one cache way only</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>EXCL</name>
+                <description>Exclusive Cache Bit</description>
+                <bitOffset>7</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>SMP</name>
+                <description>Coherency enabled</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>WFLOZ</name>
+                <description>Write Full line of zeros mode enabled</description>
+                <bitOffset>3</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>L1_PREFETCH</name>
+                <description>L1 Prefetch enabled</description>
+                <bitOffset>2</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>L2_PREFETCH</name>
+                <description>L2 Prefetch enabled</description>
+                <bitOffset>1</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>FW</name>
+                <description>Cache and TLB maintenance broadcasts</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>CPACR</name>
+            <description>Coprocessor Access Control Register</description>
+            <groupName>System</groupName>
+            <access>RW</access>
+            <reset>0x00000000</reset>
+            <ID>15,1,0,0,2</ID>
+            <fields>
+              <field>
+                <name>ASEDIS</name>
+                <description>Disable Advanced SIMD Extension Functionality</description>
+                <bitOffset>31</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>D32DIS</name>
+                <description>Disable use of D16-D31 of the VFP Register File</description>
+                <bitOffset>30</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>CP11</name>
+                <description>Access Permissions for Coprocessor 11: 00: Access denied  01: Priviledged mode access only  11: Priviledged and User mode</description>
+                <bitOffset>22</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>CP10</name>
+                <description>Access Permissions for Coprocessor 10: 00: Access denied  01: Priviledged mode access only  11: Priviledged and User mode</description>
+                <bitOffset>20</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>CP9</name>
+                <description>Access Permissions for Coprocessor 10: 00: Access denied  01: Priviledged mode access only  11: Priviledged and User mode</description>
+                <bitOffset>18</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>CP8</name>
+                <description>Access Permissions for Coprocessor 10: 00: Access denied  01: Priviledged mode access only  11: Priviledged and User mode</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>CP7</name>
+                <description>Access Permissions for Coprocessor 10: 00: Access denied  01: Priviledged mode access only  11: Priviledged and User mode</description>
+                <bitOffset>14</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>CP6</name>
+                <description>Access Permissions for Coprocessor 10: 00: Access denied  01: Priviledged mode access only  11: Priviledged and User mode</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>CP5</name>
+                <description>Access Permissions for Coprocessor 10: 00: Access denied  01: Priviledged mode access only  11: Priviledged and User mode</description>
+                <bitOffset>10</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>CP4</name>
+                <description>Access Permissions for Coprocessor 10: 00: Access denied  01: Priviledged mode access only  11: Priviledged and User mode</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>CP3</name>
+                <description>Access Permissions for Coprocessor 10: 00: Access denied  01: Priviledged mode access only  11: Priviledged and User mode</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>CP2</name>
+                <description>Access Permissions for Coprocessor 10: 00: Access denied  01: Priviledged mode access only  11: Priviledged and User mode</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>CP1</name>
+                <description>Access Permissions for Coprocessor 10: 00: Access denied  01: Priviledged mode access only  11: Priviledged and User mode</description>
+                <bitOffset>2</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>CP0</name>
+                <description>Access Permissions for Coprocessor 10: 00: Access denied  01: Priviledged mode access only  11: Priviledged and User mode</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>SCR</name>
+            <description>Secure Configuration Register</description>
+            <groupName>Security Extensions</groupName>
+            <access>RW</access>
+            <reset>0x00000000</reset>
+            <ID>15,1,1,0,0</ID>
+            <fields>
+              <field>
+                <name>AW</name>
+                <description>Enable Modification of the A bit in the CPSR in the non-secure state</description>
+                <bitOffset>5</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>FW</name>
+                <description>Enable Modification of the F bit in the CPSR in the non-secure state</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>EA</name>
+                <description>Branch to Monitor Mode on an External Abort Exception</description>
+                <bitOffset>3</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>FIQ</name>
+                <description>Branch to Monitor Mode on an FIQ Exception</description>
+                <bitOffset>2</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IRQ</name>
+                <description>Branch to Montor Mode on an IRQ Exception</description>
+                <bitOffset>1</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>NS</name>
+                <description>Enable Non-Secure Operation Enable </description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>SDER</name>
+            <description>Secure Debug Enable Register</description>
+            <groupName>Security Extensions</groupName>
+            <access>RW</access>
+            <reset>0x00000000</reset>
+            <ID>15,1,1,0,1</ID>
+            <fields>
+              <field>
+                <name>SUNIDEN</name>
+                <description>Secure user non-invasive debug enable</description>
+                <bitOffset>1</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>SUIDEN</name>
+                <description>Secure user invasive debug enable</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>NSACR</name>
+            <description>Non-secure Access Control Register</description>
+            <groupName>Security Extensions</groupName>
+            <access>RW</access>
+            <reset>0x00000000</reset>
+            <ID>15,1,1,0,2</ID>
+            <fields>
+              <field>
+                <name>NS_SMP</name>
+                <description>SMP bit of the Auxiliary Control Register is writable in Non-secure state</description>
+                <bitOffset>18</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>TL</name>
+                <description>Lockable table entries can be allocated in non-secure state</description>
+                <bitOffset>17</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>PLE</name>
+                <description>PLE Registers can be accessed in both Secure and Nonsecure state (1) , or are Disabled (0)</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>NSASEDIS</name>
+                <description>Disable non-secure Advanced SIMD Extension Functionality</description>
+                <bitOffset>15</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>NSD32DIS</name>
+                <description>Disable non-secure use of D16-D31 of the VFP Register File</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>CP11</name>
+                <description>Access Permission for Coprocessor 11 in the Non-Secure State: 0: Secure Access only, 1: Secure and Non-Secure Access</description>
+                <bitOffset>11</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>CP10</name>
+                <description>Access Permission for Coprocessor 10 in the Non-Secure State: 0: Secure Access only, 1: Secure and Non-Secure Access</description>
+                <bitOffset>10</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>CP9</name>
+                <description>Access Permission for Coprocessor 9 in the Non-Secure State: 0: Secure Access only, 1: Secure and Non-Secure Access</description>
+                <bitOffset>9</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>CP8</name>
+                <description>Access Permission for Coprocessor 8 in the Non-Secure State: 0: Secure Access only, 1: Secure and Non-Secure Access</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>CP7</name>
+                <description>Access Permission for Coprocessor 7 in the Non-Secure State: 0: Secure Access only, 1: Secure and Non-Secure Access</description>
+                <bitOffset>7</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>CP6</name>
+                <description>Access Permission for Coprocessor 6 in the Non-Secure State: 0: Secure Access only, 1: Secure and Non-Secure Access</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>CP5</name>
+                <description>Access Permission for Coprocessor 5 in the Non-Secure State: 0: Secure Access only, 1: Secure and Non-Secure Access</description>
+                <bitOffset>5</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>CP4</name>
+                <description>Access Permission for Coprocessor 4 in the Non-Secure State: 0: Secure Access only, 1: Secure and Non-Secure Access</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>CP3</name>
+                <description>Access Permission for Coprocessor 3 in the Non-Secure State: 0: Secure Access only, 1: Secure and Non-Secure Access</description>
+                <bitOffset>3</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>CP2</name>
+                <description>Access Permission for Coprocessor 2 in the Non-Secure State: 0: Secure Access only, 1: Secure and Non-Secure Access</description>
+                <bitOffset>2</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>CP1</name>
+                <description>Access Permission for Coprocessor 1 in the Non-Secure State: 0: Secure Access only, 1: Secure and Non-Secure Access</description>
+                <bitOffset>1</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>CP0</name>
+                <description>Access Permission for Coprocessor 0 in the Non-Secure State: 0: Secure Access only, 1: Secure and Non-Secure Access</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>VCR</name>
+            <description>Virtualization Control Register</description>
+            <groupName>Misc</groupName>
+            <access>RW</access>
+            <reset>0x00000000</reset>
+            <ID>15,1,1,0,3</ID>
+            <fields>
+              <field>
+                <name>AMO</name>
+                <description>Asynchroneous Abort Mask Override</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IMO</name>
+                <description>IRQ Mask Override</description>
+                <bitOffset>7</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IFO</name>
+                <description>FIQ Mask Override</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <!--c2 registers-->
+          <register>
+            <name>TTBR0</name>
+            <description>Translation Table Base Register 0</description>
+            <groupName>VMC</groupName>
+            <access>RW</access>
+            <ID>15,2,0,0,0</ID>
+            <fields>
+              <field>
+                <name>TTB_0</name>
+                <description>Physical Address of the first-Level Translation Table</description>
+                <bitOffset>14</bitOffset>
+                <bitWidth>18</bitWidth>
+              </field>
+              <field>
+                <name>RGN</name>
+                <description>Outer Cacheable attributes for translation table walking</description>
+                <bitOffset>3</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>P</name>
+                <description>Read-As-Zero and ignore writes.</description>
+                <bitOffset>2</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>S</name>
+                <description>Translation table walk to 0: non-shared memory, 1: shared memory</description>
+                <bitOffset>1</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>C</name>
+                <description>Translation table walk is inner (0) or non-inner (1) cacheable</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>TTBR1</name>
+            <description>Translation Table Base Register 1</description>
+            <groupName>VMC</groupName>
+            <access>RW</access>
+            <ID>15,2,0,0,1</ID>
+            <fields>
+              <field>
+                <name>TTB_1</name>
+                <description>Physical Address of the First Level Translation Table</description>
+                <bitOffset>14</bitOffset>
+                <bitWidth>18</bitWidth>
+              </field>
+              <field>
+                <name>RGN</name>
+                <description>Outer Cacheable attributes for translation table walking</description>
+                <bitOffset>3</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>P</name>
+                <description>Read-As-Zero and ignore writes.</description>
+                <bitOffset>2</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>S</name>
+                <description>Translation table walk to 0: non-shared memory, 1: shared memory</description>
+                <bitOffset>1</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>C</name>
+                <description>Translation table walk is inner (0) or non-inner (1) cacheable</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>TTBCR</name>
+            <description>Translation Table Base Control Register</description>
+            <groupName>VMC</groupName>
+            <access>RW</access>
+            <reset>0x00000000</reset>
+            <ID>15,2,0,0,2</ID>
+            <fields>
+              <field>
+                <name>PD1</name>
+                <description>Translation table walk on TLB miss disable when using TTBR1</description>
+                <bitOffset>5</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>PD0</name>
+                <description>Translation table walk on TLB miss disable when using TTBR0</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>N</name>
+                <description>Boundary Size of TTBR0</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>3</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <!--c3 registers-->
+          <register>
+            <name>DACR</name>
+            <description>Domain Access Control Register</description>
+            <groupName>VMC</groupName>
+            <access>RW</access>
+            <ID>15,3,0,0,0</ID>
+            <fields>
+              <field>
+                <name>D0</name>
+                <description>Domain 0 access permissions. 00: no access, 01: client access, 11: manager access</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>D1</name>
+                <description>Domain 1 access permissions. 00: no access, 01: client access, 11: manager access</description>
+                <bitOffset>2</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>D2</name>
+                <description>Domain 2 access permissions. 00: no access, 01: client access, 11: manager access</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>D3</name>
+                <description>Domain 3 access permissions. 00: no access, 01: client access, 11: manager access</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>D4</name>
+                <description>Domain 4 access permissions. 00: no access, 01: client access, 11: manager access</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>D5</name>
+                <description>Domain 5 access permissions. 00: no access, 01: client access, 11: manager access</description>
+                <bitOffset>10</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>D6</name>
+                <description>Domain 6 access permissions. 00: no access, 01: client access, 11: manager access</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>D7</name>
+                <description>Domain 7 access permissions. 00: no access, 01: client access, 11: manager access</description>
+                <bitOffset>14</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>D8</name>
+                <description>Domain 8 access permissions. 00: no access, 01: client access, 11: manager access</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>D9</name>
+                <description>Domain 9 access permissions. 00: no access, 01: client access, 11: manager access</description>
+                <bitOffset>18</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>D10</name>
+                <description>Domain 10 access permissions. 00: no access, 01: client access, 11: manager access</description>
+                <bitOffset>20</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>D11</name>
+                <description>Domain 11 access permissions. 00: no access, 01: client access, 11: manager access</description>
+                <bitOffset>22</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>D12</name>
+                <description>Domain 12 access permissions. 00: no access, 01: client access, 11: manager access</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>D13</name>
+                <description>Domain 13 access permissions. 00: no access, 01: client access, 11: manager access</description>
+                <bitOffset>26</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>D14</name>
+                <description>Domain 14 access permissions. 00: no access, 01: client access, 11: manager access</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>D15</name>
+                <description>Domain 15 access permissions. 00: no access, 01: client access, 11: manager access</description>
+                <bitOffset>30</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <!--c5 registers-->
+          <register>
+            <name>DFSR</name>
+            <description>Data Fault Status Register</description>
+            <groupName>Fault Handling</groupName>
+            <access>RW</access>
+            <ID>15,5,0,0,0</ID>
+            <fields>
+              <field>
+                <name>ExT</name>
+                <description>External Abort Qualifier. 0: AXI Decode error, 1: AXI Slave error</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>RW</name>
+                <description>Indicated weather a read (0) or write (1) access caused an abort</description>
+                <bitOffset>11</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>FS[4]</name>
+                <description>Bit 4 of  the Fault Status Field</description>
+                <bitOffset>10</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>DOMAIN</name>
+                <description>The domain (D15-D0) of the fault address</description>
+                <bitOffset>5</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>FAULT_STATUS</name>
+                <description>Type of Fault Generated</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>IFSR</name>
+            <description>Instruction Fault Status Register</description>
+            <groupName>Fault Handling</groupName>
+            <access>RW</access>
+            <ID>15,5,0,0,1</ID>
+            <fields>
+              <field>
+                <name>ExT</name>
+                <description>External Abort Qualifier. 0: AXI Decode error, 1: AXI Slave error</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>FS[4]</name>
+                <description>Bit 4 of the Fault Status Field</description>
+                <bitOffset>10</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>FAULT_STATUS</name>
+                <description>Type of Fault Generated</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>ADFSR</name>
+            <!--RAZ-->
+            <description>Auxilary Data Fault Status Register</description>
+            <groupName>Fault Handling</groupName>
+            <access>RW</access>
+            <ID>15,5,1,0,0</ID>
+          </register>
+          <register>
+            <name>AIFSR</name>
+            <!--RAZ-->
+            <description>Auxilary Instruction Fault Status Register</description>
+            <groupName>Fault Handling</groupName>
+            <access>RW</access>
+            <reset>0x00000000</reset>
+            <ID>15,5,1,0,1</ID>
+          </register>
+          <!--c6 registers-->
+          <register>
+            <name>DFAR</name>
+            <!--no fields-->
+            <description>Data Fault Address Register</description>
+            <groupName>Fault Handling</groupName>
+            <access>RW</access>
+            <ID>15,6,0,0,0</ID>
+          </register>
+          <register>
+            <name>IFAR</name>
+            <!--no fields-->
+            <description>Instruction Fault Address Register</description>
+            <groupName>Fault Handling</groupName>
+            <access>RW</access>
+            <ID>15,6,0,0,2</ID>
+          </register>
+          <!--c7 Registers-->
+          <register>
+            <name>NOP</name>
+            <!--no fields-->
+            <description>None</description>
+            <groupName>Misc</groupName>
+            <access>WO</access>
+            <ID>15,7,0,0,4</ID>
+          </register>
+          <register>
+            <name>ICIALLUIS</name>
+            <!--no fields-->
+            <description>Instruction cache invalidate all to Point of Unifcation (POU) Inner Shareable</description>
+            <groupName>Cache</groupName>
+            <access>WO</access>
+            <ID>15,7,5,0,0</ID>
+          </register>
+          <register>
+            <name>BPIALLIS</name>
+            <!--no fields-->
+            <description>Branch predictor invalidate all Inner Shareable</description>
+            <groupName>Cache</groupName>
+            <access>WO</access>
+            <ID>15,7,5,0,6</ID>
+          </register>
+          <register>
+            <name>PAR</name>
+            <description>Physical Address Register</description>
+            <groupName>Address Translation</groupName>
+            <access>RW</access>
+            <reset>0x00000000</reset>
+            <ID>15,7,4,0,0</ID>
+            <fields>
+              <field>
+                <name>PA</name>
+                <description>Physical address after successfull translation</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>20</bitWidth>
+              </field>
+              <field>
+                <name>NS</name>
+                <description>Translation Table Non-Secure Bit</description>
+                <bitOffset>9</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>SH</name>
+                <description>Physical memory is shareable</description>
+                <bitOffset>7</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>INNER</name>
+                <description>Signals region inner attributes</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>3</bitWidth>
+              </field>
+              <field>
+                <name>OUTER</name>
+                <description>Signals region outer attributes for normal memory type</description>
+                <bitOffset>2</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>SS</name>
+                <description>Indicates if the translation is a supersection</description>
+                <bitOffset>1</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>F</name>
+                <description>Result of translation. 1: successfull</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>ICIALLU</name>
+            <!--no fields-->
+            <description>Invalidate all instruction caches to Point of Unification (POU)</description>
+            <groupName>Cache</groupName>
+            <access>WO</access>
+            <ID>15,7,5,0,0</ID>
+          </register>
+          <register>
+            <name>ICIMVAU</name>
+            <description>Invalidate instruction cache line by MVA to Point of Unification (PoU)</description>
+            <groupName>Cache</groupName>
+            <access>WO</access>
+            <ID>15,7,5,0,1</ID>
+            <fields>
+              <field>
+                <name>ADDR</name>
+                <description>Address to invalidate or clean</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>20</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>ISB</name>
+            <!--no fields-->
+            <description>Instruction Synchronization Barrier</description>
+            <groupName>Misc</groupName>
+            <access>WO</access>
+            <ID>15,7,5,0,4</ID>
+          </register>
+          <register>
+            <name>BPIALL</name>
+            <!--no fields-->
+            <description>Invalidate entire branch predictor array</description>
+            <groupName>Cache</groupName>
+            <access>WO</access>
+            <ID>15,7,5,0,6</ID>
+          </register>
+          <register>
+            <name>DCIMVAC</name>
+            <description>Invalidate data cache line to Point of Coherency by MVA</description>
+            <groupName>Cache</groupName>
+            <access>WO</access>
+            <ID>15,7,6,0,1</ID>
+            <fields>
+              <field>
+                <name>ADDR</name>
+                <description>Address to invalidate or clean</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>20</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>DCISW</name>
+            <description>Invalidate data cache line by Set/Way</description>
+            <groupName>Cache</groupName>
+            <access>WO</access>
+            <ID>15,7,6,0,2</ID>
+            <fields>
+              <field>
+                <name>WAY</name>
+                <description>Cache way to invalidate or clean</description>
+                <bitOffset>29</bitOffset>
+                <bitWidth>3</bitWidth>
+              </field>
+              <field>
+                <name>SET</name>
+                <description>Cache set to invalidate or clean</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>9</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>ATS1CPR</name>
+            <!--no fields-->
+            <description>Stage 1 current state EL1 read</description>
+            <groupName>Address Translation</groupName>
+            <access>WO</access>
+            <ID>15,7,8,0,0</ID>
+          </register>
+          <register>
+            <name>ATS1CPW</name>
+            <!--no fields-->
+            <description>State 1 current state EL1 write</description>
+            <groupName>Address Translation</groupName>
+            <access>WO</access>
+            <ID>15,7,8,0,1</ID>
+          </register>
+          <register>
+            <name>ATS1CUR</name>
+            <!--no fields-->
+            <description>Stage 1 current state unpriviledged read</description>
+            <groupName>Address Translation</groupName>
+            <access>WO</access>
+            <ID>15,7,8,0,2</ID>
+          </register>
+          <register>
+            <name>ATS1CUW</name>
+            <!--no fields-->
+            <description>Stage 1 current state unpriviledged write</description>
+            <groupName>Address Translation</groupName>
+            <access>WO</access>
+            <ID>15,7,8,0,3</ID>
+          </register>
+          <register>
+            <name>ATS12NSOPR</name>
+            <!--no fields-->
+            <description>Stages 1 and 2 Non-secure EL1 read</description>
+            <groupName>Address Translation</groupName>
+            <access>WO</access>
+            <ID>15,7,8,0,4</ID>
+          </register>
+          <register>
+            <name>ATS12NSOPW</name>
+            <!--no fields-->
+            <description>Stages 1 and 2 non-secure EL1 write</description>
+            <groupName>Address Translation</groupName>
+            <access>WO</access>
+            <ID>15,7,8,0,5</ID>
+          </register>
+          <register>
+            <name>ATS12NSOUR</name>
+            <!--no fields-->
+            <description>Stages 1 and 2 non-secure unpriviledged read</description>
+            <groupName>Address Translation</groupName>
+            <access>WO</access>
+            <ID>15,7,8,0,6</ID>
+          </register>
+          <register>
+            <name>ATS12NSOUW</name>
+            <!--no fields-->
+            <description>Stages 1 and 2 non-secure unpriviledged write</description>
+            <groupName>Address Translation</groupName>
+            <access>WO</access>
+            <ID>15,7,8,0,7</ID>
+          </register>
+          <register>
+            <name>DCCMVAC</name>
+            <description>Clean Data cache line to Point of Coherency by MVA</description>
+            <groupName>Cache</groupName>
+            <access>WO</access>
+            <ID>15,7,10,0,1</ID>
+            <fields>
+              <field>
+                <name>ADDR</name>
+                <description>Address to invalidate or clean</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>20</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>DCCSW</name>
+            <description>Clean data cache line by Set/Way</description>
+            <groupName>Cache</groupName>
+            <access>WO</access>
+            <ID>15,7,10,0,2</ID>
+            <fields>
+              <field>
+                <name>WAY</name>
+                <description>Cache way to invalidate or clean</description>
+                <bitOffset>29</bitOffset>
+                <bitWidth>3</bitWidth>
+              </field>
+              <field>
+                <name>SET</name>
+                <description>Cache set to invalidate or clean</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>9</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>DSB</name>
+            <!--no fields-->
+            <description>Data Synchronization Barrier</description>
+            <groupName>Cache</groupName>
+            <access>WO</access>
+            <ID>15,7,10,0,4</ID>
+          </register>
+          <register>
+            <name>DMB</name>
+            <!--no fields-->
+            <description>Data Memory Barrier</description>
+            <groupName>Cache</groupName>
+            <access>WO</access>
+            <ID>15,7,10,0,5</ID>
+          </register>
+          <register>
+            <name>DCCMVAU</name>
+            <description>Clean data cache line by MVA to Point of Unification (PoU)</description>
+            <groupName>Cache</groupName>
+            <access>WO</access>
+            <ID>15,7,11,0,1</ID>
+            <fields>
+              <field>
+                <name>ADDR</name>
+                <description>Address to invalidate or clean</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>20</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>DCCIMVAC</name>
+            <description>Clean and invalidate data cache line by MVA to Point of Unifciation (PoU)</description>
+            <groupName>Cache</groupName>
+            <access>WO</access>
+            <ID>15,7,14,0,1</ID>
+            <fields>
+              <field>
+                <name>ADDR</name>
+                <description>Address to invalidate or clean</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>20</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>DCCISW</name>
+            <description>Clean and invalidate data cache line by Set/Way</description>
+            <groupName>Cache</groupName>
+            <access>WO</access>
+            <ID>15,7,14,0,2</ID>
+            <fields>
+              <field>
+                <name>WAY</name>
+                <description>Cache way to invalidate or clean</description>
+                <bitOffset>29</bitOffset>
+                <bitWidth>3</bitWidth>
+              </field>
+              <field>
+                <name>SET</name>
+                <description>Cache set to invalidate or clean</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>9</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <!--c8 Registers-->
+          <register>
+            <name>ITLBIALLIS</name>
+            <!--no fields-->
+            <description>Invalidate Instruction TLB</description>
+            <groupName>TLB</groupName>
+            <access>WO</access>
+            <ID>15,8,3,0,0</ID>
+          </register>
+          <register>
+            <name>ITLBIMVAIS</name>
+            <!--no fields-->
+            <description>Invalidate Instruction TLB by MVA</description>
+            <groupName>TLB</groupName>
+            <access>WO</access>
+            <ID>15,8,3,0,1</ID>
+          </register>
+          <register>
+            <name>ITLBIASIDIS</name>
+            <!--no fields-->
+            <description>Invalidate Instruction TLB by ASID</description>
+            <groupName>TLB</groupName>
+            <access>WO</access>
+            <ID>15,8,3,0,2</ID>
+          </register>
+          <register>
+            <name>DTLBIMVAIS</name>
+            <!--no fields-->
+            <description>Invalidate Data TLB</description>
+            <groupName>TLB</groupName>
+            <access>WO</access>
+            <ID>15,8,3,0,3</ID>
+          </register>
+          <register>
+            <name>TLBIALL</name>
+            <!--no fields-->
+            <description>Invalidate unified TLB</description>
+            <groupName>TLB</groupName>
+            <access>WO</access>
+            <ID>15,8,7,0,0</ID>
+          </register>
+          <register>
+            <name>TLBIMVA</name>
+            <!--no fields-->
+            <description>Invalidate unified TLB by MVA</description>
+            <groupName>TLB</groupName>
+            <access>WO</access>
+            <ID>15,8,7,0,1</ID>
+          </register>
+          <register>
+            <name>TLBIASID</name>
+            <!--no fields-->
+            <description>Invalidate TLB entries on ASID match</description>
+            <groupName>TLB</groupName>
+            <access>WO</access>
+            <ID>15,8,7,0,2</ID>
+          </register>
+          <register>
+            <name>TLBIMVAA</name>
+            <!--no fields-->
+            <description>Invalidate TLB entries on ASID match</description>
+            <groupName>TLB</groupName>
+            <access>WO</access>
+            <ID>15,8,7,0,3</ID>
+          </register>
+          <!--c9 Registers-->
+          <register>
+            <name>PMCR</name>
+            <description>Performance Monitor Control Register</description>
+            <groupName>PMU</groupName>
+            <access>RW</access>
+            <reset>0x41093000</reset>
+            <ID>15,9,12,0,0</ID>
+            <fields>
+              <field>
+                <name>IMP</name>
+                <description>Implementor Code. 0x41: arm</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>8</bitWidth>
+              </field>
+              <field>
+                <name>ID_CODE</name>
+                <description>Identification Code</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>8</bitWidth>
+              </field>
+              <field>
+                <name>N</name>
+                <description>Number of Counters Implemented</description>
+                <bitOffset>11</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>DP</name>
+                <description>Disable Cycle Counter PMCCNTR in prohibited regions</description>
+                <bitOffset>5</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>X</name>
+                <description>Export of the events from the event bus to an external monitoring block enabled</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>D</name>
+                <description>Cycle Count Divider. 0: count every clock cycle when enabled. 1: count every 64th clock cycle when enabled.</description>
+                <bitOffset>3</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>C</name>
+                <description>Cycle Counter Reset</description>
+                <bitOffset>2</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>P</name>
+                <description>Reset all Performance Counters, including PMCCNTR</description>
+                <bitOffset>1</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>E</name>
+                <description>Enable All Counters including PMCCNTR</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>PMNCNTENSET</name>
+            <description>Count Enable Set Register</description>
+            <groupName>PMU</groupName>
+            <reset>0x00000000</reset>
+            <access>RW</access>
+            <ID>15,9,12,0,1</ID>
+            <fields>
+              <field>
+                <name>C</name>
+                <description>Enable Cycle Counter</description>
+                <bitOffset>31</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>P0</name>
+                <description>Enable Counter 0</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>P1</name>
+                <description>Enable Counter 1</description>
+                <bitOffset>1</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>P2</name>
+                <description>Enable Counter 2</description>
+                <bitOffset>2</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>P3</name>
+                <description>Enable Counter 3</description>
+                <bitOffset>3</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>PMNCNTENCLR</name>
+            <description>Count Enable Clear Register</description>
+            <groupName>PMU</groupName>
+            <access>RW</access>
+            <reset>0x00000000</reset>
+            <ID>15,9,12,0,2</ID>
+            <fields>
+              <field>
+                <name>C</name>
+                <description>Disable Cycle Counter</description>
+                <bitOffset>31</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>P0</name>
+                <description>Disable Counter 0</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>P1</name>
+                <description>Disable Counter 1</description>
+                <bitOffset>1</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>P2</name>
+                <description>Disable Counter 2</description>
+                <bitOffset>2</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>P3</name>
+                <description>Disable Counter 3</description>
+                <bitOffset>3</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>PMSOVSR</name>
+            <description>Overflow Flag Status Register</description>
+            <groupName>PMU</groupName>
+            <reset>0x00000000</reset>
+            <access>RW</access>
+            <ID>15,9,12,0,3</ID>
+            <fields>
+              <field>
+                <name>C</name>
+                <description>Cycle Counter Overflow Flag</description>
+                <bitOffset>31</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>P0</name>
+                <description>Counter 0 Overflow Flag</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>P1</name>
+                <description>Counter 1 Overflow Flag</description>
+                <bitOffset>1</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>P2</name>
+                <description>Counter 2 Overflow Flag</description>
+                <bitOffset>2</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>P3</name>
+                <description>Counter 3 Overflow Flag</description>
+                <bitOffset>3</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>PMSWINC</name>
+            <description>Software Increment Register</description>
+            <groupName>PMU</groupName>
+            <access>WO</access>
+            <ID>15,9,12,0,4</ID>
+            <fields>
+              <field>
+                <name>P0</name>
+                <description>Increment Counter 0</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>P1</name>
+                <description>Increment Counter 1</description>
+                <bitOffset>1</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>P2</name>
+                <description>Increment Counter 2</description>
+                <bitOffset>2</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>P3</name>
+                <description>Increment Counter 3</description>
+                <bitOffset>3</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>PMSELR</name>
+            <description>Performance Counter Selection Register</description>
+            <groupName>PMU</groupName>
+            <access>RW</access>
+            <reset>0x00000000</reset>
+            <ID>15,9,12,0,5</ID>
+            <fields>
+              <field>
+                <name>SEL</name>
+                <description>Counter Selected Register</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>5</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>PMCCNTR</name>
+            <!--no fields-->
+            <description>Cycle Count Register</description>
+            <groupName>PMU</groupName>
+            <access>RW</access>
+            <reset>0x00000000</reset>
+            <ID>15,9,13,0,0</ID>
+          </register>
+          <register>
+            <name>PMXEVTYPER</name>
+            <description>Event Type Select Register</description>
+            <groupName>PMU</groupName>
+            <access>RW</access>
+            <ID>15,9,13,0,1</ID>
+            <fields>
+              <field>
+                <name>SEL</name>
+                <description>Selected Event Specificator</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>8</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>PMEVCNTR</name>
+            <!--no fields-->
+            <description>Performance Montor Event Count Register</description>
+            <groupName>PMU</groupName>
+            <access>RW</access>
+            <ID>15,9,13,0,2</ID>
+          </register>
+          <register>
+            <name>PMUSERENR</name>
+            <description>User Enable Register</description>
+            <groupName>PMU</groupName>
+            <access>RW</access>
+            <reset>0x00000000</reset>
+            <ID>15,9,14,0,0</ID>
+            <fields>
+              <field>
+                <name>EN</name>
+                <description>User Mode Enabled</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>PMINTENSET</name>
+            <description>Interrupt Enable Set Register</description>
+            <groupName>PMU</groupName>
+            <reset>0x00000000</reset>
+            <access>RW</access>
+            <ID>15,9,14,0,1</ID>
+            <fields>
+              <field>
+                <name>C</name>
+                <description>PMCCNTR overflow interrupt request enable.</description>
+                <bitOffset>31</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>P0</name>
+                <description>PMCNT0 overflow interrupt request enable.</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>P1</name>
+                <description>PMCNT1 overflow interrupt request enable.</description>
+                <bitOffset>1</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>P2</name>
+                <description>PMCNT2 overflow interrupt request enable.</description>
+                <bitOffset>2</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>P3</name>
+                <description>PMCNT3 overflow interrupt request enable.</description>
+                <bitOffset>3</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>PMINTENCLR</name>
+            <description>Interrupt Enable Clear Register</description>
+            <groupName>PMU</groupName>
+            <reset>0x00000000</reset>
+            <access>RW</access>
+            <ID>15,9,14,0,2</ID>
+            <fields>
+              <field>
+                <name>C</name>
+                <description>PMCCNTR overflow interrupt clear bit</description>
+                <bitOffset>31</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>P0</name>
+                <description>Clear interrupt request on PMCNT1 overflow</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>P1</name>
+                <description>Clear interrupt request on PMCNT1 overflow</description>
+                <bitOffset>1</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>P2</name>
+                <description>Clear interrupt request on PMCNT1 overflow</description>
+                <bitOffset>2</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>P3</name>
+                <description>Clear interrupt request on PMCNT0 overflow</description>
+                <bitOffset>3</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <!--c10 Registers-->
+          <register>
+            <name>TLB_LOCKDOWN</name>
+            <description>TLB Lockdown Register</description>
+            <groupName>TLB</groupName>
+            <access>RW</access>
+            <reset>0x00000000</reset>
+            <ID>15,10,0,0,0</ID>
+            <fields>
+              <field>
+                <name>VICTIM</name>
+                <description>Specifies the entry where the next hardware translation table walk can place a TLB entry</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>P</name>
+                <description>Determines if TLB entries allocated by subsequent translation table walks are not invalidated by the Invalidate TLB unlocked entries operation</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>PRRR</name>
+            <description>Primary Memory Region Remap Register</description>
+            <groupName>VMC</groupName>
+            <access>RW</access>
+            <reset>0x00098AA4</reset>
+            <ID>15,10,2,0,0</ID>
+            <fields>
+              <field>
+                <name>NS1</name>
+                <description>Mapping of S=1 attribute for normal memory</description>
+                <bitOffset>19</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>NS0</name>
+                <description>Mapping of S=1 attribute for normal memory</description>
+                <bitOffset>18</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>DS1</name>
+                <description>Mapping of S=1 attribute for device memory</description>
+                <bitOffset>17</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>DS0</name>
+                <description>Mapping of S=0 attribute for device memory</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>TR7</name>
+                <description>Primary TEX mapping for memory attributes 7</description>
+                <bitOffset>14</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>TR6</name>
+                <description>Primary TEX mapping for memory attributes 6</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>TR5</name>
+                <description>Primary TEX mapping for memory attributes 5</description>
+                <bitOffset>10</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>TR4</name>
+                <description>Primary TEX mapping for memory attributes 4</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>TR3</name>
+                <description>Primary TEX mapping for memory attributes 3</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>TR2</name>
+                <description>Primary TEX mapping for memory attributes 2</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>TR1</name>
+                <description>Primary TEX mapping for memory attributes 1</description>
+                <bitOffset>2</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>TR0</name>
+                <description>Primary TEX mapping for memory attributes 0</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>NMRR</name>
+            <!--no fields-->
+            <description>Normal Memory Remap Register</description>
+            <groupName>VMC</groupName>
+            <access>RW</access>
+            <reset>0x44E048E0</reset>
+            <ID>15,10,2,0,1</ID>
+            <fields>
+              <field>
+                <name>OR3</name>
+                <description>Outer Cacheable property mapping for memory attributes 3</description>
+                <bitOffset>22</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>OR2</name>
+                <description>Outer Cacheable property mapping for memory attributes 2</description>
+                <bitOffset>20</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>OR1</name>
+                <description>Outer Cacheable property mapping for memory attributes 1</description>
+                <bitOffset>18</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>OR0</name>
+                <description>Outer Cacheable property mapping for memory attributes 0</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>IR7</name>
+                <description>Inner Cacheable property mapping for memory attributes 7</description>
+                <bitOffset>14</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>IR6</name>
+                <description>Inner Cacheable property mapping for memory attributes 6</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>IR5</name>
+                <description>Inner Cacheable property mapping for memory attributes 5</description>
+                <bitOffset>10</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>IR4</name>
+                <description>Inner Cacheable property mapping for memory attributes 4</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>IR3</name>
+                <description>Inner Cacheable property mapping for memory attributes 3</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>IR2</name>
+                <description>Inner Cacheable property mapping for memory attributes 2</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>IR1</name>
+                <description>Inner Cacheable property mapping for memory attributes 1</description>
+                <bitOffset>2</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>IR0</name>
+                <description>Inner Cacheable property mapping for memory attributes 0</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <!--c11 registers-->
+          <register>
+            <name>PLEIDR</name>
+            <description>Preload Engine (PLE) Identification and Status Register</description>
+            <groupName>Preload Engine</groupName>
+            <access>RO</access>
+            <ID>15,11,0,0,0</ID>
+            <fields>
+              <field>
+                <name>PLE FIFO size</name>
+                <description>PLE Fifo Size (00000: PLE not present, 00100: size 4, 01000: size 8, 10000: size 16)</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>PLE_PRESENT</name>
+                <description>Preload Engine present</description>
+                <bitOffset>1</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>PLEASR</name>
+            <description>Preload Engine (PLE) Activity Status Register 0</description>
+            <groupName>Preload Engine</groupName>
+            <access>RO</access>
+            <ID>15,11,0,0,2</ID>
+            <fields>
+              <field>
+                <name>R</name>
+                <description>Preload Engine is handling a PLE request</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>PLEFSR</name>
+            <description>Preload Engine (PLE) FIFO Status Register 0</description>
+            <groupName>Preload Engine</groupName>
+            <access>RO</access>
+            <ID>15,11,0,0,4</ID>
+            <fields>
+              <field>
+                <name>AVAIL_ENTRIES</name>
+                <description>Number of Available Entries in the PLE FIFO</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>5</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>PLEUAR</name>
+            <description>Preload Engine (PLE) User Accessibility Register</description>
+            <groupName>Preload Engine</groupName>
+            <access>RW</access>
+            <ID>15,11,1,0,0</ID>
+            <fields>
+              <field>
+                <name>U</name>
+                <description>User Mode Can Execute PLE Ops</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>PLECR</name>
+            <description>Preload Engine (PLE) Control Register</description>
+            <groupName>Preload Engine</groupName>
+            <access>RW</access>
+            <ID>15,11,4,0,0</ID>
+            <fields>
+              <field>
+                <name>BSZM</name>
+                <description>Maximum Block Size per PLE transfere</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>14</bitWidth>
+              </field>
+              <field>
+                <name>BNM</name>
+                <description>Maximum Block Number per PLE transfere</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>8</bitWidth>
+              </field>
+              <field>
+                <name>PLE_WAIT_STATES</name>
+                <description>Restrict PLD issue requests to every 256 cycle</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>8</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <!--c12 registers-->
+          <register>
+            <name>VBAR</name>
+            <description>Vector Base Address Register</description>
+            <groupName>Security Extensions</groupName>
+            <access>RW</access>
+            <reset>0x00000000</reset>
+            <ID>15,12,0,0,0</ID>
+            <fields>
+              <field>
+                <name>VECT_BASE_ADDR</name>
+                <description>The base address of normal exception vectors</description>
+                <bitOffset>5</bitOffset>
+                <bitWidth>27</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>MVBAR</name>
+            <description>Monitor Vector Base Address Register</description>
+            <reset>0x00000000</reset>
+            <groupName>Security Extensions</groupName>
+            <access>RW</access>
+            <ID>15,12,0,0,1</ID>
+            <fields>
+              <field>
+                <name>MONITOR_VBA</name>
+                <description>The base address of the exception vectors for exceptions that are handled in monitor mode</description>
+                <bitOffset>5</bitOffset>
+                <bitWidth>27</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>ISR</name>
+            <description>Interrupt Status Register</description>
+            <groupName>Security Extensions</groupName>
+            <reset>0x00000000</reset>
+            <access>RO</access>
+            <ID>15,12,1,0,0</ID>
+            <fields>
+              <field>
+                <name>A</name>
+                <description>External abort pending</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>I</name>
+                <description>Interrupt pending</description>
+                <bitOffset>7</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>F</name>
+                <description>Fast interrupt pending</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>VIR</name>
+            <description>Virtualization Interrupt Register</description>
+            <groupName>Security Extensions</groupName>
+            <reset>0x00000000</reset>
+            <access>RW</access>
+            <ID>15,12,1,0,1</ID>
+            <fields>
+              <field>
+                <name>VA</name>
+                <description>Virtual Abort Bit</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>VI</name>
+                <description>Virtual IRQ Bit</description>
+                <bitOffset>7</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>VF</name>
+                <description>Virtual FIQ Bit</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <!--c13  registers-->
+          <register>
+            <name>FCSEIDR</name>
+            <!--RAZ-->
+            <description>Fast Context Switching Extension Register</description>
+            <groupName>ID Regs</groupName>
+            <access>RW</access>
+            <reset>0x00000000</reset>
+            <ID>15,13,0,0,0</ID>
+            <fields>
+              <field>
+                <name>FCSE_PID</name>
+                <description>Fast Context Switch Extension ID</description>
+                <bitOffset>25</bitOffset>
+                <bitWidth>7</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>CONTEXTIDR</name>
+            <description>Context ID Register</description>
+            <groupName>ID Regs</groupName>
+            <access>RW</access>
+            <ID>15,13,0,0,1</ID>
+            <fields>
+              <field>
+                <name>PROCID</name>
+                <description>Current Process Identifier</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>24</bitWidth>
+              </field>
+              <field>
+                <name>ASID</name>
+                <description>Address Space Identifier (ASID) of the Current Process</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>8</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>TPIDRURW</name>
+            <description>Software Thread ID Register 1</description>
+            <groupName>ID Regs</groupName>
+            <access>RW</access>
+            <ID>15,13,0,0,2</ID>
+          </register>
+          <register>
+            <name>TPIDRURO</name>
+            <description>Software Thread ID Register 2</description>
+            <groupName>ID Regs</groupName>
+            <access>RO</access>
+            <ID>15,13,0,0,3</ID>
+          </register>
+          <register>
+          <name>TPIDRPRW</name>
+          <description>Software Thread ID Register 3</description>
+          <groupName>ID Regs</groupName>
+          <access>RW</access>
+          <ID>15,13,0,0,4</ID> f
+        </register>
+          <!--c15  registers-->
+          <register>
+            <name>POWER</name>
+            <description>Power Control Register</description>
+            <groupName>System</groupName>
+            <access>RW</access>
+            <ID>15,15,0,0,0</ID>
+            <fields>
+              <field>
+                <name>MAX_CLK_LATENCY</name>
+                <description>Samples the value present on the MAXCLKLATENCY pins on exit from reset</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>3</bitWidth>
+              </field>
+              <field>
+                <name>EDCG</name>
+                <description>Dynamic Clock Gating Enabled</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>NEON_BUSY</name>
+            <reset>0x00000000</reset>
+            <description>NEON Busy Register</description>
+            <groupName>System</groupName>
+            <access>RW</access>
+            <ID>15,15,1,0,0</ID>
+            <fields>
+              <field>
+                <name>NEON_BUSY</name>
+                <description>Neon instruction present within the NEON pipeline</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>CBAR</name>
+            <!--no fields-->
+            <description>Configuration Base Address Register</description>
+            <groupName>System</groupName>
+            <access>RO</access>
+            <reset>0x00000000</reset>
+            <ID>15,15,0,4,0</ID>
+            <fields>
+              <field>
+                <name>PERIPH_BASE</name>
+                <description>Peripheral Base Address</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>32</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>TLB_LD_READ</name>
+            <description>Select Lockdown TLB Entry for Read</description>
+            <groupName>System</groupName>
+            <access>WO</access>
+            <ID>15,15,4,5,2</ID>
+            <fields>
+              <field>
+                <name>INDEX</name>
+                <description>Main TLB index</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>TLB_LD_WRITE</name>
+            <description>Select Lockdown TLB Entry for Write</description>
+            <groupName>System</groupName>
+            <access>WO</access>
+            <ID>15,15,4,5,4</ID>
+            <fields>
+              <field>
+                <name>INDEX</name>
+                <description>Main TLB index</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>MTLBVAR</name>
+            <description>Main TLB VA Register</description>
+            <groupName>TLB</groupName>
+            <access>WO</access>
+            <ID>15,15,5,5,2</ID>
+            <fields>
+              <field>
+                <name>VPN</name>
+                <description>Virtual Page Number</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>20</bitWidth>
+              </field>
+              <field>
+                <name>NS</name>
+                <description>Non-Secure Bit</description>
+                <bitOffset>10</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>PROCESS</name>
+                <description>Memory Space Identifer</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>10</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>MTLBPAR</name>
+            <description>Main TLB PA Register</description>
+            <groupName>TLB</groupName>
+            <access>WO</access>
+            <ID>15,15,6,5,2</ID>
+            <fields>
+              <field>
+                <name>PPN</name>
+                <description>Physical Page Number</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>20</bitWidth>
+              </field>
+              <field>
+                <name>REGION_SZ</name>
+                <description>Region Size</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>ACCESS_PERM</name>
+                <description>Access Permissions</description>
+                <bitOffset>1</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>VALID</name>
+                <description>The Entry is Locked and Valid</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>MTLBAR</name>
+            <!--no fields-->
+            <description>Main TLB Attribute Register</description>
+            <groupName>TLB</groupName>
+            <access>WO</access>
+            <ID>15,15,7,5,2</ID>
+            <fields>
+              <field>
+                <name>NON-SECURE</name>
+                <description>Non-Secure Description Attribute</description>
+                <bitOffset>11</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>DOMAIN_NBR</name>
+                <description>TLB-entry domain number</description>
+                <bitOffset>7</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>EXEC_NEVER</name>
+                <description>Execute Never Attribute</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>TEX</name>
+                <description>Region Type Encoding 1</description>
+                <bitOffset>3</bitOffset>
+                <bitWidth>3</bitWidth>
+              </field>
+              <field>
+                <name>CB</name>
+                <description>Region Type Encoding 2</description>
+                <bitOffset>1</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>SHARED</name>
+                <description>Shared Attribute</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+        </registers>
+      </group>
+    </groups>
+  </cpu>
+</device>

@@ -1,0 +1,1322 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<device schemaVersion="1.3.5" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="CMSIS-SVD_Schema_1_3_5.xsd">
+  <cpu>
+    <name>ARM11</name>
+    <displayName>ARM 11</displayName>
+    <groups>
+      <group>
+        <name>State</name>
+        <description>Current CPU State</description>
+        <IsCPUModeItem>1</IsCPUModeItem>
+      </group>
+      <group>
+        <name>Core (Now)</name>
+        <description>Current State CPU Registers</description>
+        <size>32</size>
+        <access>RW</access>
+        <type>unsigned int</type>
+        <registers>
+          <register>
+            <name>R0</name>
+            <description>General purpose register 0</description>
+            <Index>0</Index>
+          </register>
+          <register>
+            <name>R1</name>
+            <description>General purpose register 1</description>
+            <Index>1</Index>
+          </register>
+          <register>
+            <name>R2</name>
+            <description>General purpose register 2 </description>
+            <Index>2</Index>
+          </register>
+          <register>
+            <name>R3</name>
+            <description>General purpose register 3 </description>
+            <Index>3</Index>
+          </register>
+          <register>
+            <name>R4</name>
+            <description>General purpose register 4</description>
+            <Index>4</Index>
+          </register>
+          <register>
+            <name>R5</name>
+            <description>General purpose register 5</description>
+            <Index>5</Index>
+          </register>
+          <register>
+            <name>R6</name>
+            <description>General purpose register 6</description>
+            <Index>6</Index>
+          </register>
+          <register>
+            <name>R7</name>
+            <description>General purpose register 7</description>
+            <Index>7</Index>
+          </register>
+          <register>
+            <name>R8</name>
+            <description>General purpose register 8</description>
+            <Index>72</Index>
+          </register>
+          <register>
+            <name>R9</name>
+            <description>General purpose register 9</description>
+            <Index>73</Index>
+          </register>
+          <register>
+            <name>R10</name>
+            <description>General purpose register 10</description>
+            <Index>74</Index>
+          </register>
+          <register>
+            <name>R11</name>
+            <description>General purpose register 11</description>
+            <Index>75</Index>
+          </register>
+          <register>
+            <name>R12</name>
+            <description>General purpose register 12</description>
+            <Index>76</Index>
+          </register>
+          <register>
+            <name>R13</name>
+            <AliasName>SP</AliasName>
+            <displayName>R13 (SP)</displayName>
+            <description>Stack pointer (SP)</description>
+            <Index>77</Index>
+          </register>
+          <register>
+            <name>R14</name>
+            <AliasName>LR</AliasName>
+            <displayName>R14 (LR)</displayName>
+            <description>Link register (LR)</description>
+            <Index>78</Index>
+          </register>
+          <register>
+            <name>R15</name>
+            <AliasName>PC</AliasName>
+            <displayName>R15 (PC)</displayName>
+            <description>Program counter (PC)</description>
+            <Index>9</Index>
+          </register>
+          <register>
+            <name>CPSR</name>
+            <description>Current program status register</description>
+            <Index>8</Index>
+            <fields>
+              <field>
+                <name>M</name>
+                <description>Mode bits</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>5</bitWidth>
+              </field>
+              <field>
+                <name>T</name>
+                <description>Thumb state</description>
+                <bitOffset>5</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>F</name>
+                <description>SVC disable</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>I</name>
+                <description>IRQ disable</description>
+                <bitOffset>7</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>A</name>
+                <description>Asynchroneous abort disable</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>E</name>
+                <description>Data endianess</description>
+                <bitOffset>9</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>GE</name>
+                <description>Greater-than-or-equal bits</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>J</name>
+                <description>Jazelle state</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Q</name>
+                <description>Sticky overflow flag</description>
+                <bitOffset>27</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>V</name>
+                <description>Overflow flag</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>C</name>
+                <description>Carry flag</description>
+                <bitOffset>29</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Z</name>
+                <description>Zero flag</description>
+                <bitOffset>30</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>N</name>
+                <description>Negative flag</description>
+                <bitOffset>31</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+        </registers>
+      </group>
+      <group>
+        <name>FPU Registers</name>
+        <description>Floating Point Registers</description>
+        <size>32</size>
+        <access>RW</access>
+        <type>float</type>
+        <registers>
+          <register>
+            <name>S0</name>
+            <description>Floating point register 0</description>
+            <Index>40</Index>
+          </register>
+          <register>
+            <name>S1</name>
+            <description>Floating point register 1</description>
+            <Index>41</Index>
+          </register>
+          <register>
+            <name>S2</name>
+            <description>Floating point register 2</description>
+            <Index>42</Index>
+          </register>
+          <register>
+            <name>S3</name>
+            <description>Floating point register 3</description>
+            <Index>43</Index>
+          </register>
+          <register>
+            <name>S4</name>
+            <description>Floating point register 4</description>
+            <Index>44</Index>
+          </register>
+          <register>
+            <name>S5</name>
+            <description>Floating point register 5</description>
+            <Index>45</Index>
+          </register>
+          <register>
+            <name>S6</name>
+            <description>Floating point register 6</description>
+            <Index>46</Index>
+          </register>
+          <register>
+            <name>S7</name>
+            <description>Floating point register 7</description>
+            <Index>47</Index>
+          </register>
+          <register>
+            <name>S8</name>
+            <description>Floating point register 8</description>
+            <Index>48</Index>
+          </register>
+          <register>
+            <name>S9</name>
+            <description>Floating point register 9</description>
+            <Index>49</Index>
+          </register>
+          <register>
+            <name>S10</name>
+            <description>Floating point register 10</description>
+            <Index>50</Index>
+          </register>
+          <register>
+            <name>S11</name>
+            <description>Floating point register 11</description>
+            <Index>51</Index>
+          </register>
+          <register>
+            <name>S12</name>
+            <description>Floating point register 12</description>
+            <Index>52</Index>
+          </register>
+          <register>
+            <name>S13</name>
+            <description>Floating point register 13</description>
+            <Index>53</Index>
+          </register>
+          <register>
+            <name>S14</name>
+            <description>Floating point register 14</description>
+            <Index>54</Index>
+          </register>
+          <register>
+            <name>S15</name>
+            <description>Floating point register 15</description>
+            <Index>55</Index>
+          </register>
+          <register>
+            <name>S16</name>
+            <description>Floating point register 16</description>
+            <Index>56</Index>
+          </register>
+          <register>
+            <name>S17</name>
+            <description>Floating point register 17</description>
+            <Index>57</Index>
+          </register>
+          <register>
+            <name>S18</name>
+            <description>Floating point register 18</description>
+            <Index>58</Index>
+          </register>
+          <register>
+            <name>S19</name>
+            <description>Floating point register 19</description>
+            <Index>59</Index>
+          </register>
+          <register>
+            <name>S20</name>
+            <description>Floating point register 20</description>
+            <Index>60</Index>
+          </register>
+          <register>
+            <name>S21</name>
+            <description>Floating point register 21</description>
+            <Index>61</Index>
+          </register>
+          <register>
+            <name>S22</name>
+            <description>Floating point register 22</description>
+            <Index>62</Index>
+          </register>
+          <register>
+            <name>S23</name>
+            <description>Floating point register 23</description>
+            <Index>63</Index>
+          </register>
+          <register>
+            <name>S24</name>
+            <description>Floating point register 24</description>
+            <Index>64</Index>
+          </register>
+          <register>
+            <name>S25</name>
+            <description>Floating point register 25</description>
+            <Index>65</Index>
+          </register>
+          <register>
+            <name>S26</name>
+            <description>Floating point register 26</description>
+            <Index>66</Index>
+          </register>
+          <register>
+            <name>S27</name>
+            <description>Floating point register 27</description>
+            <Index>67</Index>
+          </register>
+          <register>
+            <name>S28</name>
+            <description>Floating point register 28</description>
+            <Index>68</Index>
+          </register>
+          <register>
+            <name>S29</name>
+            <description>Floating point register 29</description>
+            <Index>69</Index>
+          </register>
+          <register>
+            <name>S30</name>
+            <description>Floating point register 30</description>
+            <Index>70</Index>
+          </register>
+          <register>
+            <name>S31</name>
+            <description>Floating point register 31</description>
+            <Index>71</Index>
+          </register>
+          <register>
+            <name>FPSID</name>
+            <description>Floating point system information register</description>
+            <access>RO</access>
+            <reset>0x41011090</reset>
+            <Index>37</Index>
+            <fields>
+              <field>
+                <name>Implementer</name>
+                <description>Implementer ID</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>8</bitWidth>
+              </field>
+              <field>
+                <name>SW</name>
+                <description>Software emulation support flag</description>
+                <bitOffset>23</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Format</name>
+                <description>FSTMX/FLDMX format</description>
+                <bitOffset>21</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>SNG</name>
+                <description>Both single-precision and double-precision data supported</description>
+                <bitOffset>20</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Architecture</name>
+                <description>VFPv2 architecture</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>PartNumber</name>
+                <description>Part number</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>8</bitWidth>
+              </field>
+              <field>
+                <name>Variant</name>
+                <description>Variant ID</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>Revision</name>
+                <description>Revision number</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>FPSCR</name>
+            <description>Floating point status and control register</description>
+            <access>RW</access>
+            <reset>0x0</reset>
+            <Index>38</Index>
+            <fields>
+              <field>
+                <name>IOC</name>
+                <description>Invalid operation cumulative exception flag</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>DZC</name>
+                <description>Division by zero cumulative exception flag</description>
+                <bitOffset>1</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>OFC</name>
+                <description>Overflow cumulative exception flag</description>
+                <bitOffset>2</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>UFC</name>
+                <description>Underflow cumulative exception flag</description>
+                <bitOffset>3</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IXC</name>
+                <description>Inexact cumulative exception flag</description>
+                <bitOffset>4</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IDC</name>
+                <description>Input denormal cumulative exception flag</description>
+                <bitOffset>7</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IOE</name>
+                <description>Invalid operation exception enable bit</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>DZE</name>
+                <description>Division by zero exception enable bit</description>
+                <bitOffset>9</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>OFE</name>
+                <description>Overflow exception enable bit</description>
+                <bitOffset>10</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>UFE</name>
+                <description>Underflow exception enable bit</description>
+                <bitOffset>11</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IXE</name>
+                <description>Inexact exception enable bit</description>
+                <bitOffset>12</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IDE</name>
+                <description>Input Subnormal exception enable bit</description>
+                <bitOffset>15</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Len</name>
+                <description>Vector length</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>3</bitWidth>
+              </field>
+              <field>
+                <name>Stride</name>
+                <description>Stride control</description>
+                <bitOffset>20</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>R-Mode</name>
+                <description>Rounding mode control</description>
+                <bitOffset>22</bitOffset>
+                <bitWidth>2</bitWidth>
+              </field>
+              <field>
+                <name>FZ</name>
+                <description>Flush-to-zero mode enable bit</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>DN</name>
+                <description>Default NaN mode enable bit</description>
+                <bitOffset>25</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>V</name>
+                <description>Set if comparison produces an unordered result</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>C</name>
+                <description>Set if comparison produces an equal, greater than, or unordered result</description>
+                <bitOffset>29</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Z</name>
+                <description>Set if comparison produces an equal result</description>
+                <bitOffset>30</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>N</name>
+                <description>Set if comparison produces a less than result</description>
+                <bitOffset>31</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>FPEXC</name>
+            <description>Floating point exception register</description>
+            <access>RW</access>
+            <reset>0x0</reset>
+            <Index>39</Index>
+            <fields>
+              <field>
+                <name>IOC</name>
+                <description>Invalid operation cumulative flag</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>OFC</name>
+                <description>Overflow cumulative flag</description>
+                <bitOffset>2</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>UFC</name>
+                <description>Underflow cumulative flag</description>
+                <bitOffset>3</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>INV</name>
+                <description>Input exception flag</description>
+                <bitOffset>7</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>VECITR</name>
+                <description>Vector iteration count field</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>3</bitWidth>
+              </field>
+              <field>
+                <name>FP2V</name>
+                <description>FPINST2 register instruction valid flag</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>EN</name>
+                <description>VFP enable bit</description>
+                <bitOffset>30</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>EX</name>
+                <description>Exception flag</description>
+                <bitOffset>31</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+        </registers>
+      </group>
+      <group>
+        <name>Core (All)</name>
+        <description>All CPU Registers</description>
+        <size>32</size>
+        <access>RW</access>
+        <type>unsigned int</type>
+        <registers>
+          <register>
+            <name>R0_USR</name>
+            <description>General purpose register 0 (User Mode)</description>
+            <Index>0</Index>
+          </register>
+          <register>
+            <name>R1_USR</name>
+            <description>General purpose register 1 (User Mode)</description>
+            <Index>1</Index>
+          </register>
+          <register>
+            <name>R2_USR</name>
+            <description>General purpose register 2 (User Mode)</description>
+            <Index>2</Index>
+          </register>
+          <register>
+            <name>R3_USR</name>
+            <description>General purpose register 3 (User Mode)</description>
+            <Index>3</Index>
+          </register>
+          <register>
+            <name>R4_USR</name>
+            <description>General purpose register 4 (User Mode)</description>
+            <Index>4</Index>
+          </register>
+          <register>
+            <name>R5_USR</name>
+            <description>General purpose register 5 (User Mode)</description>
+            <Index>5</Index>
+          </register>
+          <register>
+            <name>R6_USR</name>
+            <description>General purpose register 6 (User Mode)</description>
+            <Index>6</Index>
+          </register>
+          <register>
+            <name>R7_USR</name>
+            <description>General purpose register 7 (User Mode)</description>
+            <Index>7</Index>
+          </register>
+          <register>
+            <name>R8_USR</name>
+            <description>General purpose register 8 (User Mode)</description>
+            <Index>10</Index>
+          </register>
+          <register>
+            <name>R9_USR</name>
+            <description>General purpose register 9 (User Mode)</description>
+            <Index>11</Index>
+          </register>
+          <register>
+            <name>R10_USR</name>
+            <description>General purpose register 10 (User Mode)</description>
+            <Index>12</Index>
+          </register>
+          <register>
+            <name>R11_USR</name>
+            <description>General purpose register 11 (User Mode)</description>
+            <Index>13</Index>
+          </register>
+          <register>
+            <name>R12_USR</name>
+            <description>General purpose register 12 (User Mode)</description>
+            <Index>14</Index>
+          </register>
+          <register>
+            <name>R13_USR</name>
+            <description>Stack pointer (User Mode)</description>
+            <Index>15</Index>
+          </register>
+          <register>
+            <name>R14_USR</name>
+            <description>Link register (User Mode)</description>
+            <Index>16</Index>
+          </register>
+          <register>
+            <name>R15_USR</name>
+            <description>Program counter (User Mode)</description>
+            <Index>9</Index>
+          </register>
+          <register>
+            <name>SPSR_USR</name>
+            <description>Current program status register (User Mode)</description>
+            <Index>8</Index>
+            <fields>
+              <field>
+                <name>M</name>
+                <description>Mode bits</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>5</bitWidth>
+              </field>
+              <field>
+                <name>T</name>
+                <description>Thumb state</description>
+                <bitOffset>5</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>F</name>
+                <description>SVC disable</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>I</name>
+                <description>IRQ disable</description>
+                <bitOffset>7</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>A</name>
+                <description>Asynchroneous abort disable</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>E</name>
+                <description>Data endianess</description>
+                <bitOffset>9</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IC/IT</name>
+                <description>Interruptible-continuable instruction bits</description>
+                <bitOffset>10</bitOffset>
+                <bitWidth>6</bitWidth>
+              </field>
+              <field>
+                <name>GE</name>
+                <description>Greater-than-or-equal bits</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>J</name>
+                <description>Java state</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Q</name>
+                <description>Sticky overflow flag</description>
+                <bitOffset>27</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>V</name>
+                <description>Overflow flag</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>C</name>
+                <description>Carry flag</description>
+                <bitOffset>29</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Z</name>
+                <description>Zero flag</description>
+                <bitOffset>30</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>N</name>
+                <description>Negative flag</description>
+                <bitOffset>31</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>R8_FIQ</name>
+            <description>General purpose register 8 (Fast Interrupt Mode)</description>
+            <Index>18</Index>
+          </register>
+          <register>
+            <name>R9_FIQ</name>
+            <description>General purpose register 9 (Fast Interrupt Mode)</description>
+            <Index>19</Index>
+          </register>
+          <register>
+            <name>R10_FIQ</name>
+            <description>General purpose register 10 (Fast Interrupt Mode)</description>
+            <Index>20</Index>
+          </register>
+          <register>
+            <name>R11_FIQ</name>
+            <description>General purpose register 11 (Fast Interrupt Mode)</description>
+            <Index>21</Index>
+          </register>
+          <register>
+            <name>R12_FIQ</name>
+            <description>General purpose register 12 (Fast Interrupt Mode)</description>
+            <Index>22</Index>
+          </register>
+          <register>
+            <name>R13_FIQ</name>
+            <description>Stack pointer (Fast Interrupt Mode)</description>
+            <Index>23</Index>
+          </register>
+          <register>
+            <name>R14_FIQ</name>
+            <description>Link register (Fast Interrupt Mode)</description>
+            <Index>24</Index>
+          </register>
+          <register>
+            <name>SPSR_FIQ</name>
+            <description>Current program status register (Fast Interrupt Mode)</description>
+            <Index>17</Index>
+            <fields>
+              <field>
+                <name>M</name>
+                <description>Mode bits</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>5</bitWidth>
+              </field>
+              <field>
+                <name>T</name>
+                <description>Thumb state</description>
+                <bitOffset>5</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>F</name>
+                <description>SVC disable</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>I</name>
+                <description>IRQ disable</description>
+                <bitOffset>7</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>A</name>
+                <description>Asynchroneous abort disable</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>E</name>
+                <description>Data endianess</description>
+                <bitOffset>9</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IC/IT</name>
+                <description>Interruptible-continuable instruction bits</description>
+                <bitOffset>10</bitOffset>
+                <bitWidth>6</bitWidth>
+              </field>
+              <field>
+                <name>GE</name>
+                <description>Greater-than-or-equal bits</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>J</name>
+                <description>Java state</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Q</name>
+                <description>Sticky overflow flag</description>
+                <bitOffset>27</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>V</name>
+                <description>Overflow flag</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>C</name>
+                <description>Carry flag</description>
+                <bitOffset>29</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Z</name>
+                <description>Zero flag</description>
+                <bitOffset>30</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>N</name>
+                <description>Negative flag</description>
+                <bitOffset>31</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>R13_SVC</name>
+            <description>Stack pointer (Supervisor Mode)</description>
+            <Index>26</Index>
+          </register>
+          <register>
+            <name>R14_SVC</name>
+            <description>Link register (Supervisor Mode)</description>
+            <Index>27</Index>
+          </register>
+          <register>
+            <name>SPSR_SVC</name>
+            <description>Current program status register (Supervisor Mode)</description>
+            <Index>25</Index>
+            <fields>
+              <field>
+                <name>M</name>
+                <description>Mode bits</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>5</bitWidth>
+              </field>
+              <field>
+                <name>T</name>
+                <description>Thumb state</description>
+                <bitOffset>5</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>F</name>
+                <description>SVC disable</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>I</name>
+                <description>IRQ disable</description>
+                <bitOffset>7</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>A</name>
+                <description>Asynchroneous abort disable</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>E</name>
+                <description>Data endianess</description>
+                <bitOffset>9</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IC/IT</name>
+                <description>Interruptible-continuable instruction bits</description>
+                <bitOffset>10</bitOffset>
+                <bitWidth>6</bitWidth>
+              </field>
+              <field>
+                <name>GE</name>
+                <description>Greater-than-or-equal bits</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>J</name>
+                <description>Java state</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Q</name>
+                <description>Sticky overflow flag</description>
+                <bitOffset>27</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>V</name>
+                <description>Overflow flag</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>C</name>
+                <description>Carry flag</description>
+                <bitOffset>29</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Z</name>
+                <description>Zero flag</description>
+                <bitOffset>30</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>N</name>
+                <description>Negative flag</description>
+                <bitOffset>31</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>R13_ABT</name>
+            <description>Stack pointer (Abort Mode)</description>
+            <Index>29</Index>
+          </register>
+          <register>
+            <name>R14_ABT</name>
+            <description>Link register (Abort Mode)</description>
+            <Index>30</Index>
+          </register>
+          <register>
+            <name>SPSR_ABT</name>
+            <description>Current program status register (Fast Interrupt Mode)</description>
+            <Index>28</Index>
+            <fields>
+              <field>
+                <name>M</name>
+                <description>Mode bits</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>5</bitWidth>
+              </field>
+              <field>
+                <name>T</name>
+                <description>Thumb state</description>
+                <bitOffset>5</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>F</name>
+                <description>SVC disable</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>I</name>
+                <description>IRQ disable</description>
+                <bitOffset>7</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>A</name>
+                <description>Asynchroneous abort disable</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>E</name>
+                <description>Data endianess</description>
+                <bitOffset>9</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IC/IT</name>
+                <description>Interruptible-continuable instruction bits</description>
+                <bitOffset>10</bitOffset>
+                <bitWidth>6</bitWidth>
+              </field>
+              <field>
+                <name>GE</name>
+                <description>Greater-than-or-equal bits</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>J</name>
+                <description>Java state</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Q</name>
+                <description>Sticky overflow flag</description>
+                <bitOffset>27</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>V</name>
+                <description>Overflow flag</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>C</name>
+                <description>Carry flag</description>
+                <bitOffset>29</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Z</name>
+                <description>Zero flag</description>
+                <bitOffset>30</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>N</name>
+                <description>Negative flag</description>
+                <bitOffset>31</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>R13_IRQ</name>
+            <description>Stack pointer (Interrupt Mode)</description>
+            <Index>32</Index>
+          </register>
+          <register>
+            <name>R14_IRQ</name>
+            <description>Link register (Interrupt Mode)</description>
+            <Index>33</Index>
+          </register>
+          <register>
+            <name>SPSR_IRQ</name>
+            <description>Current program status register (Interrupt Mode)</description>
+            <Index>31</Index>
+            <fields>
+              <field>
+                <name>M</name>
+                <description>Mode bits</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>5</bitWidth>
+              </field>
+              <field>
+                <name>T</name>
+                <description>Thumb state</description>
+                <bitOffset>5</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>F</name>
+                <description>SVC disable</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>I</name>
+                <description>IRQ disable</description>
+                <bitOffset>7</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>A</name>
+                <description>Asynchroneous abort disable</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>E</name>
+                <description>Data endianess</description>
+                <bitOffset>9</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IC/IT</name>
+                <description>Interruptible-continuable instruction bits</description>
+                <bitOffset>10</bitOffset>
+                <bitWidth>6</bitWidth>
+              </field>
+              <field>
+                <name>GE</name>
+                <description>Greater-than-or-equal bits</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>J</name>
+                <description>Java state</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Q</name>
+                <description>Sticky overflow flag</description>
+                <bitOffset>27</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>V</name>
+                <description>Overflow flag</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>C</name>
+                <description>Carry flag</description>
+                <bitOffset>29</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Z</name>
+                <description>Zero flag</description>
+                <bitOffset>30</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>N</name>
+                <description>Negative flag</description>
+                <bitOffset>31</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+          <register>
+            <name>R13_UND</name>
+            <description>Stack pointer (Undefined Mode)</description>
+            <Index>35</Index>
+          </register>
+          <register>
+            <name>R14_UND</name>
+            <description>Link register (Undefined Mode)</description>
+            <Index>36</Index>
+          </register>
+          <register>
+            <name>SPSR_UND</name>
+            <description>Current program status register (Undefined Mode)</description>
+            <Index>34</Index>
+            <fields>
+              <field>
+                <name>M</name>
+                <description>Mode bits</description>
+                <bitOffset>0</bitOffset>
+                <bitWidth>5</bitWidth>
+              </field>
+              <field>
+                <name>T</name>
+                <description>Thumb state</description>
+                <bitOffset>5</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>F</name>
+                <description>SVC disable</description>
+                <bitOffset>6</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>I</name>
+                <description>IRQ disable</description>
+                <bitOffset>7</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>A</name>
+                <description>Asynchroneous abort disable</description>
+                <bitOffset>8</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>E</name>
+                <description>Data endianess</description>
+                <bitOffset>9</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>IC/IT</name>
+                <description>Interruptible-continuable instruction bits</description>
+                <bitOffset>10</bitOffset>
+                <bitWidth>6</bitWidth>
+              </field>
+              <field>
+                <name>GE</name>
+                <description>Greater-than-or-equal bits</description>
+                <bitOffset>16</bitOffset>
+                <bitWidth>4</bitWidth>
+              </field>
+              <field>
+                <name>J</name>
+                <description>Java state</description>
+                <bitOffset>24</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Q</name>
+                <description>Sticky overflow flag</description>
+                <bitOffset>27</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>V</name>
+                <description>Overflow flag</description>
+                <bitOffset>28</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>C</name>
+                <description>Carry flag</description>
+                <bitOffset>29</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>Z</name>
+                <description>Zero flag</description>
+                <bitOffset>30</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+              <field>
+                <name>N</name>
+                <description>Negative flag</description>
+                <bitOffset>31</bitOffset>
+                <bitWidth>1</bitWidth>
+              </field>
+            </fields>
+          </register>
+        </registers>
+      </group>
+    </groups>
+  </cpu>
+</device>

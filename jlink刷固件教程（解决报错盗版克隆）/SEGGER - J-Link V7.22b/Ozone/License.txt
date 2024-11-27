@@ -1,0 +1,235 @@
+Important - Read carefully:
+
+Part 1)
+This license applies to the Ozone - the J-Link Debugger Software, developed and provided by SEGGER.
+
+DEFINITIONS: 
+For the purpose of this agreement, the terms shall have the following meaning when the entire word is marked bold:
+
+The "software" means the Ozone - the J-Link Debugger software and all related components provided by SEGGER which can be downloaded at: http://segger.com/j-link-debugger.html
+
+"Licensor" shall mean SEGGER except under the following circumstances:
+If Licensee acquired the software as a bundled component of a third party product or service, then such third party shall either include this license terms or be Licensor and provide similar terms  which will not exceed those set forth in this agreement.
+
+1. LICENSE AGREEMENT
+This license is a legal agreement between YOU (either an individual or a single entity) and SEGGER Microcontroller GmbH (called SEGGER).
+By downloading and/or using the software, you agree to be bound by the terms of this agreement. 
+
+2. LICENSE GRANT
+These terms apply to the entire software, especially to its components, developed by SEGGER Microcontroller GmbH, which can be downloaded at: http://www.segger.com/jlink-software.html or as beta version at: http://www.segger.com/jlink-software-beta-version.html.
+The software consists of proprietary, unpublished products of SEGGER, protected under copyright and trade secret laws.
+All rights, title and interest in the software are and shall remain with SEGGER.
+Licensor grants Licensee a non-exclusive and non-transferable License to use the software or parts thereof with SEGGERs J-Link family of debug probes or authorized OEM products only.  Additional info on the original SEGGER J-Link family of debug probes or authorized OEM products can be obtained at: http://www.segger.com/terms-of-use.html.  Any other use of the software package is prohibited without prior written authorization from SEGGER.
+The use of the licensed software to operate J-Link clones is prohibited and illegal; SEGGER may hold Licensee liable, if Licensee fails to comply with this restriction. 
+Any (re)distribution or shipment of the software  requires the prior written authorization from SEGGER in each instance. 
+Licensee is entitled to make copies of the software for backup purposes only. 
+All copies of the software, including modifications to the software, must bear all copyright, trademarks and other proprietary notices included thereon by SEGGER.
+This License does not entitle Licensee to receive from SEGGER hard-copy documentation, technical support, telephone assistance, or enhancements or updates for the software  unless a specific agreement clearly states otherwise.
+
+3. RESTRICTIONS
+Licensee may not:
+(a) decompile, disassemble, reverse engineer, or otherwise attempt to derive the source code of the software, 
+(b) redistribute, encumber, sell, rent, lease, sublicense, or otherwise transfer rights of the software,
+(c) remove or alter any trademark, logo, copyright or other proprietary notices, legends, symbols or labels of the software, 
+(d) install or use the software with unauthorized debug probes.
+
+4. FEES
+All features of the software which are functional without request for a license key can be used free of charge, at least for evaluation purposes.
+
+5. TERMINATION
+Without prejudice to any other rights, Licensor may terminate this agreement if Licensee breaches any term or condition of this agreement. In such event SEGGER is entitled to also claim monetary damages.  
+
+6. PROPRIETARY RIGHTS
+Title, ownership rights, and intellectual property rights in the software shall remain by SEGGER and/or its suppliers. Licensee acknowledges such ownership and intellectual property rights and will not take any action to jeopardize, limit or interfere in any manner with SEGGER or its suppliers' ownership of or rights with respect to the software. The software is protected by copyright and other intellectual property laws and by international treaties. 
+
+7. DISCLAIMER OF WARRANTY
+The software is provided on an "as is" basis, without warranty of any kind, including without limitation the warranties that it is free of defects, merchantable, fit for a particular purpose or non-infringing. The entire risk as to the quality and performance of the software is borne by Licensee. Should the software prove defective in any respect, Licensee and not Licensor or its suppliers or resellers assumes the entire cost of any service and repair. In addition Licensee must determine that the software sufficiently meets its requirements. This disclaimer of warranty constitutes an essential part of this agreement. No use of the software is authorized hereunder except under this disclaimer.
+
+8. LIMITATION OF LIABILITY
+To the maximum extent permitted by applicable law, in no event will Licensor or its suppliers or resellers be liable for any indirect, special, incidental or consequential damages arising out of the use of or inability to use the software, including, without limitation, damages for loss of goodwill, work stoppage, computer failure or malfunction, or any and all other commercial damages or losses, even if advised of the possibility thereof, and regardless of the legal or equitable theory (contract, tort or otherwise) upon which the claim is based. In any case, Licensor's entire liability under any provision of this agreement shall not exceed in the aggregate the sum of the fees Licensee paid for this license (if any), with the exception of death or personal injury caused by the negligence of Licensor to the extent applicable law prohibits the limitation of damages in such cases. Some jurisdictions do not allow the exclusion or limitation of incidental or consequential damages, so this exclusion and limitation may not be applicable. SEGGER is not responsible for any liability arising out of content provided by Licensee or a third party that is accessed through the product and/or any material linked through such content.
+
+9. HIGH RISK ACTIVITIES
+The software is not designed for use in hazardous environments requiring fail-safe performance, such as in the operation of nuclear facilities, aircraft navigation or communication systems, air traffic control, direct life support machines, or weapons systems, in which the failure of the software could lead directly to death, personal injury, or severe physical or environmental damage ("High Risk Activities"). Accordingly, Licensor and its suppliers specifically disclaim any express or implied warranty of fitness for High Risk Activities. 
+
+10. MISCELLANEOUS
+(a) This agreement constitutes the entire agreement between the parties concerning the subject matter hereof. 
+(b) This agreement may be changed only by an amendment in writing, signed by both parties.
+(c) If any provision in this agreement should be held illegal or unenforceable by a court having jurisdiction, such provision shall be modified to the extent necessary to render it enforceable without losing its intent, or severed from this agreement if no such modification is possible, and other provisions of this agreement shall remain in full force and effect.
+(d) This agreement shall be governed by the laws of the Federal Republic of Germany.
+(e) This agreement shall be binding upon and shall inure to the benefit of the parties, their successors and permitted assigns.
+(f) Neither party shall be in default or be liable for any delay, failure in performance (excepting the obligation to pay) or interruption of service resulting directly or indirectly from any cause beyond its reasonable control.
+(g) The relationship between Licensor and Licensee is that of independent contractors and neither Licensee nor its agents shall have any authority to bind Licensor in any way.
+(h) If any SEGGER  professional services are being provided, then such professional services are provided pursuant to the terms of a separate professional services agreement between the parties. The parties acknowledge that such services are acquired independently of the product licensed hereunder, and that provision of such services is not essential to the functionality of such product.
+
+© 2004-2016 SEGGER Microcontroller GmbH
+
+
+ADDITIONAL SOFTWARE
+
+This sofware dynamically links against the Qt4 libraries distributed unter the GNU Lesser General Public License v.3 („LGPL“).
+
+                   GNU LESSER GENERAL PUBLIC LICENSE
+                       Version 3, 29 June 2007
+
+ Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
+
+
+  This version of the GNU Lesser General Public License incorporates
+the terms and conditions of version 3 of the GNU General Public
+License, supplemented by the additional permissions listed below.
+
+  0. Additional Definitions.
+
+  As used herein, "this License" refers to version 3 of the GNU Lesser
+General Public License, and the "GNU GPL" refers to version 3 of the GNU
+General Public License.
+
+  "The Library" refers to a covered work governed by this License,
+other than an Application or a Combined Work as defined below.
+
+  An "Application" is any work that makes use of an interface provided
+by the Library, but which is not otherwise based on the Library.
+Defining a subclass of a class defined by the Library is deemed a mode
+of using an interface provided by the Library.
+
+  A "Combined Work" is a work produced by combining or linking an
+Application with the Library.  The particular version of the Library
+with which the Combined Work was made is also called the "Linked
+Version".
+
+  The "Minimal Corresponding Source" for a Combined Work means the
+Corresponding Source for the Combined Work, excluding any source code
+for portions of the Combined Work that, considered in isolation, are
+based on the Application, and not on the Linked Version.
+
+  The "Corresponding Application Code" for a Combined Work means the
+object code and/or source code for the Application, including any data
+and utility programs needed for reproducing the Combined Work from the
+Application, but excluding the System Libraries of the Combined Work.
+
+  1. Exception to Section 3 of the GNU GPL.
+
+  You may convey a covered work under sections 3 and 4 of this License
+without being bound by section 3 of the GNU GPL.
+
+  2. Conveying Modified Versions.
+
+  If you modify a copy of the Library, and, in your modifications, a
+facility refers to a function or data to be supplied by an Application
+that uses the facility (other than as an argument passed when the
+facility is invoked), then you may convey a copy of the modified
+version:
+
+   a) under this License, provided that you make a good faith effort to
+   ensure that, in the event an Application does not supply the
+   function or data, the facility still operates, and performs
+   whatever part of its purpose remains meaningful, or
+
+   b) under the GNU GPL, with none of the additional permissions of
+   this License applicable to that copy.
+
+  3. Object Code Incorporating Material from Library Header Files.
+
+  The object code form of an Application may incorporate material from
+a header file that is part of the Library.  You may convey such object
+code under terms of your choice, provided that, if the incorporated
+material is not limited to numerical parameters, data structure
+layouts and accessors, or small macros, inline functions and templates
+(ten or fewer lines in length), you do both of the following:
+
+   a) Give prominent notice with each copy of the object code that the
+   Library is used in it and that the Library and its use are
+   covered by this License.
+
+   b) Accompany the object code with a copy of the GNU GPL and this license
+   document.
+
+  4. Combined Works.
+
+  You may convey a Combined Work under terms of your choice that,
+taken together, effectively do not restrict modification of the
+portions of the Library contained in the Combined Work and reverse
+engineering for debugging such modifications, if you also do each of
+the following:
+
+   a) Give prominent notice with each copy of the Combined Work that
+   the Library is used in it and that the Library and its use are
+   covered by this License.
+
+   b) Accompany the Combined Work with a copy of the GNU GPL and this license
+   document.
+
+   c) For a Combined Work that displays copyright notices during
+   execution, include the copyright notice for the Library among
+   these notices, as well as a reference directing the user to the
+   copies of the GNU GPL and this license document.
+
+   d) Do one of the following:
+
+       0) Convey the Minimal Corresponding Source under the terms of this
+       License, and the Corresponding Application Code in a form
+       suitable for, and under terms that permit, the user to
+       recombine or relink the Application with a modified version of
+       the Linked Version to produce a modified Combined Work, in the
+       manner specified by section 6 of the GNU GPL for conveying
+       Corresponding Source.
+
+       1) Use a suitable shared library mechanism for linking with the
+       Library.  A suitable mechanism is one that (a) uses at run time
+       a copy of the Library already present on the user's computer
+       system, and (b) will operate properly with a modified version
+       of the Library that is interface-compatible with the Linked
+       Version.
+
+   e) Provide Installation Information, but only if you would otherwise
+   be required to provide such information under section 6 of the
+   GNU GPL, and only to the extent that such information is
+   necessary to install and execute a modified version of the
+   Combined Work produced by recombining or relinking the
+   Application with a modified version of the Linked Version. (If
+   you use option 4d0, the Installation Information must accompany
+   the Minimal Corresponding Source and Corresponding Application
+   Code. If you use option 4d1, you must provide the Installation
+   Information in the manner specified by section 6 of the GNU GPL
+   for conveying Corresponding Source.)
+
+  5. Combined Libraries.
+
+  You may place library facilities that are a work based on the
+Library side by side in a single library together with other library
+facilities that are not Applications and are not covered by this
+License, and convey such a combined library under terms of your
+choice, if you do both of the following:
+
+   a) Accompany the combined library with a copy of the same work based
+   on the Library, uncombined with any other library facilities,
+   conveyed under the terms of this License.
+
+   b) Give prominent notice with the combined library that part of it
+   is a work based on the Library, and explaining where to find the
+   accompanying uncombined form of the same work.
+
+  6. Revised Versions of the GNU Lesser General Public License.
+
+  The Free Software Foundation may publish revised and/or new versions
+of the GNU Lesser General Public License from time to time. Such new
+versions will be similar in spirit to the present version, but may
+differ in detail to address new problems or concerns.
+
+  Each version is given a distinguishing version number. If the
+Library as you received it specifies that a certain numbered version
+of the GNU Lesser General Public License "or any later version"
+applies to it, you have the option of following the terms and
+conditions either of that published version or of any later version
+published by the Free Software Foundation. If the Library as you
+received it does not specify a version number of the GNU Lesser
+General Public License, you may choose any version of the GNU Lesser
+General Public License ever published by the Free Software Foundation.
+
+  If the Library as you received it specifies that a proxy can decide
+whether future versions of the GNU Lesser General Public License shall
+apply, that proxy's public statement of acceptance of any version is
+permanent authorization for you to choose that version for the
+Library.
