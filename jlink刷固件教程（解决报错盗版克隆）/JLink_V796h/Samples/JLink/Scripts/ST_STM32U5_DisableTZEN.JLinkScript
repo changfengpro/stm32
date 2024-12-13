@@ -1,0 +1,504 @@
+/***********************************************************************
+*                    SEGGER Microcontroller GmbH                       *
+*                        The Embedded Experts                          *
+************************************************************************
+*                                                                      *
+*                  (c) SEGGER Microcontroller GmbH                     *
+*                        All rights reserved                           *
+*                          www.segger.com                              *
+*                                                                      *
+************************************************************************
+*                                                                      *
+************************************************************************
+*                                                                      *
+*                                                                      *
+*  Licensing terms                                                     *
+*                                                                      *
+* The use in source and binary forms, with or without modification,    *
+* is permitted for internal use only. The redistribution to any        *
+* third party is prohibited.                                           *
+*                                                                      *
+*                                                                      *
+* THIS SOFTWARE IS PROVIDED BY COPYRIGHT HOLDER "AS IS" AND ANY        *
+* EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE    *
+* IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR   *
+* PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL COPYRIGHT HOLDER BE        *
+* LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,     *
+* OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,             *
+* PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR   *
+* PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY  *
+* OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT         *
+* (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE    *
+* USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH     *
+* DAMAGE.                                                              *
+*                                                                      *
+************************************************************************
+
+-------------------------- END-OF-HEADER -----------------------------
+
+Purpose: Implementation of device specific handling for
+          ST STM32U5xxxx devices
+Literature:
+  [1]  J-Link User Guide
+  [2]  ST RM0456 (STM32U5 Reference manual)
+Additional information:
+  [3]  ...
+*/
+
+/*********************************************************************
+*
+*       Constants, fixed
+*
+**********************************************************************
+*/
+//
+// Registers
+//
+__constant U32 _DHCSR_ADDR                       = 0xE000EDF0;
+__constant U32 _DEMCR_ADDR                       = 0xE000EDFC; // Debug Exception and Monitor Control Register
+__constant U32 _AIRCR_ADDR                       = 0xE000ED0C; // Application Interrupt and Reset Control Register
+__constant U32 _CPUID_ADDR                       = 0xE000ED00;
+//
+// Bits
+//
+__constant U32 _DP_CTRL_STAT_BIT_DBGPWRUPREQ     = (1 << 30);
+__constant U32 _DP_CTRL_STAT_BIT_SYSPWRUPREQ     = (1 << 28);
+__constant U32 _DP_CTRL_STAT_BIT_STICKYERR       = (1 <<  5);
+//
+// Shifts
+//
+__constant U32 _BIT_S_HALTED                     = (1 << 17);
+
+/*********************************************************************
+*
+*       Constants, configurable (might differ between STM32 devices)
+*
+**********************************************************************
+*/
+
+//
+// Registers
+//
+__constant U32 _FLASH_BASE       = 0x50022000;
+__constant U32 _FLASH_BASE_NS    = 0x40022000;
+__constant U32 _FLASH_NSKEYR     = _FLASH_BASE_NS + 0x08;
+__constant U32 _FLASH_OPTKEYR    = _FLASH_BASE_NS + 0x10;
+__constant U32 _FLASH_NSSR       = _FLASH_BASE_NS + 0x20;
+__constant U32 _FLASH_NSCR       = _FLASH_BASE_NS + 0x28;
+__constant U32 _FLASH_OPTR       = _FLASH_BASE_NS + 0x40;
+//
+// Shifts & Bits & Masks ...
+//
+// FLASH_SR
+//
+__constant U32 _BIT_BSY          = 16;
+__constant U32 _CLEAR_ERR_SR     = 0x000020F8;
+//
+// FLASH_CR
+//
+__constant U32 _BIT_OPTSTRT      = (1 << 17);
+__constant U32 _BIT_OBLLAUNCH    = (1 << 27); // Launch option byte loading
+__constant U32 _BIT_OPTLOCK      = (1 << 30);
+__constant U32 _BIT_LOCK         = (1 << 31);
+//
+// FLASH_OPTR
+//
+__constant U32 _RDP_LVL_0        = (0xAA <<  0);
+__constant U32 _RDP_LVL_05       = (0x55 <<  0);
+__constant U32 _RDP_LVL_1        = (0xBB <<  0);
+__constant U32 _BIT_NSWBOOT0     = (1    << 26);
+__constant U32 _BIT_NBOOT0       = (1    << 27);
+__constant U32 _BIT_TZEN         = (1    << 31);
+__constant U32 _MASK_RDP         = 0x000000FF;
+__constant U32 _MASK_BOOT        = 0x0C000000;
+__constant U32 _OPTR_FACT_VAL    = 0x1FEFF8AA;
+//
+// Keys
+//
+__constant U32 _FLASH_KEY1       = 0x45670123;
+__constant U32 _FLASH_KEY2       = 0xCDEF89AB;
+__constant U32 _OPT_KEY1         = 0x08192A3B;
+__constant U32 _OPT_KEY2         = 0x4C5D6E7F;
+//
+// Misc
+//
+__constant U32 _DEF_BUSY_TIMEOUT = 500;
+
+/*********************************************************************
+*
+*       Static code
+*
+**********************************************************************
+*/
+
+/*********************************************************************
+*
+*       _ConfigureAP()
+*
+*  Function description
+*    Configures selected AP for debugging.
+*/
+static int _ConfigureAP(U32 Index) {
+  U32 v;
+  int r;
+  //
+  // Select AP and bank to use
+  //
+  v = 0
+    | (0 << 4)       // Select bank 0 (this is default for most casese).
+    | (Index << 24)  // Select AP[Index] (AHB-AP)
+    ;
+  JLINK_CORESIGHT_WriteDP(JLINK_CORESIGHT_DP_REG_SELECT,  v);
+  //
+  // Initialize DAP for debug use.
+  //
+  v = (2 <<  0)  // Access size: word
+    | (0 <<  4)  // NO Auto-increment
+    | (1 << 25)  // Priviledged access
+    | (0 << 30)  // Secure transfer
+    ;
+  r = JLINK_CORESIGHT_WriteAP(JLINK_CORESIGHT_AP_REG_CTRL, v);
+  if (r < 0) {
+    JLINK_SYS_Report("  Error: Failed to configure AP.");
+    return -1;
+  }
+  return 0;
+}
+
+/*********************************************************************
+*
+*       _InitDAP()
+*
+*  Function description
+*    Initializes DAP, so JLINK_CORESIGHT_ functions can be used.
+*/
+static int _InitDAP(void) {
+  U32 v;
+  int r;
+  int t;
+  //
+  // Clear sticky error flags and power up DAP
+  //
+  v  = _DP_CTRL_STAT_BIT_DBGPWRUPREQ | _DP_CTRL_STAT_BIT_SYSPWRUPREQ;
+  if (JLINK_ActiveTIF == JLINK_TIF_JTAG) {
+    v |= _DP_CTRL_STAT_BIT_STICKYERR;
+  } else {
+    JLINK_CORESIGHT_WriteDP(JLINK_CORESIGHT_DP_REG_ABORT, 0x1E);
+  }
+  JLINK_CORESIGHT_WriteDP(JLINK_CORESIGHT_DP_REG_CTRL_STAT, v);
+  //
+  // Wait for power up DAP complete
+  //
+  r = -1;
+  t = JLINK_GetTime() + _DEF_BUSY_TIMEOUT;
+  do {
+    r = JLINK_CORESIGHT_ReadDP(JLINK_CORESIGHT_DP_REG_CTRL_STAT);
+    if (r == -1) {                     // Any error occurred while reading from the DP, we are done
+      break;
+    }
+    v = r;
+    if (v & (0xF << 28)) {             // CSYSPWRUPACK and CDBGPWRUPACK set, so both ports have been completely powered?
+      r = 0;
+      break;
+    }
+    if ((t - JLINK_GetTime()) <= 0) {
+      break;
+    }
+  } while(1);
+  if (r < 0) {
+    JLINK_SYS_Report("  Error: Failed to initialized DAP.");
+    return -1;
+  }
+  r = _ConfigureAP(0);                 // Finally configure the AP so we can use it.
+  if (r < 0) {
+    return -1;
+  }
+  return 0;
+}
+
+/*********************************************************************
+*
+*       _WaitWhileBusy
+*
+*  Function descripton
+*    Wait until read value is not busy.
+*
+*  Return value
+*      0 O.K.
+*    < 0 Error
+*     -1 Timeout reached
+*     -2 Error reading/writing DAP
+*/
+static int _WaitWhileBusy(U32 Addr, U32 Mask, U32 RefValue, U32 Timeout) {
+  int r;
+  int t;
+  U32 Status;
+
+  RefValue &= Mask;
+  r         = -1;
+  //
+  // Wait for operation to complete
+  //
+  t = JLINK_GetTime() + Timeout;
+  do {
+    r  = JLINK_MEM_ReadU32(Addr);
+    //
+    // Check for error while reading/writing AP.
+    // We do this because this function might be called after a reset,
+    // e.g. from _WaitCPUHalted()
+    //
+    if (r == -1) {                      // Connection lost ? => Error.
+      r = -2;
+      break;
+    }
+    Status = r;
+    if ((Status & Mask) == RefValue) { // Operation complete? => Done.
+      r = 0;
+      break;
+    }
+    if ((t - JLINK_GetTime()) < 0) {    // Timeout reached? => Error.
+      r = -1;
+      break;
+    }
+  } while (1);
+  return r;
+}
+
+/*********************************************************************
+*
+*       _WaitWhileFlashBusy
+*
+*  Function descripton
+*    Wrapper for _WaitWhileBuys, to make Flash wait calls simpler.
+*/
+static int _WaitWhileFlashBusy(U32 Timeout) {
+  return _WaitWhileBusy(_FLASH_NSSR, _BIT_BSY, ~_BIT_BSY, Timeout);
+}
+
+/*********************************************************************
+*
+*       _WaitCPUHalted
+*
+*  Function description
+*    Wait for DHCSR to signal that the CPU is halted.
+*
+*  Return value
+*      0 O.K.
+*    < 0 Error
+*/
+static int _WaitCPUHalted(void) {
+  int r;
+
+  r = _WaitWhileBusy(_DHCSR_ADDR, _BIT_S_HALTED, _BIT_S_HALTED, _DEF_BUSY_TIMEOUT);
+  if (r == -1) {
+    JLINK_SYS_Report("  Timeout while waiting for CPU to halt.");
+  } else if (r == -2) {
+    JLINK_SYS_Report("  Error while checking CPU state.");
+  }
+  return r;
+}
+
+/*********************************************************************
+*
+*       _Reset
+*
+*  Function description
+*    Reset and wait until CPU is halted.
+*
+*  Return value
+*      0  O.K.
+*    < 0  Error
+*/
+static int _Reset(void) {
+  int r;
+  U32 v;
+  U32 demcr;
+
+  r = JLINK_MEM_ReadU32(_DHCSR_ADDR);
+  if (r < 0) {
+    return -1;
+  }
+  v = r;
+  v &= 0x3F;                                         // Mask out "debug" bits
+  v |= (0xA05F << 16);                               // Debug key to make a write to the DHCSR a valid one
+  v |= (1 << 1);                                     // Halt the core
+  v |= (1 << 0);                                     // Enable debug functionalities of the core
+  JLINK_MEM_WriteU32(_DHCSR_ADDR, v);
+  demcr = JLINK_MEM_ReadU32(_DEMCR_ADDR);
+  JLINK_MEM_WriteU32(_DEMCR_ADDR, demcr | (1 << 0)); // Set VC_CORERESET
+  JLINK_MEM_WriteU32(_AIRCR_ADDR, 0x05FA0004);       // SYSRESETREQ
+  r = _WaitCPUHalted();
+  if (r < 0) {
+    return -1;
+  }
+  _InitDAP();
+  return 0;
+}
+
+/*********************************************************************
+*
+*       _UnlockOptionbytes
+*
+*  Function description
+*    Unlock the Flash registers and Optionbytes if not yet unlocked.
+*
+*  Return value
+*      0  O.K.
+*    < 0  Error
+*/
+static void _UnlockOptionbytes(void) {
+  U32 v;
+
+  v = JLINK_MEM_ReadU32(_FLASH_NSCR);
+  if (v & _BIT_LOCK) {
+    JLINK_MEM_WriteU32(_FLASH_NSKEYR,  _FLASH_KEY1);
+    JLINK_MEM_WriteU32(_FLASH_NSKEYR,  _FLASH_KEY2);
+  }
+  if (v & _BIT_OPTLOCK) {
+    JLINK_MEM_WriteU32(_FLASH_OPTKEYR, _OPT_KEY1);
+    JLINK_MEM_WriteU32(_FLASH_OPTKEYR, _OPT_KEY2);
+  }
+}
+
+/*********************************************************************
+*
+*       _ProgOptionbytes
+*
+*  Function description
+*    Triggers option byte programming and launching of the option bytes.
+*
+*  Return value
+*      0  O.K.
+*    < 0  Error
+*/
+static int _ProgOptionbytes(void) {
+  int r;
+  U32 v;
+
+  JLINK_MEM_WriteU32(_FLASH_NSSR, _CLEAR_ERR_SR); // Reset FLASH_SR error bits
+  JLINK_MEM_WriteU32(_FLASH_NSCR, _BIT_OPTSTRT);
+  r = _WaitWhileFlashBusy(30000);        // Changing RDP might trigger a mass erase, so we have to give this some time.
+  if (r < 0) {
+    return r;
+  }
+  //
+  // Set OBL_LAUNCH bit
+  // After the OBL_LAUNCH has been set, the device is not responsive until reset,
+  // so we wait some time and reconnect to the device
+  //
+  JLINK_MEM_WriteU32(_FLASH_NSCR, _BIT_OBLLAUNCH);
+  JLINK_SYS_Sleep(200);           // Give OBL_LAUNCH some time
+  r = _InitDAP();                 // CPU has to be reconnected after reset!
+  return r;
+}
+
+/*********************************************************************
+*
+*       _DisableTZENIfActive
+*
+*  Function description
+*    Disable TrustZone on the device if active.
+*
+*  Return value
+*      0  O.K.
+*    < 0  Error
+*/
+static int _DisableTZENIfActive(void) {
+  int r;
+  U32 v;
+  U32 vOPTR;
+
+  vOPTR = JLINK_MEM_ReadU32(_FLASH_OPTR);
+  if ((vOPTR & _BIT_TZEN) == 0) {             // TZEN not set? => Nothing to do.
+    JLINK_SYS_Report("  TrustZone not enabled (TZEN == 0).");
+    return 0;
+  }
+  JLINK_SYS_Report("  TrustZone enabled (TZEN == 1).");
+  JLINK_SYS_Report("  Resetting OPTR to factory value...");
+  //
+  // Reset device to be in a defined state.
+  //
+  r = _Reset();
+  if (r < 0) {
+    return -1;
+  }
+  //
+  // Check RDP
+  //
+  v = vOPTR & _MASK_RDP;
+  if ((v == _RDP_LVL_0) || (v == _RDP_LVL_05)) {
+    //
+    // Set special boot mode if TZEN is active, but RDP is not Level 1.
+    // We do this, because when TZEN == 1, we are only able to read/write the flash registers while
+    // the CPU is executing non-secure code.
+    // By setting the boot mode while TZEN is set, we force the device to boot RSS, which is then
+    // executing non-secure code, which enables us to regress from RDP level 1.
+    //
+    vOPTR &= ~(_BIT_NSWBOOT0 | _BIT_NBOOT0);  // Set bootmode to BTL
+    vOPTR &= ~_MASK_RDP;                      // Mask out RDP
+    vOPTR |= _RDP_LVL_1;                      // Set RDP level 1
+    _UnlockOptionbytes();
+    JLINK_MEM_WriteU32(_FLASH_OPTR, vOPTR);
+    r = _ProgOptionbytes();
+    if (r < 0) {
+      return -1;
+    }
+  }
+  //
+  // Reset OPTR to factory value
+  //
+  _UnlockOptionbytes();
+  JLINK_MEM_WriteU32(_FLASH_OPTR, _OPTR_FACT_VAL);
+  r = _ProgOptionbytes();
+  if (r < 0) {
+    return -1;
+  }
+  v = JLINK_MEM_ReadU32(_FLASH_OPTR);
+  if (v & _BIT_TZEN) {
+    JLINK_SYS_Report("  TrustZone still enabled after disable sequence.");
+    return -1;
+  }
+  r = _Reset();
+  if (r < 0) {
+    return -1;
+  }
+  JLINK_SYS_Report("  TrustZone disabled successfully.");
+  return 0;
+}
+
+/*********************************************************************
+*
+*       Global functions
+*
+**********************************************************************
+*/
+
+/*********************************************************************
+*
+*       SetupTarget()
+*
+*  Function description
+*    If present, called after InitTarget() and after general debug connect sequence
+*    has been performed by J-Link. Usually used for more high-level CPU debug setup
+*    like writing certain memory locations, initializing PLL for faster download etc.
+*
+*  Return value
+*    >= 0:  O.K.
+*     < 0:  Error
+*
+*  Notes
+*    (1) Does not replace any DLL functionality but extends it.
+*    (2) May use MEM_ API functions
+*/
+int SetupTarget(void) {
+  int r;
+
+  r = _DisableTZENIfActive();
+  if (r < 0) {
+    JLINK_SYS_Report("  Disabling TrustZone failed.");
+    return -1;
+  }
+  return 0;
+}
+
+/*************************** end of file ****************************/
