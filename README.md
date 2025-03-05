@@ -1,0 +1,2 @@
+# JLinK
+解决市面上购买到的盗版jlink使用Ozone时的报错问题（采用重刷固件及添加License的方式）
